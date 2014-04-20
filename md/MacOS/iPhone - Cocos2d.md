@@ -7,17 +7,17 @@
 http://code.google.com/p/cocos2d-iphone/
 
 2. Run install script
-```macos
+```objective-c
  ```
 
 :Note|for Box2D, one of the file name is corrupted. Fix 
-```macos
+```objective-c
  ```
 ###Accelerormeter
-```macos
+```objective-c
  	[[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0 / 30)];
  ```
-```macos
+```objective-c
  static float prevX=0;//, prevY=0;
  	
  float accelX = acceleration.x * kFilterFactor + (1- kFilterFactor)*prevX;

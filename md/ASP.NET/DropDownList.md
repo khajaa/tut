@@ -4,7 +4,7 @@
 ###Binding in a GridView based on function
 This is useful when you want to modify (e.g. adding blank column on top)
 .aspx page, in Template Column
-```aspx-cs
+```csharp
  <asp:DropDownList 
  ID="ddlEditTicketReq1" 
  runat="server" 
@@ -15,7 +15,7 @@ This is useful when you want to modify (e.g. adding blank column on top)
  </EditItemTemplate> 
  ```
 .cs page
-```aspx-cs
+```csharp
  		DataTable td = busObjLU.GetTicketList();
  		// Add a new row
  		td.Rows.InsertAt(td.NewRow(), 0);
@@ -25,7 +25,7 @@ This is useful when you want to modify (e.g. adding blank column on top)
  }
  ```
 You can write in EditItemTemplate like this:
-```aspx-cs
+```csharp
  <asp:ListItem Value="P">%</asp:ListItem>
  <asp:ListItem Value="F">Fix</asp:ListItem>
  </asp:DropDownList>
@@ -45,7 +45,7 @@ This is example of char 4 field binding.
 ###OnChange Event Version
 +Create DropDownList with ''AutoPostBack=true''
 +Add some ListItems
-```aspx-cs
+```csharp
  	style="Z-INDEX: 101; LEFT: 80px; POSITION: absolute; TOP: 136px"
  	runat="server" Width="112px" Height="48px" AutoPostBack="True">
  	<asp:ListItem Selected="True"></asp:ListItem>
@@ -56,7 +56,7 @@ This is example of char 4 field binding.
  ```
 +In method, Get dropdownlist object from sender by casting the parameter
 
-```aspx-cs
+```csharp
  	DropDownList list = (DropDownList)sender; // Get object from sender
  	if (list.Items[0].Selected == true) {
  		// do something...
@@ -75,7 +75,7 @@ This is example of char 4 field binding.
 
 ###Setting SelectedIndex
 
-```aspx-cs
+```csharp
  	for (int i=0; i<ddl.Items.Count; i++) {
  		if (ddl.Items[i].Value.Trim() == targetValue.Trim()) {
  			ddl.SelectedIndex = i;
@@ -86,14 +86,14 @@ This is example of char 4 field binding.
  }
  ```
 ###Binding 
-```aspx-cs
+```csharp
  ddlUserName.DataValueField = "UID";
  ddlUserName.DataTextField = "UserName";
  ddlUserName.DataBind();
  // set index after binding
  ```
 ###U.S State
-```aspx-cs
+```csharp
  		<asp:ListItem VALUE="AL">Alabama</asp:ListItem>
  		<asp:ListItem VALUE="AK">Alaska</asp:ListItem>
  		<asp:ListItem VALUE="AZ">Arizona</asp:ListItem>
@@ -152,7 +152,7 @@ This is example of char 4 field binding.
  </asp:DropDownList>
  ```
 ###Country
-```aspx-cs
+```csharp
  <asp:ListItem VALUE="USA">United States</asp:ListItem>
  <asp:ListItem VALUE="CAN">Canada</asp:ListItem>
  <asp:ListItem VALUE="AGO">Angola</asp:ListItem>
@@ -394,7 +394,7 @@ This is example of char 4 field binding.
  </asp:DropDownList>
  ```
 ###Language
-```aspx-cs
+```csharp
  <asp:ListItem Value="AF">Afrikaans</asp:ListItem>
  <asp:ListItem Value="ASL">American Sign Language</asp:ListItem>
  <asp:ListItem Value="AM">Amharic</asp:ListItem>
@@ -459,7 +459,7 @@ This is example of char 4 field binding.
  </asp:DropDownList>
  ```
 ###New York County
-```aspx-cs
+```csharp
  <asp:ListItem Value="">Select</asp:ListItem>
  <asp:ListItem Value="ALBANY">ALBANY</asp:ListItem>
  <asp:ListItem Value="ALLEGANY">ALLEGANY</asp:ListItem>

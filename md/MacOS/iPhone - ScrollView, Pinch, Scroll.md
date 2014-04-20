@@ -4,13 +4,13 @@
 ###Example
 
 .h
-```macos
+```objective-c
  IBOutlet UIScrollView *mResizeView;
  UIImageView *mImage;
  }
  ```
 .m
-```macos
+```objective-c
     [super viewDidLoad];
  	
   mImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fireworks.png"]];   
@@ -40,12 +40,12 @@ Scroll View does not take touch events (it takes zoom / drag). So if you need, y
 
 
 MyScrollView.h
-```macos
+```objective-c
  }
  @end
  ```
 MyScrollView.m
-```macos
+```objective-c
  - (void) touchesEnded: (NSSet *) touches withEvent: (UIEvent *) event {	
  if (!self.dragging) {
  	[self.nextResponder touchesEnded: touches withEvent:event]; 
@@ -60,7 +60,7 @@ Then you can catch touchEnded like
 
 This is in controller that uses the MyScrollView
 
-```macos
+```objective-c
  UITouch *touch = [touches anyObject];	
  CGPoint location = [touch locationInView:mMyScrollView];
  NSLog(@"Location in Resize View %f,%f",location.x,location.y);

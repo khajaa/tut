@@ -3,26 +3,26 @@
 
 
 ###Remove Background
-```macos
+```objective-c
  mTableView.backgroundView = nil;
  ```
 ###Change Cell Background Color
-```macos
+```objective-c
     cell.backgroundColor = [UIColor grayColor];
  }
  ```
 
 ###Cell Height
 
-```macos
+```objective-c
  ```
 ###Avoid Selction
 
-```macos
+```objective-c
  ```
 
 ###Edit
-```macos
+```objective-c
  ```
 ###Concept
 You need one TableView and you need to bind those
@@ -42,7 +42,7 @@ Then, implement the interface UITableViewDelegate and UITableViewDataSource.
 
 
 Calling the custom cell
-```macos
+```objective-c
     
     static NSString *CellIdentifier = @"CustomCell";
  
@@ -70,13 +70,13 @@ Old tutorial below
 
 ###Example without Controller
 MainView.h
-```macos
+```objective-c
  NSMutableArray	*mMusicList;
  IBOutlet UITableView *mMusicTable;
  }
  ```
 MainView.m
-```macos
+```objective-c
  
  @implementation MainView
  
@@ -137,7 +137,7 @@ MainView.m
 ###Custom Cell Example
 
 DictCell.h
-```macos
+```objective-c
  @interface DictCell : UITableViewCell {
  	UILabel *lblTitle;
  	UILabel *lblDesc;
@@ -149,7 +149,7 @@ DictCell.h
  @end
  ```
 DictCell.m 
-```macos
+```objective-c
  
  @implementation DictCell
  
@@ -197,7 +197,7 @@ DictCell.m
  ```
 
 Usage Example
-```macos
+```objective-c
  	DictCell *cell = (DictCell*)[tableView dequeueReusableCellWithIdentifier:@"MyCellIdentifier"];
  	if (cell == nil) {
  		cell = [[[DictCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"MyCellIdentifier"] autorelease];
@@ -211,7 +211,7 @@ Usage Example
  ```
 
 ###Editing Table
-```macos
+```objective-c
  ```
 
 

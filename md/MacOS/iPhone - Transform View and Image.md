@@ -5,10 +5,10 @@
   [myview setTransform:CGAffineTransformMakeScale(2.0, 2.0)];
 
 ###Rotate
-```macos
+```objective-c
  ```
 ###Move
-```macos
+```objective-c
  ```
 
 ###Resize Image

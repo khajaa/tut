@@ -6,14 +6,14 @@ Use Build DataTable and set it into DataGrid. Use DataGrid to Generate Excel.
 
 ###GridView
 You will get error when you apply the method below, because it validates html. so you have to kill it. 
-```aspx-cs
+```csharp
  public override void VerifyRenderingInServerForm(Control control){ }
  ```
 Put this one in Page directive if you get error like RegisterForEventValidation can only be called during Render();
-```aspx-cs
+```csharp
  ```
 ###Example for DataGrid
-```aspx-cs
+```csharp
  											
  	// Create a temp DataGrid and add to parent in order to clean up first
  	DataGrid dg = new DataGrid();
@@ -42,7 +42,7 @@ Put this one in Page directive if you get error like RegisterForEventValidation 
  }
  ```
 
-```aspx-cs
+```csharp
  ```
 
 

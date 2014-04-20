@@ -2,7 +2,7 @@
 ##iPhone - GameKit
 
 ###GameKitTestViewController.h
-```macos
+```objective-c
  #import <UIKit/UIKit.h>
  #import <GameKit/GameKit.h>
  
@@ -22,7 +22,7 @@
  
  ```
 ###GameKitTestViewController.m
-```macos
+```objective-c
  @implementation GameKitTestViewController
  @synthesize mSession;
  

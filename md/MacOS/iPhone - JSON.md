@@ -2,7 +2,7 @@
 ##iPhone - JSON
 
 ###Setup
-```macos
+```objective-c
   Step 1) Download json sdk
   http: code.google.com/p/json-framework/
   
@@ -19,7 +19,7 @@
 
 ###Sample Code
 MainViewController.h
-```macos
+```objective-c
  #import <JSON/JSON.h> // include this header to avoid warning message
  @interface MainViewController : UIViewController {    
  }
@@ -29,7 +29,7 @@ MainViewController.h
 
 MainViewController.m
 
-```macos
+```objective-c
  #import "MainView.h"
  
  @implementation MainViewController

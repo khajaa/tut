@@ -2,7 +2,7 @@
 ##iPhone - Notification
 
 ###Local Notification  Example
-```macos
+```objective-c
  -(void) scheduleCalendarForNotifications{
      [[UIApplication sharedApplication] cancelAllLocalNotifications];
      
@@ -82,7 +82,7 @@
      }
      
 
-```macos
+```objective-c
      [[UIApplication sharedApplication] cancelAllLocalNotifications];
      
      Class cls = NSClassFromString(@"UILocalNotification");

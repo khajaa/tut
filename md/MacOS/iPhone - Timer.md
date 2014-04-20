@@ -4,18 +4,18 @@
 
 ###Example
 
-```macos
+```objective-c
  								 target:self
  							   selector:@selector(tick:)
  							   userInfo:nil
  								repeats:YES];
  ```
-```macos
+```objective-c
  ```
 ###Example
 
 MainView.h
-```macos
+```objective-c
  @interface MainView : UIView {
  	NSTimer *mTimer;
  }
@@ -26,7 +26,7 @@ MainView.h
  
  ```
 MainView.m
-```macos
+```objective-c
  
  - (void)startTimer {
  mTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(ticked) userInfo:nil repeats:YES];

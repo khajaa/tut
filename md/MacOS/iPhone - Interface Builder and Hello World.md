@@ -16,18 +16,18 @@ Interface builder is XCode module that allows you to edit GUI parts via intuitiv
 +Click each control and set name "mylabel" and "mybutton"
 +You can specify some parameters in attribute window such as default value for text
 +Since you drop label and button, let's make outlet for them. Add IBOutlet member variables into your MainView and setup properties and synthesized values. 
-```macos
+```objective-c
  IBOutlet UILabel *mylabel;
  ```
-```macos
+```objective-c
  @property (nonatomic, retain) UILabel *mylabel;
  ```
-```macos
+```objective-c
  @synthesize mylabel;
  ```
 +Add action with + button and name it "myaction:" in MainView's action 
 +Drag the myaction into XCode, MainView.h after class declaretion (see picture 3)
-```macos
+```objective-c
  ```
 +Go to connector window and pull myaction dot on the button, and select "touch down" (see picture 5)
 +Implement inside myaction function in .m file
@@ -51,7 +51,7 @@ picture 5
 
 ###Sample Code
 MainView.h
-```macos
+```objective-c
  
  @interface MainView : UIView {
  	IBOutlet UILabel *mylabel;
@@ -63,7 +63,7 @@ MainView.h
  @end
  
  ```
-```macos
+```objective-c
  
  @implementation MainView
  @synthesize mybutton;

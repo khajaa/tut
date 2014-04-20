@@ -12,11 +12,11 @@
 
 If you get Object Referene $.... AdMobView not found error, add
 
-```macos
+```objective-c
  ```
 Also make sure your Owner keeps the reference to the retained reference
 
-```macos
+```objective-c
   AdViewController *adViewController;
  }
  @property (nonatomic,retain) IBOutlet AdViewController *adViewController;

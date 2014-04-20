@@ -3,25 +3,25 @@
 
 ###Strip malicious tags from HTML text
 
-```aspx-cs
+```csharp
  ```
 ###Sanitizing in ASP.NET - User try to inject some html codes
 put 
-```aspx-cs
+```csharp
  ```
 
-```aspx-cs
+```csharp
  ```
 This encoding does not encode single quote (apostrophe) so combine Replace method
 
 Encoding
-```aspx-cs
+```csharp
  ```
-```aspx-cs
+```csharp
  ```
 ###Encoding
 Add System.Web.dll into your reference and
-```aspx-cs
+```csharp
  HashPasswordForStoringInConfigFile(str, "md5").ToLower();
  ```
 

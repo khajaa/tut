@@ -3,7 +3,7 @@
 
 
 ###Simple
-```macos
+```objective-c
         UIWindow *theScreen = [[UIApplication sharedApplication].windows objectAtIndex:0];
         UIGraphicsBeginImageContext(theScreen.frame.size);
         [[theScreen layer] renderInContext:UIGraphicsGetCurrentContext()];
@@ -14,14 +14,14 @@
  ```
 // this is unapproved version
 
-```macos
+```objective-c
         UIImage *screenshot = [UIImage imageWithCGImage:UIGetScreenImage()];
         //screenshot
  }
  ```
 
 ###Example of screen capture
-```macos
+```objective-c
  	// Begin
  	UIGraphicsBeginImageContext(CGSizeMake(320,480));
  	
@@ -55,7 +55,7 @@
  	UIGraphicsEndImageContext();
  }
  ```
-```macos
+```objective-c
  	//mSpining.hidden = true;
  	if (error == nil) {
  		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Image has been saved"
@@ -74,7 +74,7 @@
  ```
 ###Screen Capture by Apple
 
-```macos
+```objective-c
  {
      // Create a graphics context with the target size
      // On iOS 4 and later, use UIGraphicsBeginImageContextWithOptions to take the scale into consideration
@@ -130,9 +130,9 @@ To capture entire screen from the top level, even including the camera buffer:
 
 1. Change file name to .mm from .m
 2. Add extern
-```macos
+```objective-c
  ```
-```macos
+```objective-c
  UIImage *tmpImage = [[UIImage alloc] initWithCGImage:iref];	
  ```
 

@@ -5,11 +5,11 @@
 Assume you have Hotel information as DataList in the first level and you have customer information for each hotel as sub level with DataGrid.
 [[Link:http://support.microsoft.com/default.aspx?scid=kb;en-us;815004]]
 
-```aspx-cs
+```csharp
  protected int dgEditItemIndex;
  ```
 
-```aspx-cs
+```csharp
  	DataGrid dg = (DataGrid)e.Item.FindControl("dgCustomer");
  	if (dg != null) {
  		dg.EditCommand += new DataGridCommandEventHandler(dg_CustomerEditCommand);
@@ -19,7 +19,7 @@ Assume you have Hotel information as DataList in the first level and you have cu
  	}
  }
  ```
-```aspx-cs
+```csharp
  	DataGrid dg = (DataGrid)source;
  	dg.EditItemIndex = -1;
  	dgEditItemIndex = -1;
@@ -30,7 +30,7 @@ Assume you have Hotel information as DataList in the first level and you have cu
  	BindHotels();
  }
  ```
-```aspx-cs
+```csharp
  	DataGrid dg = (DataGrid)source;
  	dg.EditItemIndex = -1;
  	dgEditItemIndex = -1;
@@ -38,7 +38,7 @@ Assume you have Hotel information as DataList in the first level and you have cu
  	BindHotels();
  }
  ```
-```aspx-cs
+```csharp
  	DataGrid dg = (DataGrid)source;
  	dg.EditItemIndex = -1;
  	dgEditItemIndex = -1;
@@ -49,7 +49,7 @@ Assume you have Hotel information as DataList in the first level and you have cu
  	BindHotels();
  }
  ```
-```aspx-cs
+```csharp
  	DataGrid dg = (DataGrid)source;
  	dg.EditItemIndex = e.Item.ItemIndex;
  	dgEditItemIndex = e.Item.ItemIndex;
@@ -59,7 +59,7 @@ Assume you have Hotel information as DataList in the first level and you have cu
  ```
 
 Now you just set EditItemIndex of child control with the UniqueID which you saved in each event delegation.
-```aspx-cs
+```csharp
  	if (e.Item.ItemIndex != -1) {
  		string hid = dlHotel.DataKeys[e.Item.ItemIndex].ToString();
  		DataGrid dg = (DataGrid)e.Item.FindControl("dgCustomer");
@@ -78,7 +78,7 @@ Now you just set EditItemIndex of child control with the UniqueID which you save
  	}
  }
  ```
-```aspx-cs
+```csharp
  	if (mHotels == null) {
  		mHotels = busObj.GetHotels(mBID.ToString());
  	}

@@ -6,7 +6,7 @@ http://developer.apple.com/library/mac/#releasenotes/ScriptingAutomation/RN-Appl
 
 ###Get Username
 
-```macos
+```objective-c
  display dialog userHome
  ```
 

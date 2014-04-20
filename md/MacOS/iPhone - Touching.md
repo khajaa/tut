@@ -3,11 +3,11 @@
 
 ###For any kind of custom UIView
 Make sure enable user interaction
-```macos
+```objective-c
  ```
 ###Example
 MyView.h
-```macos
+```objective-c
  
  @interface MyView : UIView {
  	UILabel *lblMsg;
@@ -18,7 +18,7 @@ MyView.h
  #import "MyView.h"
  ```
 MyView.m
-```macos
+```objective-c
  - (id)initWithFrame:(CGRect)frame {	
  	if (self = [super initWithFrame:frame]) {
  		CGRect rect = CGRectMake(50,50,250,30);
@@ -70,10 +70,10 @@ MyView.m
  ```
 
 Get all touch
-```macos
+```objective-c
  ```
 Count how many touches 
-```macos
+```objective-c
  
  ```
 

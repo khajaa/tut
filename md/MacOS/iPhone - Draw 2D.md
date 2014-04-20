@@ -3,10 +3,10 @@
 
 
 ###Context and Image release with large bitmap data
-```macos
+```objective-c
  CGContextDrawImage(context, CGRectMake(0,0, width, height), image.CGImage);
  ```
-```macos
+```objective-c
  // Release process here
  // VERY IMPORTANT:
  // CGContextRelease might not release whatever you assigned data if you create a bitmap.
@@ -24,7 +24,7 @@ CoreGraphics.Framework
 
 ###Draw Circle
 
-```macos
+```objective-c
  CGContextRef context = UIGraphicsGetCurrentContext();
  CGContextSetRGBStrokeColor(context, 1.0, 1.0, 1.0, 1.0);
  CGContextSetRGBFillColor(context, 0.0, 0.0, 1.0, 1.0);

@@ -2,27 +2,27 @@
 ##DataTable
 
 ###Retrive a cell data
-```aspx-cs
+```csharp
  [Row#][Col# or string name]
  dt.Rows[0]["Full_Name"]
  ```
 Caution!
 When you compare as string, you have to convert it
-```aspx-cs
+```csharp
      //...
  }
  ```
 To get them all
-```aspx-cs
+```csharp
  foreach(DataColumn myCol in dt.Columns){
  	Console.WriteLine(myRow[myCol]);
  }
  }
  ```
-```aspx-cs
+```csharp
  ```
 ###Add Row
-```aspx-cs
+```csharp
  DataColumn dc;
  DataRow dr;
  
@@ -54,7 +54,7 @@ To get them all
  dt.Rows.Add(dr);
  ```
 ###Remove Row
-```aspx-cs
+```csharp
  for (int i=0; i<dt.Rows.Count; i++) {
  	if (dt.Rows[i][3].ToString() == "OK") {
  		dt.Rows.Remove(dt.Rows[i]);
@@ -67,7 +67,7 @@ To get them all
  }
  ```
 
-```aspx-cs
+```csharp
  while (dt.Rows.Count != 0) {
  	dt.Rows.Remove(dt.Rows[0]);
  }

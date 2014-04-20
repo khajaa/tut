@@ -20,7 +20,7 @@ e.g. If you want to update the panel by external button, you should specify the 
 
 ###Sample Script
 AjaxTest.aspx
-```aspx-cs
+```csharp
  
  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
  <html xmlns="http://www.w3.org/1999/xhtml">
@@ -50,7 +50,7 @@ AjaxTest.aspx
  </html> 
  ```
 AjaxTest.aspx.cs
-```aspx-cs
+```csharp
  using System.Data;
  using System.Configuration;
  using System.Web;

@@ -7,9 +7,9 @@
 +Add CFNetwork in the framework
 +Fix header
 Add 
-```macos
+```objective-c
  ```
-```macos
+```objective-c
  ```
 +Use @class
 +Follow sample code for rest of part
@@ -18,7 +18,7 @@ http://allseeing-i.com/ASIHTTPRequest/How-to-use
 see the sample source code with the lib
 
 example usage, asynchronous download
-```macos
+```objective-c
  - (void)awakeFromNib
  {
  	networkQueue = [[ASINetworkQueue alloc] init];

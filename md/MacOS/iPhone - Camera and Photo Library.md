@@ -6,7 +6,7 @@ You need two interface
   @interface MainView : UIView <UIImagePickerControllerDelegate,UINavigationControllerDelegate> {
  
  ```
-```macos
+```objective-c
  // Camera
  - (IBAction)btnCameraPicture:(id)sender { 
  	if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
@@ -26,7 +26,7 @@ You need two interface
  }
  ```
 
-```macos
+```objective-c
  // Photo Library
  -(IBAction)btnSelectPhotoClick:(id)sender{
  	if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypePhotoLibrary]) { 
@@ -45,7 +45,7 @@ You need two interface
  }
  ```
 
-```macos
+```objective-c
  // Catch when it's success
  - (void)imagePickerController:(UIImagePickerController *)picker 
  		didFinishPickingImage:(UIImage *)image 

@@ -3,7 +3,7 @@
 
 
 ###Curl Up
-```macos
+```objective-c
  //change to set the time
  [UIView setAnimationDuration:1];
  [UIView setAnimationBeginsFromCurrentState:YES];
@@ -23,12 +23,12 @@ Call Another view
      [controller release];
 
 Prepare closing function
-```macos
+```objective-c
     [self dismissModalViewControllerAnimated:YES];
  }
  ```
 In the modal view controller itself, calll when it's done
-```macos
+```objective-c
     [self.delegate modalViewControllerDidFinish:self];   
  }
  ```
@@ -43,7 +43,7 @@ In the modal view controller itself, calll when it's done
 
 ###Sample Code - Moving Example
 MyView.h
-```macos
+```objective-c
  
  @interface MyView : UIView {
  	UILabel *lblMsg;
@@ -53,7 +53,7 @@ MyView.h
  @end
  ```
 MyView.m
-```macos
+```objective-c
  // Import QuartzCore for animations
  #import <QuartzCore/QuartzCore.h>
  
@@ -121,7 +121,7 @@ Since animation is created based on layer, you might want to '''pack''' multiple
 This is an example of customized UIView class. 
 
 MyView.h
-```macos
+```objective-c
  @interface MyView : UIView {
  	UIImage *mMyImage;
  }
@@ -129,7 +129,7 @@ MyView.h
  @end
  ```
 
-```macos
+```objective-c
  @synthesize mMyImage;
  - init {
  	UIImage *image = [UIImage imageNamed:@"mypic.png"];
@@ -152,7 +152,7 @@ MyView.h
  ```
 
 ###Basic Fade animation Example
-```macos
+```objective-c
  	CABasicAnimation *theAnimation;
  	theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
  	theAnimation.duration=3.0;
@@ -172,7 +172,7 @@ Or directly specify
   [UIView commitAnimations];
 
 ###Rotate Animation Example 1 - rotate view automatically with Key Path
-```macos
+```objective-c
  	// [animationWithKeyPath example values]
  	//transform.rotation.x - The rotation, in radians, in the x axis. 
  	//transform.rotation.y - The rotation, in radians, in the y axis. 
@@ -199,14 +199,14 @@ Or directly specify
  ```
 
 ###Rotate Animation Example 2 - rotate when it's touched
-```macos
+```objective-c
  	CATransform3D rotationTransform = CATransform3DIdentity;
  	rotationTransform = CATransform3DRotate(rotationTransform, rotateRadian, 0.0, 0.0, 1.0);
  	myView.layer.transform = rotationTransform;
  }
  ```
 You might want to call this function in motion such as touchesMoved event. See touches chapter too.
-```macos
+```objective-c
  	UITouch *touch = [touches anyObject];
  	if ([touch view] == myView) {
  		CGPoint location = [touch locationInView:self];	
@@ -220,7 +220,7 @@ You might want to call this function in motion such as touchesMoved event. See t
 You don't need QuartsCore lib
 
 MainView.h
-```macos
+```objective-c
  #import <AudioToolbox/AudioServices.h>
  @interface MainView : UIView {
  UIImageView *mCharacter;
@@ -230,7 +230,7 @@ MainView.h
  @end
  ```
 MainView.m
-```macos
+```objective-c
  
  @implementation MainView
  
@@ -303,12 +303,12 @@ MainView.m
 
 
 ###Some useful functions to calculate the degrees/radians
-```macos
+```objective-c
  CGFloat RadiansToDegrees(CGFloat radians) {return radians * 180/M_PI;};
  ```
 
 ###Flipping 2 views
-```macos
+```objective-c
  [UIView setAnimationDuration:0.75];     		
  UIView *superview;
  if ((superview = [frontSideView superview])) {
@@ -324,7 +324,7 @@ MainView.m
  [UIView commitAnimations];
  ```
 ###Show / Hide UIToolbar
-```macos
+```objective-c
  -(void)showToolbar{
  	
  	// Motion
@@ -378,7 +378,7 @@ MainView.m
  ```
 ###Slide-In / Slide-Out Comic Reader Motion Example
 MainView.h
-```macos
+```objective-c
  #define DIRECTION_RIGHT 1
  #define SLIDE_IN 1
  #define SLIDE_AWAY 2
@@ -400,7 +400,7 @@ MainView.h
  ```
 
 MainView.c
-```macos
+```objective-c
  
  @implementation MainView
  

@@ -1,0 +1,17 @@
+#navi(MacOS)
+** Deserialization
+#contents
+***Serialization
+ NSString *myString = NSStringFromCGRect([myView frame]);
+
+-NSStringFromCGPoint
+-NSStringFromCGRect
+-NSStringFromCGSize       
+
+***Deserialization
+-CGPointFromString
+-CGRectFromString
+-CGSizeFromString
+
+#navi(MacOS)
+

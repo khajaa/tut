@@ -15,7 +15,7 @@ Build process
 +Select Device|Distribution
 -Double click the target
 +Set the value below in "Code signing Identity->Any iPhone OS Device"
-```macos
+```objective-c
  ```
 +Select "Distribution Update" in "Code signing provisioning file -> Any iPhone OS Device"
 
@@ -37,14 +37,14 @@ When you create a binary, make sure do this '''EVERY TIME'''
 +Restart XCode
 +Double click on the target
 +Set the value below in "Code signing Identity->Any iPhone OS Device"
-```macos
+```objective-c
  ```
 +Select "Distribution Update" in "Code signing provisioning file -> Any iPhone OS Device"
 +Build -> Build Result -> Search a word "embed" if you do not find, clean up procedure was failed. Do this process from step 1.
 
 
 ###Checking code sign
-```macos
+```objective-c
  ```
 ###Ad-Hoc
 +Add the friend's device id
@@ -57,13 +57,13 @@ When you create a binary, make sure do this '''EVERY TIME'''
 +Double click the target and set "Code Sign Entitlements" to "dist.plist"
 +Go through clean up process
 ++Remove Code Signing Identity->Any iPhone Device
-```macos
+```objective-c
  ```
 ++Close XCode
 ++Set Code Signing Identity
-```macos
+```objective-c
  ```
-```macos
+```objective-c
  ```
 +Compile and make sure "embed" string exists in Build Results
 +Send .app file and mobile provision file too.
@@ -71,7 +71,7 @@ When you create a binary, make sure do this '''EVERY TIME'''
 
 
 ###Remove Shining Effect from Icon
-```macos
+```objective-c
  ```
 
 

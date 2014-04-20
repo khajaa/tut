@@ -11,7 +11,7 @@ Step 3: Now add this code anywhere in your .m.
 Reachability* wifiReach = [[Reachability reachabilityWithHostName: @"www.apple.com"] retain];
 NetworkStatus netStatus = [wifiReach currentReachabilityStatus];
 
-```macos
+```objective-c
  NetworkStatus networkStatus = [reachability currentReachabilityStatus];	
  //if ((networkStatus != ReachableViaWiFi) && (networkStatus != ReachableViaCarrierData)){	
  if (networkStatus != ReachableViaWiFi){
@@ -20,7 +20,7 @@ NetworkStatus netStatus = [wifiReach currentReachabilityStatus];
  }
  ```
 ###Quick Network Availability Check
-```macos
+```objective-c
  {
      // Create zero addy
      struct sockaddr_in zeroAddress;
@@ -55,7 +55,7 @@ NetworkStatus netStatus = [wifiReach currentReachabilityStatus];
 
 ###Connected To WiFi
 
-```macos
+```objective-c
  {
  Reachability *r = [Reachability reachabilityWithHostName:@"www.google.com"];	
  NetworkStatus internetStatus = [r currentReachabilityStatus];		

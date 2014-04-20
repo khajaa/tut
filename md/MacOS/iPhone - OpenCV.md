@@ -2,7 +2,7 @@
 ##iPhone - OpenCV
 
 ###Installation
-```macos
+```objective-c
  // http://niw.at/articles/2009/03/14/using-opencv-on-iphone/en
  // 1) Download Sample
  // 2) Copy opencv_armv6 folder and opencv_sim folder

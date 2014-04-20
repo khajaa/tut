@@ -3,17 +3,17 @@
 
 ###Introduction
 Basically, you need to use
-```macos
+```objective-c
  ```
 So let's initialize 
-```macos
+```objective-c
  ```
-```macos
+```objective-c
  ```
 
 ###Sample Code - MyLonLat
 MyView.h
-```macos
+```objective-c
  
  @interface MyView : UIView {
  	UILabel *lblPosition;
@@ -24,7 +24,7 @@ MyView.h
  @end
  ```
 MyView.m 
-```macos
+```objective-c
  @implementation MyView
  
  - (id)initWithFrame:(CGRect)frame {
@@ -59,7 +59,7 @@ MyView.m
  ```
 
 MyLonLatAppDelegate.h 
-```macos
+```objective-c
  #import <CoreLocation/CLError.h>
  #import <CoreLocation/CoreLocation.h>
  #import <CoreLocation/CLLocation.h>
@@ -81,7 +81,7 @@ MyLonLatAppDelegate.h
  ```
 
 MyLonLatAppDelegate.m 
-```macos
+```objective-c
  #import "MyView.h"
  
  @implementation MyLonLatAppDelegate

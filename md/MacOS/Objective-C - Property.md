@@ -40,13 +40,13 @@ e.g.
 
 
 +You can declare 
-```macos
+```objective-c
  ```
-```macos
+```objective-c
  ```
 
 So that you can access MainView's property like this
-```macos
+```objective-c
  ```
 
 

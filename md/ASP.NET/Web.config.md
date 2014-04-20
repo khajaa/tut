@@ -3,7 +3,7 @@
 
 ###Timeout
 Web.Confi
-```aspx-cs
+```csharp
   <system.web>
    <httpRuntime executionTimeout="90" maxRequestLength="4096"
  useFullyQualifiedRedirectUrl="false"
@@ -14,7 +14,7 @@ Web.Confi
  </configuration> 
  ```
 %SystemRoot%\Microsoft.NET\Framework\%VersionNumber%\CONFIG\ 
-```aspx-cs
+```csharp
   executionTimeout="90" 
   maxRequestLength="4096" 
   useFullyQualifiedRedirectUrl="false" 
@@ -25,7 +25,7 @@ Web.Confi
  ```
 
 ###Global Setting - Default Value for All Pages
-```aspx-cs
+```csharp
  <configuration>
  <system.web>
     <pages buffer="true" maintainScrollPositionOnPostBack="true">
@@ -38,7 +38,7 @@ Web.Confi
  </configuration>
  ```
 ###Connection String at .NET 2.0
-```aspx-cs
+```csharp
  	<appSettings/>
    <connectionStrings>
      <add name="MyServer" connectionString="server=myserver;UID=myserver;Password=test;Initial Catalog=test"/>
@@ -53,14 +53,14 @@ Add Reference->System.Configuration.dll
 
 ###Application setting
 You can set values into global variable
-```aspx-cs
+```csharp
  <add key="ErrorEmail" value="info@xxki.com"/>
  <add key="ConnectionString" 
         value="Server=myserver.com;User Id=kiichi;Password=test;Initial Catalog=MYDB"/>
  <add key="SmtpServer" value="mymailserver.com"/>
  </appSettings>
  ```
-```aspx-cs
+```csharp
  ```
 
 

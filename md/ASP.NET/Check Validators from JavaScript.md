@@ -2,7 +2,7 @@
 ##Check Validators from JavaScript
 
 ###Counting how many validation error on the screen
-```aspx-cs
+```csharp
  	// count how many errors on asp.net validator controls
  	var i;
  	var cnt = 0;

@@ -2,7 +2,7 @@
 ##iPhone - WiFi
 
 ###Fetch SSID information
-```macos
+```objective-c
  - (id)fetchSSIDInfo
  {
     NSArray *ifs = (id)CNCopySupportedInterfaces();

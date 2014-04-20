@@ -2,7 +2,7 @@
 ##iPhone - Database
 
 ###Initialize DB from SQL file
-```macos
+```objective-c
  	NSArray *lines = [fileContent componentsSeparatedByString:@"\n"];
  	FMDatabase *conn = [FMDatabase databaseWithPath:dbTargetPath];		
  	[conn open];

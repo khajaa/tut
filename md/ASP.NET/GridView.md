@@ -3,7 +3,7 @@
 
 
 ###Conditional statement in template
-```aspx-cs
+```csharp
  <itemtemplate>
  	<asp:hyperlink id="HyperLink1" runat="server" navigateurl="65.pdf" text="Click Here"
  		visible='<%# Eval("Column4").ToString().Length > 0 %>' />
@@ -12,7 +12,7 @@
  </asp:templatefield>
  ```
 
-```aspx-cs
+```csharp
  ```
 ###Change color depend on the database value
     protected void gvDifference_RowDataBound(object sender, GridViewRowEventArgs e) {
@@ -41,7 +41,7 @@ Example:
 ###Delete Confirmation
 First, convert delete column to template,
 then bind this
-```aspx-cs
+```csharp
                           GridViewRowEventArgs e)
  {
   if (e.Row.RowType == DataControlRowType.DataRow)
@@ -57,17 +57,17 @@ then bind this
 If you see error when update/delete event fired, make sure you set DataNames as primary key field.
 
 ###Footer - Show Total
-```aspx-cs
+```csharp
  //...
  return "";
  }
  ```
-```aspx-cs
+```csharp
    <%# GetTotal().ToString() %>
  </FooterTemplate>
  ```
 ###Using DataField in Template Column and HTML
-```aspx-cs
+```csharp
     <itemtemplate>
       <b><%# Eval("productname")%></b> <br />
       available in <%# Eval("quantityperunit")%>
@@ -87,10 +87,10 @@ If you see error when update/delete event fired, make sure you set DataNames as 
 
 ###Send Custom Command - Using Image Button
 Note:You can bind GridView CommandArgument with any database field like:
-```aspx-cs
+```csharp
  ```
 So that you can retrieve in the code behind like:
-```aspx-cs
+```csharp
  ```
 That's easiest.
 
@@ -99,13 +99,13 @@ This example below, actually uses DataItemIndex to send via CommandArgument, but
 
 
 Image binding example
-```aspx-cs
+```csharp
  ```
 and in a column, I placed toggle button Y/N tick image
         <asp:ImageButton runat="server" ImageUrl='<%# Eval("Enabled", "~/images/{0}.png") %>' CommandName="SetEnabled" CommandArgument="<%# Container.DataItemIndex %>" CausesValidation="false" id="ibtnSetEnabled" ToolTip="Toggle Enabled/Disabled"></asp:ImageButton>
 
 Handling the event
-```aspx-cs
+```csharp
  	if (e.CommandName == "SetEnabled") {
  		int index = Convert.ToInt32(e.CommandArgument);
  		int offerPositionId = Convert.ToInt32(gvOfferPosition.DataKeys[index].Value);
@@ -140,7 +140,7 @@ Handling the event
  ```
 
 ###Get DataTable from DataSource
-```aspx-cs
+```csharp
  ```
 
 

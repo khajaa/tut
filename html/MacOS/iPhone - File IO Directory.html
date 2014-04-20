@@ -7,12 +7,12 @@
 
 
 ###Get Document Folder Path
-```macos
+```objective-c
  ```
 This folder is for the user, and it will not be deleted
 
 ###Check File Exists
-```macos
+```objective-c
  ```
 ###Remove
     [[NSFileManager defaultManager] removeFileAtPath: filePath handler: nil];]
@@ -24,7 +24,7 @@ This folder is for the user, and it will not be deleted
    [data writeToFile: filename  atomically: NO];
 
 ###File list in a directory 
-```macos
+```objective-c
  NSArray *dirContents = [[NSFileManager defaultManager] directoryContentsAtPath:bundleRoot];
  for (NSString *tString in dirContents) {
     if ([tString hasPrefix:@"foo"] && [tString hasSuffix:@".jpg"]) {
@@ -46,10 +46,10 @@ This folder is for the user, and it will not be deleted
 
 
 ###List all subdirectories' files
-```macos
+```objective-c
  ```
 ###List all Subdirectory
-```macos
+```objective-c
   NSLog(@"apath: %@", aPath);
  
   BOOL isDir;
@@ -60,7 +60,7 @@ This folder is for the user, and it will not be deleted
  }
  ```
 ###Get list of files by type
-```macos
+```objective-c
  NSArray *dirContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:bundleRoot error:nil];
  mFilesArr = [dirContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self ENDSWITH '.png'"]];
  ```

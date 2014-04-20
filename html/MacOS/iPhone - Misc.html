@@ -7,7 +7,7 @@
 
 
 ###Detect Retina Display
-```macos
+```objective-c
  	CGFloat scale = [[UIScreen mainScreen] scale];
  	if (scale > 1.0) {
  		// hello
@@ -16,7 +16,7 @@
  ```
 ###iOS version
 
-```macos
+```objective-c
  if (version >= 3.0)
     {
     // iPhone 3.0 code here
@@ -24,7 +24,7 @@
 
 
 ###Detecting iPhone or iPad
-```macos
+```objective-c
      // The device is an iPad running iPhone 3.2 or later.
  }
  else {
@@ -33,12 +33,12 @@
  ```
 ###Taking Screenshot on Simulator
 
-```macos
+```objective-c
  ```
 This will copy a image into the clipboard
 
 ###Default Screen for iPad
-```macos
+```objective-c
  Default-PortraitUpsideDown.png 	768w x 1004h
  Default-Landscape.png ** 	1024w x 748h
  Default-LandscapeLeft.png 	1024w x 748h
@@ -47,15 +47,15 @@ This will copy a image into the clipboard
 Startup Orientation Example
 
 For iPhone
-```macos
+```objective-c
  <string>UIInterfaceOrientationPortrait</string>
  ```
-```macos
+```objective-c
  <string>UIInterfaceOrientationLandscapeRight</string>
  ```
 ###Main UI Orientation
 
-```macos
+```objective-c
  <array>
  	<string>UIInterfaceOrientationPortrait</string>
  	<string>UIInterfaceOrientationPortraitUpsideDown</string>
@@ -66,7 +66,7 @@ For iPhone
 
 
 ###Access delegate
-```macos
+```objective-c
  ```
 ###Code Sigining Error
 Key chain -> Login -> Set as Default
@@ -76,23 +76,23 @@ Key chain -> Login -> Set as Default
 Go to target -> baseSDK -> 2.0
 
 ###Avoid ScreenLock
-```macos
+```objective-c
  ```
 To let it go sleep, 
-```macos
+```objective-c
  ```
 ###Allow play audio during screen lock
-```macos
+```objective-c
  [[AVAudioSession sharedInstance] setDelegate: self];    
  // Allow the app sound to continue to play when the screen is locked.
  [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
  ```
 
 ###Hide Status Bar
-```macos
+```objective-c
  ```
 or (this is obsolete)
-```macos
+```objective-c
  ```
 New way: You need to edit the value with text editor
 
@@ -101,59 +101,59 @@ New way: You need to edit the value with text editor
 
 
 ###Turn on Proximity Sensing (turn off screen when your face close to iphone)
-```macos
+```objective-c
  ```
 ###Device Unique ID
-```macos
+```objective-c
  ```
 
 ###Icon Badge Number
 Add this under AppDelegete, 
 
 
-```macos
+```objective-c
  //...
  [application setApplicationIconBadgeNumber:25];
  ```
 ###Startup PNG
 Place
-```macos
+```objective-c
  ```
 
 ###Avoid Grossy Icon
-```macos
+```objective-c
  ```
 ###Conditional Compile
-```macos
+```objective-c
  NSLog(@"Simulator!");
  #else
  NSLog(@"Device!");
  #endif
  ```
 ###Conditional Define
-```macos
+```objective-c
  ```
 ###Fix Landscape mode
-```macos
+```objective-c
  ```
 ###Get Screen Size
-```macos
+```objective-c
  ```
 ###Symbolic Link 3.0 to 3.0.1 
-```macos
+```objective-c
  ```
 
 ###Read info.plist info
 
-```macos
+```objective-c
  [mainBundle objectForInfoDictionaryKey:@"myCustomKey"]
  [mainBundle objectForInfoDictionaryKey:@"CFBundleVersion"]
  [mainBundle bundleIdentifier]
  ```
-```macos
+```objective-c
  ```
 ###Checking System Version
-```macos
+```objective-c
  // 2.x
  if ([[sysVersion substringToIndex:2] isEqualToString:@"2."]) {
  }
@@ -162,7 +162,7 @@ Place
  ```
 
 ###Uninstall XCode
-```macos
+```objective-c
  ```
 
 

@@ -7,25 +7,25 @@
 
 ###Convert NSData to NSString or vise versa
 
-```macos
+```objective-c
  aStr = [[NSString alloc] initWithData:aData encoding:NSASCIIStringEncoding];
  ```
-```macos
+```objective-c
  aData = [aStr dataUsingEncoding: NSASCIIStringEncoding];
  ```
 ###Join
-```macos
+```objective-c
  string = [chunks componentsJoinedByString: @","];
  ```
 ###Concat String
-```macos
+```objective-c
  for (int i=0; i<[arr count];i++){
     [theString appendString:[NSString stringWithFormat:@"%i,",[arr objectAtIndex:i]]];
  }
  ```
 
 ###Find something in between - useful for HTML Scraper
-```macos
+```objective-c
  {
  	NSString *answer;
  	NSScanner *myScanner = [NSScanner scannerWithString:theString];
@@ -43,28 +43,28 @@
  } 
  ```
 ###Find Substring
-```macos
+```objective-c
  if (range.location != NSNotFound) {
  ```
 ###Comparison
-```macos
+```objective-c
  if ([myStr compare:@"Hello"] == NSOrderedSame) { ...
  ```
 
 
 ###Converting String to Int or Float etc...
-```macos
+```objective-c
  int num = [numStr intValue]; // floatValue etc...
  ```
 ###Converting int or float to String
-```macos
+```objective-c
  ```
 ###Format string, and convert from other types, like sprintf
   NSString *str = [[NSString alloc] initWithFormat:@"(%.2f,%.2f,%.2f)",x,y,z];
 
 
 ###URL encoding
-```macos
+```objective-c
  ```
 
 ###Split
@@ -74,7 +74,7 @@
 
 
 ###Useful for Path Manipulation
-```macos
+```objective-c
  - (NSString *)stringByDeletingLastPathComponent;
  - (NSString *)stringByAppendingPathComponent:(NSString *)str;
  

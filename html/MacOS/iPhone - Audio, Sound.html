@@ -18,30 +18,30 @@ Convert iMovie' sound track e.g. iLife's music into mp3
 
 ###AVAudioPlayer (recommended)
 
-```macos
+```objective-c
  [player play];
  ```
 You need to add 
-```macos
+```objective-c
  ```
 alos add 
-```macos
+```objective-c
  ```
 in the resouce folder.
 
 ###Play while screen lock
-```macos
+```objective-c
  [[AVAudioSession sharedInstance] setDelegate: self];    
  // Allow the app sound to continue to play when the screen is locked.
  [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback  error:nil];
  ```
 
 ###Quick way to load sound from website using web browser
-```macos
+```objective-c
  ```
 ###Callback
 
-```macos
+```objective-c
  AudioServicesAddSystemSoundCompletion (_soundID,NULL,NULL,
  	completionCallback,
  	(void*) self);
@@ -62,7 +62,7 @@ This is example to use AudioService. This framework is for playing sound less th
 ++Right Click -> Add -> Existing Files -> Select sound file (e.g. boring.wav)
 
 MyView.h
-```macos
+```objective-c
  #import <AudioToolbox/AudioServices.h>
  
  @interface MyView : UIView {
@@ -72,7 +72,7 @@ MyView.h
  @end
  ```
 MyView.m
-```macos
+```objective-c
  
  @implementation MyView
  - viewDidLoad{
@@ -87,7 +87,7 @@ MyView.m
  	AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
  }
  ```
-```macos
+```objective-c
    AudioServicesRemoveSystemSoundCompletion(mSoundID);
    [super dealloc];
   

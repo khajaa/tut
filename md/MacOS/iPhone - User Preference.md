@@ -2,7 +2,7 @@
 ##iPhone - User Preference
 
 ###Example for Rate me popup
-```macos
+```objective-c
  NSLog(@"%d",count);	
  if (count == 0 || count % 3 == 0) {
  	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Thank You!" message:I18N_FEEDBACK
@@ -12,7 +12,7 @@
  count++;
  [UserPref setInt:@"COUNT" val:count];
  ```
-```macos
+```objective-c
  if (buttonIndex == 0){
  	NSLog(@"cancel");
  }
@@ -22,11 +22,11 @@
  }
  }
  ```
-```macos
+```objective-c
  #define I18N_FEEDBACK ((IS_JP)? @"Rate now" : @"I hope you like it. Would you like to give some feedbacks?")
  ```
 MainView.h
-```macos
+```objective-c
  
  @interface MainView : UIView {
  	IBOutlet UIButton *btnSave;
@@ -43,7 +43,7 @@ MainView.h
  @end
  
  ```
-```macos
+```objective-c
  
  @implementation MainView
  
@@ -93,7 +93,7 @@ MainView.h
  ```
 ###Updating Number Example 
 
-```macos
+```objective-c
  CFNumberRef tempScore;
  int highScore;
   

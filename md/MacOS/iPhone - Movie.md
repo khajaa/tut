@@ -6,12 +6,12 @@
 ###Movie Picker
 
 ###Get Movie Length
-```macos
+```objective-c
                       options:[NSDictionary dictionaryWithObjectsAndKeys:
                       [NSNumber numberWithBool:YES], AVURLAssetPreferPreciseDurationAndTimingKey,
                       nil]] autorelease];
 
-```macos
+```objective-c
  if (asset) 
     durationInSeconds = CMTimeGetSeconds(asset.duration) ;
 
@@ -20,11 +20,11 @@
 
 Need to fix for URL but good tutorial
 
-```macos
+```objective-c
  ```
 ###Orientation
 
-```macos
+```objective-c
  ```
 
 

@@ -6,7 +6,7 @@ Note:
 If you connect datasource and delegate from PickerView, you do not need Delegate implementation here. Just fill in the functions.
 
 MainView.h
-```macos
+```objective-c
  
  @interface MainView : UIView <UIPickerViewDelegate>{
  	IBOutlet UIPickerView *myPickerView;
@@ -17,7 +17,7 @@ MainView.h
  ```
 
 MainView.m
-```macos
+```objective-c
  
  @implementation MainView
  - (void)awakeFromNib{
@@ -89,7 +89,7 @@ MainView.m
  @end
  ```
 ###Rebind Picker
-```macos
+```objective-c
  ```
 This is useful if you have multiple pickers
 

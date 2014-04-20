@@ -12,14 +12,14 @@ My Example to make everything organized in one folder. It's just matter of path 
 ++Build Tab
 ++Search by keyword "header"
 ++Header Search Path
-```macos
+```objective-c
  ```
 +You can start using by importing like
-```macos
+```objective-c
  ```
 ###Example - upload photo and let user share your app
 MyViewController.h
-```macos
+```objective-c
  @interface MyViewController : UIViewController <FBDialogDelegate, FBSessionDelegate, FBRequestDelegate> {
  	FBSession* _session;					
  	UIImage *mImageToUpload;
@@ -35,7 +35,7 @@ MyViewController.h
  @end
  
  ```
-```macos
+```objective-c
  
  //----------------------------------------------------------------------------------------------------------------
  -(void)initFacebookSession{

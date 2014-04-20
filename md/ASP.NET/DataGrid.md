@@ -2,7 +2,7 @@
 ##DataGrid
 
 ###Binding
-```aspx-cs
+```csharp
  dataGrid.DataSource = dt;
  dataGrid.DataKeyField = "OrderID";
  dataGrid.DataBind();
@@ -14,17 +14,17 @@ In Designer View
 +PagerStyle->Mode=NumericPages (Optional)
 In code
 +Add
-```aspx-cs
+```csharp
                                                 dataGrid_PageIndexChanged);
 +And implement like
-```aspx-cs
+```csharp
  dt = PopulateTable(); // fill data table, own funciton
  dataGrid.DataSource = dt;
  dataGrid.CurrentPageIndex = e.NewPageIndex;
  dataGrid.DataBind();
  }
  ```
-```aspx-cs
+```csharp
  DataTable dt = busObj.GetStudent(tbCurrentDate.Text);
  dt.Merge(busObj.GetPrintProfessor(tbCurrentDate.Text));
  dt.Merge(busObj.GetPrintOther(tbCurrentDate.Text));
@@ -42,15 +42,15 @@ In code
 
 ###Sorting2 - Use SQL Statement
 Makesure set an attribute 
-```aspx-cs
+```csharp
  ```
 Adding SortCommand
-```aspx-cs
+```csharp
  += new System.Web.UI.WebControls.DataGridSortCommandEventHandler(this.dgResult_SortCommand);
  ```
 Implementing Event. I use ViewState to pass Name of Sort Column and the order.
 In .aspx page, You have to specify SortExpression Attribute on Column Elements.
-```aspx-cs
+```csharp
  ViewState["SortColumnName"] = e.SortExpression;
  if (ViewState["SortOrder"] == null || ViewState["SortOrder"].ToString() == "DESC") {
  	ViewState["SortOrder"] = "ASC";
@@ -62,7 +62,7 @@ In .aspx page, You have to specify SortExpression Attribute on Column Elements.
  }
  ```
 BindData Function
-```aspx-cs
+```csharp
  string sort = "";
  if (ViewState["SortColumnName"] != null) {
  	sort = ViewState["SortColumnName"].ToString().Replace("'","''");
@@ -86,24 +86,24 @@ BindData Function
 --Command Name = Select
 +Implement like
 
-```aspx-cs
+```csharp
  				this.dataGrid_SelectedIndexChanged);
  ```
-```aspx-cs
+```csharp
  int index = dgRequest.SelectedIndex;
  Response.Write(dgRequest.DataKeys[index]  + "<br>");
  }
  ```
 When you bind, specify DataKeyField so that you can use this id to update, delete, and select, later
-```aspx-cs
+```csharp
  dgResult.DataKeyField = "CustomerID";
  dgResult.DataBind(); 
  ```
 ###Use one column to do Edit, Delete, Update, Cancel - EditCommandColumn
-```aspx-cs
+```csharp
  UpdateText="Update" CancelText="Cancel" EditText="Edit"></asp:EditCommandColumn>
  ```
-```aspx-cs
+```csharp
  DataGrid1.EditItemIndex = e.Item.ItemIndex;
  BindData();
  }
@@ -119,10 +119,10 @@ When you bind, specify DataKeyField so that you can use this id to update, delet
  ```
 ###Delete and Update (Indivisual Column)
 You can also bind indivisual ButtonColumn
-```aspx-cs
+```csharp
  <asp:ButtonColumn Text="Delete" HeaderText="Delete" CommandName="Delete"></asp:ButtonColumn>
  ```
-```aspx-cs
+```csharp
  this.dgResult.DeleteCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(
  this.dgResult_DeleteCommand);
  
@@ -132,16 +132,16 @@ You can also bind indivisual ButtonColumn
  BindData();
  }
  ```
-```aspx-cs
+```csharp
  string customerId = dgResult.DataKeys[e.Item.ItemIndex].ToString();
  Response.Redirect(
  "DataManagementDetail.aspx?customerid=" + customerId + "&action=edit");
  }
  ```
 ###Select
-```aspx-cs
+```csharp
  ```
-```aspx-cs
+```csharp
  int index = dgResult.SelectedIndex;
  string customerId = dgResult.DataKeys[index].ToString();
  Response.Redirect(
@@ -149,9 +149,9 @@ You can also bind indivisual ButtonColumn
  }
  ```
 ###Custom Command
-```aspx-cs
+```csharp
  ```
-```aspx-cs
+```csharp
  string customerid = ((DataGrid)source).DataKeys[e.Item.ItemIndex].ToString();
  if (e.CommandName == "Custom") {
  	Response.Redirect(
@@ -160,7 +160,7 @@ You can also bind indivisual ButtonColumn
  }
  ```
 ###ItemDataBound - Binding Time Event Example
-```aspx-cs
+```csharp
  	if (e.Item.ItemIndex != -1) {
  		DataRow currentRow = ((DataTable)dgOrder.DataSource).Rows[e.Item.ItemIndex];
  		
@@ -174,19 +174,19 @@ You can also bind indivisual ButtonColumn
  }
  ```
 ###Formatting Text Field
-```aspx-cs
+```csharp
  {0:0000000}
  Page.aspx?id={0}
  ```
 Example Binding:
-```aspx-cs
+```csharp
  Text='<%# DataBinder.Eval(Container, "DataItem.TicketBuyDate","{0:MM/dd/yyyy hh:mm}") %>' ></asp:TextBox>
  ```
 
 ###Formatting Text Field 2 - Using Custom Function
 In .cs page create a protected funciton
 
-```aspx-cs
+```csharp
         // You have to cast the object.
         // If it is unknow error, check the data type like
         // throw new Exception(dataItem.GetType().ToString());
@@ -207,13 +207,13 @@ In .cs page create a protected funciton
  }
  ```
 Then in .aspx page
-```aspx-cs
+```csharp
  ```
 ###Footer
 1. Convert Column to Template Column
 2. Create FooterTemplate
 3. Bind at creating time
-```aspx-cs
+```csharp
  	<ItemTemplate>
  		 <asp:TextBox id="ProductPrice" runat="server" 
  		 Text='<%# Container.DataItem("UnitPrice") %>' >
@@ -227,7 +227,7 @@ Then in .aspx page
  ```
 Then assign value when the datagrid is created
 
-```aspx-cs
+```csharp
  Label lblFooterPrice= (Label)e.Item.FindControl("lblFooterPrice");
  if (lblFooterPrice != null) {
  	lblFooterPrice.Text = "Dynamic data here";
@@ -235,7 +235,7 @@ Then assign value when the datagrid is created
  }
  ```
 ###Multiple-Line Label
-```aspx-cs
+```csharp
  	if (e.Item.ItemIndex != -1) {
  		Label lblDescription = (Label)e.Item.FindControl("lblDescription");
  		if (lblDescription != null) {

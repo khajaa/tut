@@ -2,7 +2,7 @@
 ##AppleScript - Exception
 
 ###Exception
-```macos
+```objective-c
  -- something
  on error
  -- error

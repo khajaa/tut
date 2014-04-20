@@ -12,14 +12,14 @@ In popup javascript, I'm passing the control's ID in order to feed the value lat
 
 ###Examples
 Apply.aspx
-```aspx-cs
+```csharp
  onclick="childWindow=window.open('FindYourSchool.aspx?controltext=ctl00_ContentPlaceHolder1_ATP', 
  'FindYourSchool', 
  'width=500,height=500,toolbar=0,scrollbars=0,screenX=200,screenY=200,left=200,top=200'); 
  if (childWindow.opener == null) childWindow.opener = self;" value="Find Your School" />
  ```
 FindYourSchool.aspx
-```aspx-cs
+```csharp
  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
  <html xmlns="http://www.w3.org/1999/xhtml" >
  <head runat="server">

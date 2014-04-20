@@ -4,7 +4,7 @@
 
 
 ###Reading a file
-```macos
+```objective-c
  on readFile(unixPath)
  	set tmpFile to open for access unixPath
  	set retStr to (read tmpFile for (get eof tmpFile))
@@ -13,7 +13,7 @@
  end readFile
  ```
 ###Writing a file
-```macos
+```objective-c
  on writeFile(unixPath, inStr)
  	set tmpFile to open for access unixPath with write permission
  	set eof of tmpFile to 0
@@ -22,7 +22,7 @@
  end writeFile
  ```
 ###String replace
-```macos
+```objective-c
  on searchAndReplace(txt, srch, rpl)
  	set oldtid to AppleScript's text item delimiters
  	set AppleScript's text item delimiters to {srch}
@@ -36,13 +36,13 @@
 
 
 ###Find a folder
-```macos
+```objective-c
  ```
 ###posix path format
-```macos
+```objective-c
  ```
 ###List of pre-defined dir
-```macos
+```objective-c
  documents folder
  favorites folder
  home folder
@@ -57,10 +57,10 @@
  utilities folder
  ```
 ###Get current app path
-```macos
+```objective-c
  ```
 ###secondly way to use finder
-```macos
+```objective-c
  	set the_folder to (folder of the front window) as text
  	display dialog the_folder
  end tell
@@ -69,10 +69,10 @@
 
 
 Reference
-```macos
+```objective-c
  ```
 ###checking if the file exists or not
-```macos
+```objective-c
  	if exists file tmpSettingsFilePath then
  		--
  	else

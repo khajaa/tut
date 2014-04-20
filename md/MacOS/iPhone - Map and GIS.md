@@ -10,7 +10,7 @@ http://en.wikipedia.org/wiki/Zip_code
 ###Caculating Distance
 
 Obj-c
-```macos
+```objective-c
  float CalculateDistance(float nLat1, float nLon1, float nLat2, float nLon2 ){
  float nRadius = 6372.797; // Earth's radius in Kilometers
  // Get the difference between our two points
@@ -38,7 +38,7 @@ Obj-c
  
  ```
 Example in PHP
-```macos
+```objective-c
     $pi80 = M_PI / 180;
     $lat1 *= $pi80;
     $lng1 *= $pi80;
@@ -55,7 +55,7 @@ Example in PHP
  ```
 
 Some other sample
-```macos
+```objective-c
  var dLat = (lat2-lat1).toRad();
  var dLon = (lon2-lon1).toRad(); 
  var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
@@ -66,17 +66,17 @@ Some other sample
  ```
 
 ###Reference
-```macos
+```objective-c
  ```
 
-```macos
+```objective-c
  ```
 
 Example in C#
 
-```macos
+```objective-c
  ```
-```macos
+```objective-c
  ```
 
 

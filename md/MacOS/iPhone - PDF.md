@@ -2,17 +2,17 @@
 ##iPhone - PDF
 
 ###Get PDF Pages
-```macos
+```objective-c
  CGPDFDocumentRef pdfDocument = CGPDFDocumentCreateWithURL((CFURLRef)pdfURL);
  NSLog(@"pages = %d", CGPDFDocumentGetNumberOfPages(pdfDocument));
  CGPDFDocumentRelease(pdfDocument);
  ```
 ###Jump page in UIWebView
-```macos
+```objective-c
  [mWebView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"scrollTo(0, %f)", offsetY]];
  ```
 ###PDF Generation from UIView
-```macos
+```objective-c
  
  - (NSString *)pdfPath {
    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -46,7 +46,7 @@
  ```
 
 ###Reference
-```macos
+```objective-c
  http://forums.pragprog.com/forums/83/topics/2573
  ```
 

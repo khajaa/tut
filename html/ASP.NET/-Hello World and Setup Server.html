@@ -14,20 +14,20 @@ Upgrade to Professional Version.
 +Create New Project > ASP.NET
 --e.g. Project name Hello
 +and the project location should be in
-```aspx-cs
+```csharp
  ```
 +Double click Button
 +In source view, insert line below
-```aspx-cs
+```csharp
  ```
 --Control Panel>Administrative Tools>Internet Information Service >
 expand > Right click on ''Default Web Site'' and select ''Start''
 +Go to IE and type
-```aspx-cs
+```csharp
  ```
 ###Sample Code
 
-```aspx-cs
+```csharp
  // by Kiichi
  using System;
  using System.Web;
@@ -43,7 +43,7 @@ expand > Right click on ''Default Web Site'' and select ''Start''
  	}
  }
  ```
-```aspx-cs
+```csharp
  <%@ Page language="c#" Codebehind="Hello.cs" AutoEventWireup="false" Inherits="LIU.Hello" %>
  <html>
  	<head>
@@ -70,7 +70,7 @@ expand > Right click on ''Default Web Site'' and select ''Start''
 +Make sure the icon changed
 //#ref(csharp_iis_03.jpg)
 +Compile Hello.cs (Same sources from above)
-```aspx-cs
+```csharp
  ```
 
 ###WebMatrix
@@ -90,7 +90,7 @@ Mono provides SDK and Virtual Machine that compatible with both windows and Linu
 http://www.mono-project.com/
 
 Compile Command and Options are same.
-```aspx-cs
+```csharp
  ```
 
 ###NAnt
@@ -105,12 +105,12 @@ Then
 create ''default.build'' file
 
 You can build like
-```aspx-cs
+```csharp
  nant deploy
  ```
 
 This is a sample build file
-```aspx-cs
+```csharp
  <project name="Hello" default="run">
  
  	<!-- ################################################################################ -->
@@ -171,11 +171,11 @@ This is a sample build file
  ```
 ###Trouble Shooting
 If you have an access error message on ASP.NET Temporary folder, do this
-```aspx-cs
+```csharp
  ```
-```aspx-cs
+```csharp
  ```
-```aspx-cs
+```csharp
  ```
 
 

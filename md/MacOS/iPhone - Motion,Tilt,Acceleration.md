@@ -3,7 +3,7 @@
 
 ###3.0 update - just add this in controller
 
-```macos
+```objective-c
     if (event.type == UIEventTypeMotion) {
     }
  }
@@ -17,7 +17,7 @@
 
 ###Sample Code - ShakeMe
 ShakeMeAppDelegate.h
-```macos
+```objective-c
  
  @class MyView;
  // Add UIAccelerometerDelegate as interface here
@@ -33,7 +33,7 @@ ShakeMeAppDelegate.h
  ```
 
 ShakeMeAppDelegate.m
-```macos
+```objective-c
  #import "MyView.h"
  
  // Additional Code ---------------------------------------------------------------
@@ -62,14 +62,14 @@ ShakeMeAppDelegate.m
  	[window makeKeyAndVisible];
  }
  ```
-```macos
+```objective-c
  //Configure and start accelerometer
  [[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0 / kAccelerometerFrequency)];
  [[UIAccelerometer sharedAccelerometer] setDelegate:self];
  }
  ```
 
-```macos
+```objective-c
  - (void)dealloc {
  	[contentView release];
  	[window release];
@@ -85,9 +85,9 @@ ShakeMeAppDelegate.m
  @end
  ```
 
-```macos
+```objective-c
  ```
-```macos
+```objective-c
  
  @interface MyView : UIView {
  	UILabel *lblShake;
@@ -95,9 +95,9 @@ ShakeMeAppDelegate.m
  -(void)setMotion:(float)x Y:(float)y Z:(float)z;
  @end
  ```
-```macos
+```objective-c
  ```
-```macos
+```objective-c
  
  @implementation MyView
  -initWithFrame:(CGRect)frame {

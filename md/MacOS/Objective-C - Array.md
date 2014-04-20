@@ -2,7 +2,7 @@
 ##Objective-C - Array
 
 ###Array Example
-```macos
+```objective-c
  		  [NSNumber numberWithFloat:0.12],
  		  [NSNumber numberWithFloat:0.19],
  		  [NSNumber numberWithFloat:1.20],
@@ -18,7 +18,7 @@
 ###retain
 retain is nothing but it just increment the reference counter
 
-```macos
+```objective-c
  mAnimArray = [[NSArray arrayWithObjects:
  [UIImage imageNamed:@"hello1.png"],
  [UIImage imageNamed::@"hello2.png"],							  
@@ -29,7 +29,7 @@ Add retain in order to avoid automatically collect memory. This is important if 
 
 
 ###Multi-dimensional Array
-```macos
+```objective-c
  for (int i=0; i<5; i++) {
     NSMutableArray *two [[NSMutableArray alloc] initWithCapacity: 10];
     for (int j=0; j<10; j++) {
@@ -38,17 +38,17 @@ Add retain in order to avoid automatically collect memory. This is important if 
     [one insertObject: two atIndex: i]; 
  }
  ```
-```macos
+```objective-c
  [[one objectAtIndex: 1] objectAtIndex: 1];
  ```
 ###Reverse
-```macos
+```objective-c
  ```
 
 
 ###NSDictionary Example
 
-```macos
+```objective-c
  [dict setObject:@"1.000" forKey:@"alpha_carot"];
  [dict setObject:@"2.000" forKey:@"beta_carot"];
  [dict setObject:@"3.000" forKey:@"one_carot"];

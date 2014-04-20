@@ -2,17 +2,17 @@
 ##iPhone - Dialog
 
 ###Dialog Examples
-```macos
+```objective-c
  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"UIAlertView" message:@"<Alert message>"
  						delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
  [alert show];	
  [alert release];
  
  ```
-```macos
+```objective-c
  ```
 
-```macos
+```objective-c
  // the user clicked one of the OK/Cancel buttons
  if (buttonIndex == 0)
  {
@@ -27,7 +27,7 @@
 
 
 
-```macos
+```objective-c
  {
  // open a alert with an OK and cancel button
  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"UIAlertView" message:@"<Alert message>"
@@ -36,7 +36,7 @@
  [alert release];
  }
  ```
-```macos
+```objective-c
  {
  // open an alert with two custom buttons
  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"UIAlertView" message:@"<Alert message>"
@@ -51,7 +51,7 @@
 
 ###Action Sheet
 
-```macos
+```objective-c
  UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Game Over! You reached %d meters!",mCount]
  														 delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil
  												otherButtonTitles:@"Start New Game", @"Upload Score",nil];
@@ -60,7 +60,7 @@
  [actionSheet showInView:self]; // show from our table view (pops up in the middle of the table)
  [actionSheet release];
  ```
-```macos
+```objective-c
  }
  ```
 

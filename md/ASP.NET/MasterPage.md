@@ -3,7 +3,7 @@
 
 ###Dynamic MasterPage Changing at Runtime
 Add this MasterPageModule.cs into your project
-```aspx-cs
+```csharp
  using System.Web;
  using System.Web.UI;
  using System.Configuration;
@@ -28,14 +28,14 @@ Add this MasterPageModule.cs into your project
  }
  
  ```
-```aspx-cs
+```csharp
  	<httpModules>
  		<add name="MyMasterPageModule" type="MasterPageModule"/>
  	</httpModules>
  </system.web>
  ```
 Add configuration
-```aspx-cs
+```csharp
  	<add key="MasterPage" value="MasterPage.master"/>
  </appSettings>
  

@@ -2,9 +2,9 @@
 ##Objectice-C - Thread
 
 ###Threading
-```macos
+```objective-c
  ```
-```macos
+```objective-c
        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];  
        // do something 
        [pool release]; 

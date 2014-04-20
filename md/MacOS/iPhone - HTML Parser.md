@@ -31,12 +31,12 @@ http://github.com/topfunky/hpple
 
 ###Example
 
-```macos
+```objective-c
  ```
-```macos
+```objective-c
  TFHpple *xpathParser = [[TFHpple alloc] initWithHTMLData:data];
  ```
-```macos
+```objective-c
  NSArray *elements  = [xpathParser search:@"//table[3]/tr[2]/td"]; // "//a" -- all a tags
  
  FHppleElement *element = [elements objectAtIndex:0];

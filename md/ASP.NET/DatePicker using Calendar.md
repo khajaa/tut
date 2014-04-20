@@ -6,7 +6,7 @@
 
 
 ###DatePicker.aspx
-```aspx-cs
+```csharp
  
  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
  
@@ -41,7 +41,7 @@
  </html>
  ```
 ###DatePicker.aspx.cs
-```aspx-cs
+```csharp
  using System.Data;
  using System.Configuration;
  using System.Collections;
@@ -103,7 +103,7 @@
  ```
 ###Usage 
 
-```aspx-cs
+```csharp
  onclick="calendarPicker('ctl00_ContentPlaceHolder1_tbDateOfBirth');"
  title="Pick Date from Calendar"><img src="images/cal.gif" border=0 /></a>
  ```

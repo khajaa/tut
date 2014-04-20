@@ -17,7 +17,7 @@ Write IBAction in SecondViewController now.
 ###Know when the user click the tab
 Add this callback in Controller
 
-```macos
+```objective-c
  NSLog(@"View came back to the first page");
  }
  ```
@@ -25,7 +25,7 @@ Add this callback in Controller
 
 In initialization part, set notification for rotation
 
-```macos
+```objective-c
  	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didOrientation:) name:@"UIDeviceOrientationDidChangeNotification" object:nil];		
  
  		
@@ -34,7 +34,7 @@ In initialization part, set notification for rotation
  
  ```
 Call back to detect orientation
-```macos
+```objective-c
  	
  	if (self.tabBarController.selectedIndex != 0) {
  		return;
@@ -52,7 +52,7 @@ Call back to detect orientation
  
  
  ```
-```macos
+```objective-c
  	[UIView beginAnimations:nil context:NULL];
  	[UIView setAnimationDuration:0.5];
  	

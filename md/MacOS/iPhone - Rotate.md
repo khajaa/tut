@@ -3,7 +3,7 @@
 
 
 ###Detect Orientation - Customize
-```macos
+```objective-c
  //...
  [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:)
@@ -21,11 +21,11 @@
  ```
 ###Rotation fix in code
 turn on this in each controller
-```macos
+```objective-c
  return YES;
  }
  ```
-```macos
+```objective-c
  UIInterfaceOrientation toOrientation= self.interfaceOrientation; 
  // portrait
  if (toOrientation== UIInterfaceOrientationPortrait || toOrientation== UIInterfaceOrientationPortraitUpsideDown)   {	
@@ -41,11 +41,11 @@ turn on this in each controller
 
 in info.plist
 
-```macos
+```objective-c
  ```
 Start type in and use auto-complete
 
-```macos
+```objective-c
  Portrait (bottom home button)
  Landscape (left home button)
  Landscape (right home button)

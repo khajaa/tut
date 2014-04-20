@@ -3,7 +3,7 @@
 
 
 ###Compile Without ARC
-```macos
+```objective-c
  ```
 to the compiler flag
 

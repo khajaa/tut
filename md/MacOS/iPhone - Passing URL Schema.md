@@ -2,20 +2,20 @@
 ##iPhone - Passing URL Schema
 
 ###Setup
-```macos
+```objective-c
  ```
-```macos
+```objective-c
      Item 0
          URL Schemes
               Item 0
 
 Set Item 0's value like
 
-```macos
+```objective-c
  ```
 
 ###Implementation 
-```macos
+```objective-c
     if (!url) {  
         return NO; 
     }
@@ -32,7 +32,7 @@ Set Item 0's value like
  ```
 ###Linking example
 
-```macos
+```objective-c
  ```
 
 

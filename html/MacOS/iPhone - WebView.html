@@ -7,14 +7,14 @@
 
 
 ###PDF jump to a specific page
-```macos
+```objective-c
  [mWebView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"scrollTo(0, %f)", offsetY]];
  ```
 ###Load Local File
-```macos
+```objective-c
  [mWebView loadRequest:[NSURLRequest requestWithURL:pdfURL]];
  ```
-```macos
+```objective-c
  ```
 ###Offscreen Loading Bug
 I had a problem to load UIWebView outsite of the screen. The solution is 
@@ -25,13 +25,13 @@ I had a problem to load UIWebView outsite of the screen. The solution is
 User insertSubview method and specify lowest index 0 or something.
 
 In this example, I'm bringing the SettingView which contains UIWebView. When a user hit a button, it will bring the view from the back. 
-```macos
+```objective-c
  ```
 ###Load MP3
   [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.example.com/podcasts/file.mp3"]]];
 
 ###Load Local html
-```macos
+```objective-c
  imagePath = [imagePath stringByReplacingOccurrencesOfString:@"/" withString:@"//"];
  imagePath = [imagePath stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
  
@@ -41,7 +41,7 @@ In this example, I'm bringing the SettingView which contains UIWebView. When a u
 
 ###Make internal links work
 // Need to implement <UIWebViewDelegate> and set mWebView.delegate = self;
-```macos
+```objective-c
  	NSLog(@"hello");
  	//CAPTURE USER LINK-CLICK.
  	if (navigationType == UIWebViewNavigationTypeLinkClicked) {

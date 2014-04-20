@@ -2,7 +2,7 @@
 ##&page
 
 ###String replace
-```macos
+```objective-c
  on searchAndReplace(txt, srch, rpl)
  	set oldtid to AppleScript's text item delimiters
  	set AppleScript's text item delimiters to {srch}

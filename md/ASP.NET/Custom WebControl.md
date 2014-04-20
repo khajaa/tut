@@ -5,7 +5,7 @@
 +Create a new project > Class Library
 +Add System.Web as a reference
 
-```aspx-cs
+```csharp
  using System;
  using System.Web.UI;
  using System.Web.UI.WebControls;
@@ -46,7 +46,7 @@
 +Right click and select "Set as a startup project"
 +Add above dll as a reference 
 
-```aspx-cs
+```csharp
  <%@ Page language="c#" 
  Codebehind="WebForm1.aspx.cs" 
  AutoEventWireup="false" 
@@ -58,7 +58,7 @@
  	</body>
  </HTML>
  ```
-```aspx-cs
+```csharp
  using System;
  using System.Collections;
  using System.ComponentModel;
@@ -90,10 +90,10 @@
 ###ToolboxBitmap Problem
 When you change your namespace, you will have error to show icon on the toolbox. Work around is this way:
 +Create fake stub class at outside of the namespace
-```aspx-cs
+```csharp
  }
  ```
-```aspx-cs
+```csharp
  ```
 Don't forget to add this bmp as "Embeded" resource!
 

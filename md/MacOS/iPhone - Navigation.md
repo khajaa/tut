@@ -9,7 +9,7 @@ These are note to add NavigationController manually
 
 
 ###In delegate
-```macos
+```objective-c
    IBOutlet UINavigationController*  navigationController;
  // ...
  }
@@ -17,7 +17,7 @@ These are note to add NavigationController manually
  @end
  ```
 
-```macos
+```objective-c
  //[window addSubview:viewController.view];	
  [window addSubview:navigationController.view];
  [window makeKeyAndVisible];
@@ -33,7 +33,7 @@ These are note to add NavigationController manually
 
 
 ###pushing a view
-```macos
+```objective-c
  GeoGearsAppDelegate *appDelegate = (GeoGearsAppDelegate *)[[UIApplication sharedApplication] delegate];
  
  appDelegate.navigationController.navigationBarHidden = true;
@@ -63,7 +63,7 @@ see GeoGears for the struggle!
 
 ###Modal View and Navigation Controller
 
-```macos
+```objective-c
  UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:[[DatabaseViewController alloc] initWithNibName:@"DatabaseView" bundle:nil]];
  [self.navigationController  presentModalViewController:controller animated:YES];
  //GeoGearsAppDelegate *appDelegate = (GeoGearsAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -77,7 +77,7 @@ see GeoGears for the struggle!
  }
  ```
 Then when it goes sub menu
-```macos
+```objective-c
  [self.navigationController pushViewController:anotherViewController animated:YES];
  [anotherViewController release];
  

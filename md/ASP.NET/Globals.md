@@ -2,53 +2,53 @@
 ##Globals
 
 ###GET - URL Request
-```aspx-cs
+```csharp
  ```
-```aspx-cs
+```csharp
  ```
-```aspx-cs
+```csharp
  ```
 
 Dump Everything
-```aspx-cs
+```csharp
      string key = Request.QueryString.Keys[i];
      Response.Write(key + " - " + Request[key] + "<BR>");
  }
  ```
 ###POST
 Check posted or not
-```aspx-cs
+```csharp
  if (!IsPostBack) {
  }
  ```
 Dump all form data
-```aspx-cs
+```csharp
  Response.Write(key + " - " + Request.Form[key] + "<BR>");
  }
  ```
 ###Session
-```aspx-cs
+```csharp
  ```
 Dump all session variables
-```aspx-cs
+```csharp
      Response.Write(key + " - " + Session[key] + "<br>");
  }
  ```
 In order to destroy all session data
-```aspx-cs
+```csharp
  ```
 You can store class or array into sessin
-```aspx-cs
+```csharp
  Session["user"] = dr;
  ```
-```aspx-cs
+```csharp
  ```
 ###Script Name (My Self)
-```aspx-cs
+```csharp
  Request.ServerVariables["SCRIPT_NAME"]
  ```
 ###ServerVariables
-```aspx-cs
+```csharp
  ```
 -''ALL_RAW'' - Returns all headers in raw form 
 -''APPL_MD_PATH'' - Returns the meta base path for the application for the ISAPI DLL 
@@ -106,7 +106,7 @@ Global.aspx catch event of all applicatoin. For example, let's assume you
 have method to send email. This is how to report your application error
 into your email account. This SMTP server should be dedicated from production.
 
-```aspx-cs
+```csharp
  Exception ex = Server.GetLastError();
  SendEmail("myemail@email.com", "test@test.com", ex.Message, ex.StatckTrace);
  // Create Error Log on a file or database
@@ -114,10 +114,10 @@ into your email account. This SMTP server should be dedicated from production.
  ```
 ###Client IP Address
 %%%ASP.net page%%%
-```aspx-cs
+```csharp
  ```
 %%%Web Service%%%
-```aspx-cs
+```csharp
  ```
 
 

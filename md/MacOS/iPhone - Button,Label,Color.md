@@ -3,7 +3,7 @@
 
 
 ###Create a custom RGB color
-```macos
+```objective-c
  ```
 ###Button and Label with touch event sample code
 +Add Button and Label in interface
@@ -13,7 +13,7 @@
 
 
 ###MyView.h
-```macos
+```objective-c
  #import <Foundation/Foundation.h>
  @interface MyView : UIView {
  	UILabel *myLabel;
@@ -23,7 +23,7 @@
  ```
 
 ###MyView.m
-```macos
+```objective-c
  /*
  Creating a UIColor with Preset Component Values
  + blackColor  
@@ -91,7 +91,7 @@
 
 
 ###Font Example
-```macos
+```objective-c
  ```
 Here is list
 -American Typewriter
@@ -106,7 +106,7 @@ Here is list
 -Trebuchet MS
 -Verdana
 -Zapfino
-```macos
+```objective-c
      Font name: HiraKakuProN-W3
  Family name: Courier
      Font name: Courier

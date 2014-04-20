@@ -3,7 +3,7 @@
 
 ###Example
 
-```macos
+```objective-c
  {
      NSString *filePath = @"/System/Library/CoreServices/SystemVersion.plist";
          NSMutableDictionary* plistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
@@ -14,7 +14,7 @@
   
  
  ```
-```macos
+```objective-c
  {
      NSString *filePath = @"/System/Library/CoreServices/SystemVersion.plist";
          NSMutableDictionary* plistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];

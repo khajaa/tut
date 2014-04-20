@@ -6,7 +6,7 @@
     NSLog(@"%@",[url pathComponents]);
 
 ###URL Parameters
-```macos
+```objective-c
  ```
 
 

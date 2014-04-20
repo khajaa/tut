@@ -2,10 +2,10 @@
 ##Objective-C - Debugging
 
 ###Dump Log in Console
-```macos
+```objective-c
  ```
 and use NSLog function
-```macos
+```objective-c
  ```
 
 

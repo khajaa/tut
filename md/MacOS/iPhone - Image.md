@@ -14,17 +14,17 @@
 
 
 ### Image from URL
-```macos
+```objective-c
  ```
 ###Save UIImage as JPEG or PNG 
-```macos
+```objective-c
  [data writeToFile:pathToImageFile atomically:YES];
  ```
-```macos
+```objective-c
  [data writeToFile:pathToImageFile atomically:YES];
  ```
 ###Adding an image into another one
-```macos
+```objective-c
  UIGraphicsBeginImageContext(baseImage.size);
  [baseImage drawInRect:CGRectMake(0,0,baseImage.size.width,baseImage.size.height)];
  [targetImage drawInRect:targetRect];
@@ -34,7 +34,7 @@
  }
  ```
 ###Resize Image - smaller one
-```macos
+```objective-c
  // Creates a bitmap-based graphics context and makes it the current context.
  UIGraphicsBeginImageContext(thumbRect.size);
  [inImage drawInRect:thumbRect];	
@@ -45,7 +45,7 @@
  ```
 
 ###Resize - bigger one
-```macos
+```objective-c
  UIImage* resizedImage(UIImage *inImage, CGRect thumbRect){
  	CGImageRef                        imageRef = [inImage CGImage];
  	CGImageAlphaInfo        alphaInfo = CGImageGetAlphaInfo(imageRef);
@@ -84,7 +84,7 @@
  }
  ```
 ###Gray Scale
-```macos
+```objective-c
  CGSize size = image.size; 
  //CGRect rect = CGRectMake(0.0f, 0.0f, image.size.width, image.size.height);
  CGRect rect = CGRectMake(0.0f, 0.0f, size.width, size.height); 
@@ -109,25 +109,25 @@
  ```
 
 ###Rounded Corner Image
-```macos
+```objective-c
  mImageView.layer.masksToBounds = YES;
  mImageView.layer.cornerRadius = 10.0;
  mImageView.layer.borderWidth = 1.0;
  mImageView.layer.borderColor = [[UIColor grayColor] CGColor];
  ```
 ###Cropping Image
-```macos
+```objective-c
  CGImageRef imageRef = CGImageCreateWithImageInRect([largeImage CGImage], cropRect);
  // for example
  imageView.image = [UIImage imageWithCGImage:imageRef]; 
  CGImageRelease(imageRef);
  ```
 ###Saving Image
-```macos
+```objective-c
  [UIImage imageWithContentsOfFile:DOC_TMP_PATH];
  ```
 ###Loading Image
-```macos
+```objective-c
  [UIImage imageNambed:@""];
  // this is ok, and return frame too but some leak to load over and over again
  ```
@@ -141,7 +141,7 @@
 ###Sample Code - HelloImage
 
 MyView.h
-```macos
+```objective-c
  
  @interface MyView : UIView {
  	UIImage *testImage;
@@ -151,7 +151,7 @@ MyView.h
  @end
  ```
 MyView.m
-```macos
+```objective-c
  
  @implementation MyView
  @synthesize testImage;

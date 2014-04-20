@@ -108,7 +108,7 @@ You can simply declare freeze function to disable the submit button or lock enti
     }
 
 ###HTML
-```aspx-cs
+```csharp
     <div id="InnerFreezePane" class="InnerFreezePane"> </div>
     <br />
     <div align="center"><div id="ProcessMessage"></div>
@@ -116,14 +116,14 @@ You can simply declare freeze function to disable the submit button or lock enti
  ```
 ###Usage
 In aspx or master page
-```aspx-cs
+```csharp
  <script type="text/javascript" src="js/freeze.js"></script>
  ```
-```aspx-cs
+```csharp
  ```
 ###Client Side Hi-jacking for validation conflict problem
 In aspx page (make sure to place in HEAD tag)
-```aspx-cs
+```csharp
  var refSubmit = null;
  // If IE
  if (!document.addEventListener) {
@@ -182,10 +182,10 @@ In aspx page (make sure to place in HEAD tag)
  
  ```
 and in cs page
-```aspx-cs
+```csharp
  ```
 If you do not have any other refreshing mechanism (e.g. auto-postback drop down menu) or If you would like to insert splash for all postback process, you can just put like this (but this does not work on IE):
-```aspx-cs
+```csharp
  var refSubmit = document.forms[0].onsubmit;
  
  function mySubmit()

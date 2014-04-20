@@ -7,56 +7,56 @@
 
 
 ###Benchmark in milliseconds
-```macos
+```objective-c
  // some processes ...
  NSLog(@"BENCH MARK END : %f",[[NSDate date] timeIntervalSince1970]);
  ```
 
-```macos
+```objective-c
  NSLog(@"%f",elapsedsec);
  ```
 ###DateTime
-```macos
+```objective-c
  
  NSDateComponents *timeComponents = [calendar components:( NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit ) fromDate:[NSDate date]];
  //NSLog(@"%d:%d %d",[timeComponents hour],[timeComponents minute],[timeComponents second]);
  ```
-```macos
+```objective-c
                                     timezone:nil
                                       locale:nil];
 
 
-```macos
+```objective-c
  NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
  [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
  NSLog(@"Formatted Date:%@",[formatter stringFromDate: myDate]);
  ```
-```macos
+```objective-c
  ```
 ###Timestamp
-```macos
+```objective-c
  ```
 
 ###Add seconds
-```macos
+```objective-c
  ```
 
 ###Examples
-```macos
+```objective-c
  NSDate *today = [NSDate dateWithTimeIntervalSinceNow:0];
  NSDateFormatter *dateFormat = [[[NSDateFormatter alloc] init] autorelease];
  [dateFormat setDateStyle:NSDateFormatterShortStyle];
  NSString *dateString = [dateFormat stringFromDate:today];
  NSLog(@"Date: %@", dateString);
  ```
-```macos
+```objective-c
  NSDate *today = [NSDate date];
  NSDateFormatter *dateFormat = [[[NSDateFormatter alloc]
    initWithDateFormat:@"%m/%d/%Y %I:%M%p" allowNaturalLanguage:NO] autorelease];
  NSString *dateString = [dateFormat stringFromDate:today];
  NSLog(@"Date: %@", [dateString lowercaseString]);
  ```
-```macos
+```objective-c
  NSDate *today = [NSDate date];
  NSDateFormatter *dateFormat = [[[NSDateFormatter alloc]
    initWithDateFormat:@"%A, %B %d, %Y" allowNaturalLanguage:NO] autorelease];
@@ -64,7 +64,7 @@
  NSLog(@"Date: %@", dateString);
  ```
 
-```macos
+```objective-c
  NSDate *today = [NSDate date];
  NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
  [dateFormat setDateFormat:@"MM/dd/yyyy hh:mma"];

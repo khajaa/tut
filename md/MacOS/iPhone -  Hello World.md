@@ -5,7 +5,7 @@
 
 
 ###HelloWorldAppDelegete.h
-```macos
+```objective-c
  
  @class MyView;
  
@@ -23,7 +23,7 @@
  @end
  ```
 ###HelloWorldAppDelegete.m
-```macos
+```objective-c
  #import "MyView.h"
  
  @implementation HelloWorldAppDelegate

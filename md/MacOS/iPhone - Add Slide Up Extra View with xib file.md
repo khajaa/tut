@@ -14,12 +14,12 @@
 ++Write animation codes
 
 ###MainView.h
-```macos
+```objective-c
  ```
-```macos
+```objective-c
  ```
 ###MainView.m
-```macos
+```objective-c
  	
  if (mInstructionViewController == nil) {
  	mInstructionViewController = [[InstructionViewController alloc] initWithNibName:@"InstructionView" bundle:nil];
@@ -68,7 +68,7 @@
  ```
 
 ###InstructionView.m
-```macos
+```objective-c
  
  // Motion
  CAKeyframeAnimation *motionAnim = [CAKeyframeAnimation animationWithKeyPath:@"position"];

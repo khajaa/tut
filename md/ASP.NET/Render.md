@@ -3,7 +3,7 @@
 
 ###Capture rendered HTML snapshot
 For example, capture whole datagrid's source
-```aspx-cs
+```csharp
  StringWriter sw = new StringWriter(sb);
  HtmlTextWriter tw = new HtmlTextWriter(sw);
  DataGrid1.RenderControl(tw);
