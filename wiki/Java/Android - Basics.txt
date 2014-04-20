@@ -1,0 +1,28 @@
+#navi(Java)
+**Android - Basics
+#contents
+***Find something in the layout
+ Button button = (Button)findViewById(R.id.Button01);
+
+***Setup Events
+In onCreate
+ ImageButton button = (ImageButton)findViewById(R.id.ImageButton01);
+ button.setOnClickListener(mImageButtonLister);
+
+and add a method that your registered here
+ private OnClickListener mImageButtonLister = new OnClickListener() {        
+    	public void onClick(View v) {
+            // do something here
+        }
+ };
+
+
+***Console Out
+ Log.v("title","message");
+
+
+***Tips
+Point on unlinked class name and select to import the lib. This makes easier because you do not have to remember the package name
+
+#navi(Java)
+

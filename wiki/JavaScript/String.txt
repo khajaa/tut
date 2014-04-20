@@ -1,0 +1,17 @@
+#navi(JavaScript)
+**String
+#contents
+***Replace
+ var aStr = "foo bar baz";
+ xStr.replace(new RegExp(/ba/g), "fu"); 
+
+***Length
+ var str = "aaa';
+ alert(str.length);
+
+
+***indexOf
+ if (str.indexOf('a') != -1) { ...
+
+#navi(JavaScript)
+

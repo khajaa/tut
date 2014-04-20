@@ -1,0 +1,32 @@
+#navi(Bash)
+**Flow Control
+#contents
+***if statement - Example check string size
+ str="Sample" 
+ if [ -z str ]; then
+    echo "str is empty"
+ else
+    echo "str is not empty"
+ fi
+***for loop - search files
+Copy all .c files
+ for i in *.c
+ do
+	cp $i /home/kiichi/tmp/
+ done
+
+Example to change all .html files to .htm
+ for i in *.html
+ do
+ mv $i ${i%.html}.htm
+ done
+
+Append icon_ in front of the finename
+
+ for i in *.png
+ do
+ cp $i icon_$i
+ done
+
+#navi(Bash)
+

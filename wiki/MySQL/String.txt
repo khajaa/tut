@@ -1,0 +1,14 @@
+#navi(MySQL)
+**String
+#contents
+***Example - Hide Credit Card Number
+ SELECT  CONCAT('************', SUBSTRING(REPLACE(`cardnum`, ' ', ''),13,4))
+ FROM customerinfo
+ WHERE custid = 100
+
+:Note|SUBSTR does not work in older version of mysql. Use SUBSTRING.
+
+
+
+#navi(MySQL)
+

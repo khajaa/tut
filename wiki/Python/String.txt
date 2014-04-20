@@ -1,0 +1,32 @@
+#navi(Python)
+**String
+#contents
+***Strip (Trim white spaces)
+ import string
+ print string.strip('   white spaces will be gone      ')
+***Substring
+ str = "test123"
+ print str[0:-1] 
+ # test12
+
+***Find index of target string
+ str = "test123"
+ pos = str.find("st")
+ # if -1, string was not found
+
+***regex
+ import re
+ p = re.compile('[a-z]+')
+ m = p.match('hello')
+ m = p.search('hello123')
+ print m.group()
+
+shortcut
+ import re
+ ma = re.search('[a-z]+','hello123')
+
+***split
+ test = "hello world 1"
+ li = test.split(" ")
+ print li[0]
+

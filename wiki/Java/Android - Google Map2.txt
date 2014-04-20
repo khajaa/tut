@@ -1,0 +1,9 @@
+#navi(Java)
+**Android - Google Map2
+#contents
+***Get Current Location
+            mMyLocationOverlay = new MyLocationOverlay(this,mMapView);
+            mMyLocationOverlay.enableMyLocation();
+            mMapView.getOverlays().add(mMyLocationOverlay);
+#navi()
+

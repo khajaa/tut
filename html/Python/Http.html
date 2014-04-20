@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<title>Python/Http</title>
+<xmp theme="united" style="display:none;">
+
+##Http
+
+###GET - urllib
+```python
+ params = urllib.urlencode({'spam': 1, 'eggs': 2, 'bacon': 0})
+ f = urllib.urlopen("http://www.musi-cal.com/cgi-bin/query?%s" % params)
+ print f.read()
+ 
+ ```
+```python
+ params = urllib.urlencode({'spam': 1, 'eggs': 2, 'bacon': 0})
+ f = urllib.urlopen("http://www.musi-cal.com/cgi-bin/query", params)
+ print f.read()
+ 
+ ```
+```python
+ proxies = {'http': 'http://proxy.example.com:8080/'}
+ opener = urllib.FancyURLopener(proxies)
+ f = opener.open("http://www.python.org")
+ f.read()
+ 
+ ```
+```python
+ opener = urllib.FancyURLopener({})
+ f = opener.open("http://www.python.org/")
+ f.read()
+ 
+ ```
+###GET  - httplib
+```python
+ >>> conn = httplib.HTTPConnection("www.python.org")
+ >>> conn.request("GET", "/index.html")
+ >>> r1 = conn.getresponse()
+ >>> print r1.status, r1.reason
+ 200 OK
+ >>> data1 = r1.read()
+ >>> conn.request("GET", "/parrot.spam")
+ >>> r2 = conn.getresponse()
+ >>> print r2.status, r2.reason
+ 404 Not Found
+ >>> data2 = r2.read()
+ >>> conn.close()
+ ```
+###POST  - httplib
+```python
+ >>> params = urllib.urlencode({'spam': 1, 'eggs': 2, 'bacon': 0})
+ >>> headers = {"Content-type": "application/x-www-form-urlencoded",
+ ...            "Accept": "text/plain"}
+ >>> conn = httplib.HTTPConnection("musi-cal.mojam.com:80")
+ >>> conn.request("POST", "/cgi-bin/query", params, headers)
+ >>> response = conn.getresponse()
+ >>> print response.status, response.reason
+ 200 OK
+ >>> data = response.read()
+ >>> conn.close()
+ ```
+
+###Async 
+```python
+ 
+ class http_client(asyncore.dispatcher):
+ 
+     def __init__(self, host, path):
+         asyncore.dispatcher.__init__(self)
+         self.create_socket(socket.AF_INET, socket.SOCK_STREAM)
+         self.connect( (host, 80) )
+         self.buffer = 'GET %s HTTP/1.0\r\n\r\n' % path
+ 
+     def handle_connect(self):
+         pass
+ 
+     def handle_close(self):
+         self.close()
+ 
+     def handle_read(self):
+         print self.recv(8192)
+ 
+     def writable(self):
+         return (len(self.buffer) > 0)
+ 
+     def handle_write(self):
+         sent = self.send(self.buffer)
+         self.buffer = self.buffer[sent:]
+ 
+ c = http_client('www.python.org', '/')
+ 
+ asyncore.loop()
+ 
+ ```
+
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

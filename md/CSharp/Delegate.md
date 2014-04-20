@@ -1,0 +1,104 @@
+
+##Delegate
+
+###Simple Example
+```csharp
+ using System.Collections.Generic;
+ using System.Text;
+ 
+ namespace DelegateTest {
+ 	class Program {
+ 		public delegate void Calc(int a, int b);
+ 
+ 		static void Main(string[] args) {
+ 			Calc addFunc = new Calc(Add);
+ 			Calc subtractFunc = new Calc(Subtract);
+ 			Calc multFunc = new Calc(Multiply);
+ 
+ 			GeneralProcessor(addFunc);
+ 
+ 			Console.WriteLine("------------------------");
+ 
+ 			Calc variousFunc = null;
+ 			variousFunc += new Calc(Add);
+ 			variousFunc += new Calc(Subtract);
+ 			variousFunc += new Calc(Multiply);
+ 
+ 			GeneralProcessor(variousFunc);
+ 		}
+ 
+ 		public static void Add(int a, int b) {
+ 			Console.WriteLine(a + b);
+ 		}
+ 
+ 		public static void Subtract(int a, int b) {
+ 			Console.WriteLine(a - b);
+ 		}
+ 
+ 		public static void Multiply(int a, int b) {
+ 			Console.WriteLine(a * b);
+ 		}
+ 
+ 		public static void GeneralProcessor(Calc calc) {
+ 			calc(10, 24);
+ 		}
+ 	}
+ }
+ ```
+
+###Custom Event 
+MyTicker.cs
+```csharp
+ using System.Collections.Generic;
+ using System.Text;
+ using System.Threading;
+ 
+ namespace DelegateTest {
+ 	public class MyTicker {
+ 		public TickEvent OnTick;
+ 
+ 		public void RunClock() {
+ 			for (int i = 0; i < 10; i++) {
+ 				Thread.Sleep(500);
+ 				OnTick(i);
+ 			}
+ 		}
+ 	}
+ }
+ ```
+TickEvent.cs
+```csharp
+ using System.Collections.Generic;
+ using System.Text;
+ 
+ namespace DelegateTest {
+ 	public delegate void TickEvent(int count);
+ }
+ ```
+Program.cs
+```csharp
+ using System.Collections.Generic;
+ using System.Text;
+ 
+ namespace DelegateTest {
+ 	class Program {
+ 		static void Main(string[] args) {
+ 			MyTicker t1 = new MyTicker();
+ 			t1.OnTick += new TickEvent(OnTick_Function);
+ 			t1.RunClock();
+ 		}
+  		 
+ 		public static void OnTick_Function(int count) {
+ 			int c = count+1;
+ 			Console.WriteLine("Ticker Event Fired! | Count=" 
+ + c.ToString() + " / Time=" 
+ + DateTime.Now.ToString());
+ 		}
+ 	}
+ }
+ ```
+```csharp
+ ```
+
+
+

@@ -1,0 +1,13 @@
+#navi(Flex)
+**Exception
+#contents
+***Try Catch Example
+ try{
+ //...
+ }
+ catch(err:Error) {
+     Alert.show(err.message);
+ }
+
+#navi(Flex)
+

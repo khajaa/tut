@@ -1,0 +1,59 @@
+
+##Path
+
+###Base Dirctory
+```asp.net
+ ```
+###Path from the request
+```asp.net
+ ```
+###File Path
+```asp.net
+ ```
+###Reference
+this.TemplateSourceDirectory
+/mydir/subdir
+
+Request.MapPath("log.txt")
+c:\mywebdirs\mydir\subdir\log.txt
+
+this.MapPathSecure("log.txt")
+c:\mywebdirs\mydir\subdir\log.txt
+
+Request.Path
+/mydir/subdir/pathsample.aspx/extra
+
+Request.FilePath
+/mydir/subdir/pathsample.aspx
+
+Request.CurrentExecutionFilePath
+/mydir/subdir/pathsample.aspx
+
+Request.PathInfo
+/extra
+
+Request.PhysicalPath
+c:\mywebdirs\mydir\subdir\pathsample.aspx
+
+Request.PhysicalApplicationPath
+c:\mywebdirs\mydir\
+
+Request.ApplicationPath
+/mydir
+
+Request.Url
+http://localhost/mydir/subdir/client.aspx/extra
+
+Request.RawUrl
+/mydir/subdir/pathsample.aspx/extra
+
+Response.ApplyAppPathModifier("foo.aspx")
+/mydir/subdir/foo.aspx
+
+this.ResolveUrl("~/client.aspx")
+/mydir/pathsample.aspx
+
+
+
+
+

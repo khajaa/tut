@@ -1,0 +1,32 @@
+#navi(Database)
+**Misc
+#contents
+***SQL Analyzer - Set Username and Password, Command Line
+ isqlw -S servername -U sa -P password1
+
+***Use MS Access to connect
++New
++Use existing database project
++Save
++Enter SQL Server's information
+
+
+***Use different ports
+If you change SQL Server's port, use client network utility to create a alias.
+
+
+***Japanese
+&#12288;INSERT INTO test_table VALUES('0001', N'&#12354;&#12356;&#12358;&#12360;&#12362;', N'actual japanese character');
+
+&#12288;SELECT * FROM test_table WHERE notes LIKE N'japanese word here';
+
+When you design table, set collate -> windows locate -> Japanese (Unicode) works for UTF8 (?)
+
+***Listner Problem
+If listner does not start up, check the 
+ (Oracle Home)product\10.2.0\server\NETWORK\ADMIN\listener.ora
+
+
+
+#navi(Database)
+

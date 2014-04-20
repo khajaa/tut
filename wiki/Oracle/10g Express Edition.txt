@@ -1,0 +1,39 @@
+#navi(Oracle)
+**10g Express Edition
+#contents
+
+***Web Admin
+ http://localhost:8080/apex
+
+These two services are should be up
+-OracleServiceXE
+-OracleXETNSListener
+
+
+***If Listener does not startup
+Check tnsnames.ora file. If you change the computer name, it does not work.
+
+***Changin Web Administrator Port Number
+Check current port
+ C:\>sqlplus / as sysdba
+
+ SQL> select dbms_xdb.gethttpport() from dual;
+ 
+ DBMS_XDB.GETHTTPPORT()
+ ----------------------
+                   8080
+
+
+Check the port is not used or not
+ C:\>netstat -an | find "TCP"
+
+Set the new port number
+ C:\>sqlplus / as sysdba
+
+ SQL> exec dbms_xdb.sethttpport(8081);
+ 
+ PL/SQL procedure successfully completed.
+
+
+#navi(Oracle)
+

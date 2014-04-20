@@ -1,0 +1,27 @@
+#navi(PHP)
+**Debug
+#contents
+***Error Control
+Show no error message
+ error_reporting(0);
+
+Show all errors
+ error_reporting(E_ALL);
+
+***Dump
+
+ function printVar($arr, $col=80, $row=10){
+    echo '<br>';
+    echo '<TEXTAREA NAME = post cols = '.$col.' rows = '.$row.'>';
+    var_dump($arr);
+    echo '</TEXTAREA>';
+ }
+
+***Loging
+ error_log ("Critical Problem", 3, "/var/tmp/my-errors.log");
+
+***Stack Trace
+ debug_print_backtrace
+ debug_backtrace
+#navi(PHP)
+

@@ -1,0 +1,108 @@
+**Linux/Commands
+#contents
+***Network
+ nslookup
+ ifconfig
+Check open ports
+e.g. list all TCP listen ports
+ nmap -sT -O localhost
+
+ netstat -a
+
+Restarting network
+ service network restart
+
+Check all Listening ports:
+ su -
+ lsof | grep LISTEN
+
+***Switch User - and Graphic to Console
+ Press <Ctrl> + <Alt> + F1 as Console
+ Press <Ctrl> + <Alt> + F7 as Graphic (X)
+ F1 - F7 are available
+
+***Find something
+ locate
+ whereis
+ find
+ find / | grep target.txt
+or 
+ find / -name target
+
+
+***Text search
+i is ignore case
+n is show line number
+ grep -rin 'target string' /home/kiichi/*
+
+***dd
+Dump MBR
+ dd if=/dev/hda of=~/mbr bs=512 count=1
+Restore MBR
+ dd if=~/mbr of=/dev/hda bs=446 count=1
+Remove Partition
+ dd if=/dev/zero of=/dev/hda bs=512 count=1
+Make ISO image of cdrom or drive
+ dd if=/dev/cdrom of=/tmp/file-name.iso
+
+***ln
+Create Symbolic Link
+ $ln -s /home/kiichi/target/dir/ symbolic_name
+
+In cygwin you can
+ $ln -s "c:\Document and Setting\kiichi" symbolic_name
+or
+ $ln -s "/cygdrive/c/Document and Setting/kiichi" symbolic_name
+***Extract / Compress
+Tar / gzip
+compress directory
+ tar -czvf archive.tgz files/
+decompress
+ tar -xzvf archive.tgz
+
+other example
+ gunzip file.tar.gz
+ tar -xvf file.tar
+
+Compress into tar.gz
+ tar -czpf output.tar.gz input/test1/ input/test2 input/test3
+ zip -r one.zip one
+
+***Split and Join (cat)
+split a big file into each 100 megabytes size
+ split -b 100m big.zip
+
+and it will generate xaa, xab, ...
+
+When you join them, just like this
+ cat x* > big.zip
+
+
+***Start / Stop service
+ /sbin/service servicename start
+ /sbin/service servicename stop
+ /sbin/service servicename restart
+
+e.g.
+ /sbin/service vsftpd restart
+
+
+***Copy, Secure Copy
+
+-SSH File Transfer
+If you use ssh client from ssh.com,
+just click secure file transfer icon and upload.
+
+
+***cut
+Cut first part which is delimited by space
+ df | cut -f1 -d' '
+
+Cut first 10 characters 
+ df | cut -c 10
+
+
+***Trick Example
+Show all files that start with "MyFolder" and extention is .cs, remove first 3 characters, and remove spaces in the begining of the line.
+ du /home/kiichi/prj/* -a | grep MyFile.*\.cs$  | cut -c 3- | sed 's/^\t//'
+

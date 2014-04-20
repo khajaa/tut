@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<title>Java/Android - SharedPreference</title>
+<xmp theme="united" style="display:none;">
+
+##&page
+
+###Example
+Read
+```java
+ boolean silent = settings.getBoolean("MY_SETTING", false);
+ ```
+Write
+```java
+ SharedPreferences.Editor editor = settings.edit();
+ editor.putBoolean("MY_SETTING", false);
+ editor.commit();
+ ```
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

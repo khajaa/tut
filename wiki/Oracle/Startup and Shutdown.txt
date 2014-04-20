@@ -1,0 +1,51 @@
+#navi(Oracle)
+**Startup and Shutdown
+#contents
+
+***Introduction
+Oracle startup its database in this order
++Reading spfile
++Reading Control File
++Mounting Database
++Open Database
+
+
+
+***Startup / Shutdown database
+ sqlplus / as sysdba
+ 
+Read $ORACLE_HOME/dbs/spfile(INSTANCE).ora
+ startup nomount;
+
+Read $ORACLE_HOME/dbs/spfile(INSTANCE).ora - > Control File
+ startup mount;
+
+Read $ORACLE_HOME/dbs/spfile(INSTANCE).ora - > Control File -> Data
+This is most frequently used
+ startup;
+
+
+In order to shutdown,
+Wait until all connecitons are gone
+ shutdown;
+
+Just ignore all connections and shutdown - most frequently used
+ shutdown immediate;
+
+Emergency, kill all job
+ shutdown abort;
+
+***spfile and pfile
+spfile is binary format and it's used to startup oracle.
+In order to edit spfile, you have to export into pfile which is text format,
+and after editing spfile, compile into binary file format again.
+in sqlplus
+ create pfile='/tmp/test.ora' from spfile
+
+ create spfile='$ORACLE_HOME/dbs/spfile(INSTANCE).ora' from pfile='/tmp/test.ora'
+
+So if you change some configuration, and oracle does not start up, edit spfile and remove suspicious lines.
+
+
+#navi(Oracle)
+

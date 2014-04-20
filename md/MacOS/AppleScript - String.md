@@ -1,0 +1,19 @@
+
+##&page
+
+###String replace
+```macos
+ on searchAndReplace(txt, srch, rpl)
+ 	set oldtid to AppleScript's text item delimiters
+ 	set AppleScript's text item delimiters to {srch}
+ 	set temp to every text item of txt
+ 	set AppleScript's text item delimiters to {rpl}
+ 	set temp to (temp as string)
+ 	set AppleScript's text item delimiters to oldtid
+ 	return temp
+ end searchAndReplace
+ ```
+
+
+
+

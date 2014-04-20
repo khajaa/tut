@@ -1,0 +1,25 @@
+#navi(PHP)
+**Date and Time
+#contents
+***Convert date string to epoch number
+ echo 'epoch number is :'.strtotime('2005-04-02');
+***Compare two date
+since ''strtotime'' function returns epoch number from string of date,
+ if (strtotime('2004-12-11') < strtotime('2005-02-12')) {
+ // do something here
+ }
+
+***Date Validation
+ 
+ list($year, $month, $day) = split('/', '2004/04/20');
+ echo $year.'/'.$month.'/'.$day.'<BR>';
+ if ( !@checkdate($month, $day, $year) ){
+ 	echo 'wrong format';
+ }
+ else {
+ 	echo 'ok';
+ }
+
+
+#navi(PHP)
+

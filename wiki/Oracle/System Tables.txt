@@ -1,0 +1,7 @@
+#navi(Oracle)
+**System Tables
+#contents
+***List of tables
+ SELECT * FROM tab;
+#navi(Oracle)
+

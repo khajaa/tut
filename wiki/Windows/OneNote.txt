@@ -1,0 +1,22 @@
+#navi(Windows)
+**OneNote
+#contents
+***Shortcuts
+Move to another tab
+ Ctrl+Tab
+Move to another page
+ Alt+PgUp or Alt+PgDn
+Move to another container
+ Alt+Down
+Move Line to another position
+ Alt+Shift+Up or Down
+Marking
+ Ctrl+1,2,3,4, .... etc
+
+***Reference
+http://office.microsoft.com/en-us/assistance/HP011125361033.aspx
+
+
+
+#navi(Windows)
+

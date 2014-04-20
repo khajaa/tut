@@ -1,0 +1,11 @@
+#navi(MacOS)
+**AppleScript - Exception
+#contents
+***Exception
+ try
+ -- something
+ on error
+ -- error
+ end try
+#navi(MacOS)
+

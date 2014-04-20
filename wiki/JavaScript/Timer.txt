@@ -1,0 +1,8 @@
+#navi(JavaScript)
+**Timer
+#contents
+***Interval
+ setInterval('onTimer()',100); // every 100 mili second callback
+
+#navi(JavaScript)
+

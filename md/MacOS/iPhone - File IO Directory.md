@@ -1,0 +1,65 @@
+
+##iPhone - File IO Directory
+
+
+###Get Document Folder Path
+```macos
+ ```
+This folder is for the user, and it will not be deleted
+
+###Check File Exists
+```macos
+ ```
+###Remove
+    [[NSFileManager defaultManager] removeFileAtPath: filePath handler: nil];]
+
+###Saving an NSData to a file [permalink]
+
+    NSString *filename = @"/tmp/one.dat";
+    NSData *data = // assume you get data
+   [data writeToFile: filename  atomically: NO];
+
+###File list in a directory 
+```macos
+ NSArray *dirContents = [[NSFileManager defaultManager] directoryContentsAtPath:bundleRoot];
+ for (NSString *tString in dirContents) {
+    if ([tString hasPrefix:@"foo"] && [tString hasSuffix:@".jpg"]) {
+    }
+ }
+ ```
+###Read all .png files in directory which start with TEST_
+
+    NSArray * paths = [NSBundle pathsForResourcesOfType: @"png" inDirectory: [[NSBundle mainBundle] bundlePath]];
+    NSMutableArray * allImageNames = [[NSMutableArray alloc] init];
+    
+    for ( NSString * path in paths )
+    {
+        if ( [[path lastPathComponent] hasPrefix: @"TEST_"] )
+            continue;
+        
+        [allImageNames addObject: [path lastPathComponent]];
+    }
+
+
+###List all subdirectories' files
+```macos
+ ```
+###List all Subdirectory
+```macos
+  NSLog(@"apath: %@", aPath);
+ 
+  BOOL isDir;
+  if ([[NSFileManager defaultManager] fileExistsAtPath:aPath isDirectory:&isDir] &&isDir) {
+    [directoriesOfFolder addObject:aPath];
+    NSLog(@"directoriesOfFolder %@", directoriesOfFolder);
+  }
+ }
+ ```
+###Get list of files by type
+```macos
+ NSArray *dirContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:bundleRoot error:nil];
+ mFilesArr = [dirContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self ENDSWITH '.png'"]];
+ ```
+
+
+

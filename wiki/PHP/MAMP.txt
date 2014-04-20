@@ -1,0 +1,34 @@
+#navi(PHP)
+**MAMP
+#contents
+***MySQL
+-Preference=>Apache Port 80 (optional)
+
+-Preference=>My SQL Port 3306
+
+
+copy
+
+ /Applications/MAMP/Library/share/mysql/my-medium.cnf 
+to
+ /Applications/MAMP/Library/my.cnf
+
+Add a line under [client]
+ lower_case_table_names = 1
+
+
+
+***php.ini settings
+ /Applications/MAMP/conf/php5/php.ini
+
+
+ error_reporting  =  E_ALL
+
+ display_errors = On
+
+***Reference
+
+http://www.drupalcoder.com/story/308-create-mysql-configuration-file-mycnf-on-mamp
+
+#navi(PHP)
+

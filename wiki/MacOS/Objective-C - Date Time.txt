@@ -1,0 +1,75 @@
+#navi(MacOS)
+**Objective-C - Date Time
+#contents
+
+***Benchmark in milliseconds
+ NSLog(@"BENCH MARK BEGIN : %f",[[NSDate date] timeIntervalSince1970]);
+ // some processes ...
+ NSLog(@"BENCH MARK END : %f",[[NSDate date] timeIntervalSince1970]);
+
+
+	double elapsedsec = [NSDate timeIntervalSinceReferenceDate]; // return sec in precesion in double 
+	NSLog(@"%f",elapsedsec);
+
+***DateTime
+	NSCalendar *calendar = [NSCalendar currentCalendar];
+	
+	NSDateComponents *timeComponents = [calendar components:( NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit ) fromDate:[NSDate date]];
+	//NSLog(@"%d:%d %d",[timeComponents hour],[timeComponents minute],[timeComponents second]);
+
+ [[NSDate date] descriptionWithCalendarFormat:@"%Y-%m-%d"
+                                    timezone:nil
+                                      locale:nil];
+
+
+ NSDate *myDate = [NSDate date];
+ NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+ [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
+ NSLog(@"Formatted Date:%@",[formatter stringFromDate: myDate]);
+
+	
+
+***Timestamp
+ NSString *timestamp = [NSString stringWithFormat:@"%d", (long)[[NSDate date] timeIntervalSince1970]];
+
+
+***Add seconds
+ NSDate* newDate = [oldDate addTimeInterval:3600.0];
+
+
+***Examples
+ // Output ->  Date: 10/29/08
+ NSDate *today = [NSDate dateWithTimeIntervalSinceNow:0];
+ NSDateFormatter *dateFormat = [[[NSDateFormatter alloc] init] autorelease];
+ [dateFormat setDateStyle:NSDateFormatterShortStyle];
+ NSString *dateString = [dateFormat stringFromDate:today];
+ NSLog(@"Date: %@", dateString);
+
+ // Output ->  Date: 10/29/2008 08:28pm
+ NSDate *today = [NSDate date];
+ NSDateFormatter *dateFormat = [[[NSDateFormatter alloc]
+   initWithDateFormat:@"%m/%d/%Y %I:%M%p" allowNaturalLanguage:NO] autorelease];
+ NSString *dateString = [dateFormat stringFromDate:today];
+ NSLog(@"Date: %@", [dateString lowercaseString]);
+
+ //Output -> Date: Thursday, October 30, 2008
+ NSDate *today = [NSDate date];
+ NSDateFormatter *dateFormat = [[[NSDateFormatter alloc]
+   initWithDateFormat:@"%A, %B %d, %Y" allowNaturalLanguage:NO] autorelease];
+ NSString *dateString = [dateFormat stringFromDate:today];
+ NSLog(@"Date: %@", dateString);
+
+
+ // Output ->  Date: 10/29/2008 08:29PM
+ NSDate *today = [NSDate date];
+ NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+ [dateFormat setDateFormat:@"MM/dd/yyyy hh:mma"];
+ NSString *dateString = [dateFormat stringFromDate:today];
+ NSLog(@"date: %@", dateString);
+ [dateFormat release];
+
+:Source|iPhone Developer Tips
+
+
+#navi(MacOS)
+

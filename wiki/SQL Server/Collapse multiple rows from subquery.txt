@@ -1,0 +1,12 @@
+#navi(Database)
+**Select - Collapse Multiple Rows from Subquery
+#contents
+***Collapse multiple rows and join with comma
+ SELECT prj.PName, 
+ REPLACE(
+     (SELECT mem.Name  AS [data()]  FROM Members mem WHERE prj.ProjectID=mem.ProjectID FOR XML PATH ('') ), 
+     ' ', ', '
+ ) AS ProjectMembers 
+ FROM Projects prj
+#navi(Database)
+

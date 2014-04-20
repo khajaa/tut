@@ -1,0 +1,10 @@
+#navi(CSharp)
+**TextBox
+#contents
+***Control Scroll Bar
+This is an example to stick the scroo bar at the bottom
+ TextBox1.SelectionStart = TextBox1.Text.Length;
+ TextBox1.ScrollToCaret();
+
+#navi()
+

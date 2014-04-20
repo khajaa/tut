@@ -1,0 +1,52 @@
+#navi(Python)
+**Array, List, Dictonary
+#contents
+***Find an element in List
+ myList = ["aaa","bbb","ccc"]
+ if "aaa" in myList:
+     print "aaa is in myList"
+
+***Dictionary (Associative Array) Examples
+Creating Dictionary
+ >>> dict = {'word1':'apple','word2':'banana','word3':'orange'}
+
+Get Value
+ >>> print dict['word1']
+ apple
+ >>> print dict['word5']
+ Traceback (most recent call last):
+   File "<stdin>", line 1, in ?
+ KeyError: 'word5'
+
+
+Check the key is existing or not
+ >>> dict.has_key('word3')
+ True
+ >>> dict.has_key('word4')
+ False
+
+Set Value
+ >>> dict['word1'] = 'strawberry'
+ >>> print dict
+ {'word1': 'strawberry', 'word3': 'orange', 'word2': 'banana'}
+
+
+Loop
+ myDict = {'a':'1','b':'x','c':'3'}
+ for key in myDict.keys():
+       print myDict[key]
+
+***Set
+Set is used to remove duplication
+ from sets import Set
+ new_list = list(Set(old_list))
+
+ myset = Set()
+ myset.add('a')
+ myset.add('a')
+ myset.add('b')
+
+This set contains only a and b
+
+#navi(Python)
+

@@ -1,0 +1,55 @@
+#navi(ASP.NET)
+**DataList
+#contents
+***Description
+DataList is flexible to design, and it is binded data source. To draw Table tag,
+use DataGrid with ColumnTemplate class. See [[DataGrid>ASP.NET/DataGrid]] for more detail
+
+***Binding
+ private void BindData() {	
+	DataList1.DataSource = GetDummyData();// return DataTable from DB
+	DataList1.DataKeyField = "OrderID";				
+	DataList1.DataBind();
+ }
+***Retrive Data
+For example, you can retrive data in .aspx page like this
+ <%# DataBinder.Eval(Container.DataItem, "Name") %>
+or formatted version like 
+ <%# DataBinder.Eval(Container.DataItem, "TimeSpan", "{0} week(s)") %>
+
+***Edit,Delete, Cancel, Update
++Create Link Button to send Command (aspx)
+ <asp:linkbutton id="Edit" runat="server" NAME="Edit"  
+ CommandName="Edit">Delete</asp:linkbutton>
++Set event handler
+ this.DataList1.EditCommand 
+ += new System.Web.UI.WebControls.DataListCommandEventHandler
+ (this.DataList1_EditCommand);
++Implement each event handler method
+
+ // Assume you have BindData method
+ private void DataList1_EditCommand(object source, DataListCommandEventArgs e) {
+    // just set EditItemIndex
+ 	DataList1.EditItemIndex = (int)DataList1.DataKeys[e.Item.ItemIndex];
+ 	BindData();
+ }
+
+ private void DataList1_DeleteCommand(object source, DataListCommandEventArgs e) {
+    // use DataList1.DataKeys[e.Item.ItemIndex] to send delete sql
+ 	BindData();
+ }
+
+ private void DataList1_CancelCommand(object source, DataListCommandEventArgs e) {
+ 	DataList1.EditItemIndex = -1;
+ 	BindData();
+ }
+
+ private void DataList1_UpdateCommand(object source, DataListCommandEventArgs e) {
+    // retrive Hidden TextBox and use this value to send update sql
+ 	string orderDate = ((TextBox)e.Item.FindControl("tbOrderDate")).Text.Trim();
+ 	// use DataList1.DataKeys[e.Item.ItemIndex] to send update sql
+ 	DataList1.EditItemIndex = -1;
+ 	BindData();
+ }
+#navi(ASP.NET)
+

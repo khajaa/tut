@@ -1,0 +1,23 @@
+#navi(Bash)
+**Rename
+#contents
+***Rename Script Example - Rename all png file name 
+iPhone Retina display rename script
+ #!/bin/bash
+ for i in *.png
+ do
+	mv $i ${i%.*}@2x.png
+ done
+
+ #!/bin/bash
+ 
+ for i in $( ls *.png );
+ do
+    src=$i
+    tgt=$(echo $i | sed -e "s/\.png/@2x\.png/")
+    #mv $src $tgt
+    mv $src $tgt
+ done
+
+#navi(Bash)
+

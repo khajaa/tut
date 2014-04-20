@@ -1,0 +1,43 @@
+
+##FTP Server
+
+###Configuration
+```linux
+ ```
+```linux
+ pasv_max_port=9001
+ anonymous_enable=NO
+ ascii_upload_enable=YES
+ ascii_download_enable=YES
+ #prohibit to upper dir for regular user 
+ chroot_list_enable=YES
+ #edit this file if you need
+ chroot_list_file=/etc/vsftpd/chroot_list
+ ls_recurse_enable=YES
+ pasv_promiscuous=YES
+ ```
+List user to prohibit view root
+```linux
+ username2
+ ...
+ ```
+
+Then
+Edit hosts.allow
+```linux
+ ```
+```linux
+ ```
+Makesure you run this automatically at level 3
+```linux
+ chkconfig --list vsftpd
+ ```
+Do not forget add port 9000 and 9001 into Security Level.
+
+###Reference
+http://www.fmmc.or.jp/~fm/nwts/rh_linux/ch3/3_2_2_6.html
+
+
+
+
+

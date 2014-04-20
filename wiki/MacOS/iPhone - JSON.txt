@@ -1,0 +1,75 @@
+#navi(MacOS)
+**iPhone - JSON
+#contents
+***Setup
+ 
+  Step 1) Download json sdk
+  http: code.google.com/p/json-framework/
+  
+  Step 2) Copy SDKs folder into your project folder
+  
+  Step 3) Set these values in project settings
+  Additional SDK = ./SDKs/JSON/$(PLATFORM_NAME).sdk
+  Other Linker Flags = -ObjC -ljson
+  
+  If you include into your same project folder, change the path
+  For common path, use $HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk
+  
+  The target URL using LocDateService. Change the url for your environment
+
+***Sample Code
+MainViewController.h
+ #import <UIKit/UIKit.h>
+ #import <JSON/JSON.h> // include this header to avoid warning message
+ @interface MainViewController : UIViewController {    
+ }
+ -(IBAction)clicky:(id)sender;
+ @end
+
+
+MainViewController.m
+
+ #import "MainViewController.h"
+ #import "MainView.h"
+ 
+ @implementation MainViewController
+ 
+ 
+ - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+         // Custom initialization
+     }
+     return self;
+ }
+ 
+ - (void)didReceiveMemoryWarning {
+     [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
+     // Release anything that's not essential, such as cached data
+ }
+ 
+ 
+ - (void)dealloc {
+     [super dealloc];
+ }
+ 
+ -(IBAction)clicky:(id)sender{	
+ 	// do some json test
+ 	NSString *jsonData = [[NSString alloc]  
+ 						  initWithContentsOfURL:[NSURL URLWithString:@"http://localhost:8000/services/create/1111111/1.1/1.1/1.1/"]
+ 						  encoding:NSUTF8StringEncoding error:nil];  
+ 	if (jsonData == nil) {  
+ 		NSLog(@"nil");
+ 	}  
+ 	else {
+ 		NSDictionary* jsonItem = [jsonData JSONValue];
+ 			//id jsonItem = [jsonData JSONValue];  
+ 		NSLog(@"dict count : %d",[jsonItem count]);
+ 		NSLog(@"uid : %@",[jsonItem objectForKey:@"uid"]);
+ 		NSLog(@"key : %@",[jsonItem objectForKey:@"key"]);		
+ 	}  
+ }
+ 
+ 
+ @end
+#navi(MacOS)
+

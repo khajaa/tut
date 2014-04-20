@@ -1,0 +1,69 @@
+
+##CakePHP - Install and Create Application
+
+###Install win
++Install XAMPP (If you do not have LAMP environment)
++Go to apache\conf\httpd.conf and remove comment for mod_rewrite
++Download CakePHP package and unzip under htdocs
+
+###Creating Project win
++Create a database and a table 
+In this example, I create a table it's called "Comments" that has id and comment column.
++Create Project
+```php
+ cd c:\xampp\htdocs\mysite
+ c:\xampp\php\php.exe C:\xampp\htdocs\cake\scripts\bake.php -project mytest
+ ```
+```php
+ ```
+```php
+ ```
+
+
+###New isntructions
+Is this changed?
+```php
+ php cake/console/bake.php bake all
+ ```
+###
+
+
+###Memo
+
+For mac, you might have to specify 127.0.0.1 it did not work with localhost somehow. sqlite3 did not work either...
+
+If mod_rewrite is not working, add index.php
+
+```php
+ ```
+e.g
+```php
+ ```
+or
+```php
+ http://192.168.1.101/~kiichi/test/cake/index.php/tasks/view/1
+ ```
+
+###Without mod_rewrite
+In /app/config/core.php, uncomment the line that looks like:
+```php
+ ```
+Also remove these .htaccess files:
+
+```php
+ 	/app/.htaccess
+ 	/app/webroot/.htaccess
+ ```
+
+http://book.cakephp.org/view/333/A-Note-on-mod_rewrite		
+
+###Blog tutorial
+```php
+ ```
+
+###Reference
+```php
+ http://p4life.jp/cake/
+ ```
+
+

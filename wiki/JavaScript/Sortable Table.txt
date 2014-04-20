@@ -1,0 +1,90 @@
+#navi(JavaScript)
+**Sortable Table
+#contents
+***Introduction
+The sort table script from here 
+http://www.kryogenix.org/code/browser/sorttable/
+
+And I modified to handle alternate color rows.
+As he advise the usage of this script, it's easy 3 steps.
+
++Include
+ <script src="sorttable.js"></script>
++Set table's clas name to "sortable"
+ <table class="sortable" id="whatever">
++Set CSS for decoration
+ table, td{ border:1px solid black;border-collapse:collapse;}
+ .odd{background-color: white;}
+ .even{background-color: #CCCCCC;}
+ 
+ table.sortable tr.firstrow {
+ 	background-color:#eee;
+ 	color:#666666;
+ }
+ 
+ table.sortable a.sortheader {
+ 	background-color:#eee;
+ 	color:#666666;
+ 	font-weight: bold;
+ 	text-decoration: none;
+ 	display: block;
+ }
+ table.sortable span.sortarrow {
+ 	color: black;
+ 	text-decoration: none;
+ }
+
+***Download
+#ref(sorttable.js)
+
+***Demo
+http://xxki.com/file/js/sort.html
+
+***Sample Code
+sort.html
+ <html>
+ 	<head>
+ 		<title>Sort Table Test</title>
+ 		<script src="sorttable.js"></script>
+ 		<style>
+ 			table, td{ border:1px solid black;border-collapse:collapse;}
+ 			.odd{background-color: white;}
+ 			.even{background-color: #CCCCCC;}
+ 
+ 			table.sortable tr.firstrow {
+ 				background-color:#eee;
+ 				color:#666666;
+ 			}
+ 
+ 			table.sortable a.sortheader {
+ 				background-color:#eee;
+ 				color:#666666;
+ 				font-weight: bold;
+ 				text-decoration: none;
+ 				display: block;
+ 			}
+ 			table.sortable span.sortarrow {
+ 				color: black;
+ 				text-decoration: none;
+ 			}
+ 		</style>
+ 
+ 	</head>
+ 	<body>
+ 		<table class="sortable" id="mytable">
+ 			<tr><td width="45px">ID</td><td width="100px">Name</td><td width="80px">Money</td><td width="80px">Date</td></tr>
+ 			<tr><td>4</td><td>Kiichi Takeuchi</td><td>$100.21</td><td>01/20/2006</td></tr>
+ 			<tr><td>1</td><td>John Doe</td><td>$220.45</td><td>06/01/2003</td></tr>
+ 			<tr><td>10</td><td>Anonymous</td><td>$100.01</td><td>01/19/1998</td></tr>
+ 			<tr><td>9</td><td>Gavi Narra</td><td>$298.00</td><td>09/01/2008</td></tr>
+ 			<tr><td>2</td><td>Ken</td><td>$373.30</td><td>11/11/2002</td></tr>
+ 			<tr><td>8</td><td>Soe</td><td>$1373.30</td><td>12/10/2012</td></tr>
+ 			<tr><td>13</td><td>Mr. T</td><td>$143.82</td><td>10/11/2002</td></tr>
+ 			<tr><td>3</td><td>Mr. X</td><td>$143.22</td><td>01/18/2008</td></tr>
+ 		</table> 
+ 	</body>
+ </html>
+
+
+#navi(JavaScript)
+

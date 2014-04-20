@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<title>PHP/Download</title>
+<xmp theme="united" style="display:none;">
+
+##Download
+
+###Download Script
+```php
+ header ('Content-type: Application/Octet-stream');
+ header ('Content-Disposition: attachment; filename="hello.txt"');
+ foreach (file("../data/requests.xyz") as $line) {
+         print $line;
+ }
+ ?>
+ ```
+
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

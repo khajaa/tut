@@ -1,0 +1,25 @@
+
+##iPhone - ASI HTTP Library
+
+###Install
+
++Download Package http://allseeing-i.com/ASIHTTPRequest/
++Drag and Drop
++Double click the target -> General Tab -> Add
+++CFNetwork.framework
+++libz.1.2.3.dylib
+++SystemConfiguration.framework
+
+
+
+###How to use
+
+He has very good tutorial
+http://allseeing-i.com/ASIHTTPRequest/How-to-use
+
+
+
+
+
+
+

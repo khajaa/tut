@@ -1,0 +1,22 @@
+
+##Refresh Screen every 15 seconds
+
+###Example
+    <script language="JavaScript">
+    var sURL = window.location.pathname;
+    var interval = 15;
+    function doLoad()
+    {
+        setTimeout( "refresh()", interval*1000 );
+    }
+    function refresh()
+    {
+        window.location.href = sURL;
+    }
+    window.onload = doLoad;
+    </script>
+
+
+
+
+

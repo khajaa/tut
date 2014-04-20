@@ -1,0 +1,28 @@
+
+##Important Ports
+
+###Important Ports
+|#|Description|h
+|21|FTP|
+|22|ssh|
+|25|smtp|
+|80|web|
+|110|pop|
+|389|LDAP|
+|443|ssl|
+|1433|SQL Server|
+|1521|Oracle|
+|2399|ODBC|
+|3306|MySQL|
+|3389|Windows Remote Desktop|
+|3690|SVN|
+|5003|FileMaker|
+|5432|PostgreSQL|
+|5900|vnc|
+|5901|vnc disp1|
+
+
+
+
+
+

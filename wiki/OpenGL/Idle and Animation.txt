@@ -1,0 +1,26 @@
+#navi(OpenGL)
+**Idle and Animation
+#contents
+***Example of spining cube
+Create an global variable for the angle
+ static GLfloat GCubeAngle = 0; 
+In main
+ glutDisplayFunc(Display);
+ glutIdleFunc(Idle); 
+Callbacks
+ void Display(void) {
+	glPushMatrix(); 
+		glRotatef(GCubeAngle, 0.0, 1.0, 0.0); 
+		glutSolidCube(1.0); 
+	glPopMatrix(); 
+ }
+
+ void Idle(void){ 
+	GCubeAngle = (GCubeAngle + 0.1); 
+	if(GCubeAngle > 360.0) {
+		GCubeAngle -= 360.0;
+	}
+	glutPostRedisplay(); // update screen
+ }
+#navi(OpenGL)
+

@@ -1,0 +1,48 @@
+#navi(ASP.NET)
+**Response - Send Pdf, Image, etc...
+#contents
+***PDF Sending Over HTTP
+	private void SendPdf(byte[] byteArr) {
+		Response.ClearContent();
+		Response.ClearHeaders();
+		Response.ContentType = "application/pdf";
+		Response.AddHeader("Content-disposition", "attachment; filename=example.pdf");		
+		Response.OutputStream.Write(byteArr, 0, byteArr.Length);
+		Response.End();	
+	}
+
+Sanitize output attachment file name
+ attachmentName = Regex.Replace(attachmentName, "[^A-Za-z0-9\\.]", "_");
+
+You can have byte array like this:
+ 		byte[] byteArr = File.ReadAllBytes(fileName);
+
+***Download Text File
+	protected void Button1_Click(object sender, EventArgs e) {
+		string test = "test1\ntest2\n\ntest hello\n world";
+		SendFile(StrToByteArray(test), "test.txt");
+	}
+
+
+	public void SendFile(byte[] byteArr,string fileName) {
+		Response.ClearContent();
+		Response.ClearHeaders();
+		Response.ContentType = "application/octet-stream";
+		Response.AddHeader("Content-disposition", "attachment; filename=\""+fileName+"\"");
+		Response.OutputStream.Write(byteArr, 0, byteArr.Length);
+		//Response.WriteFile("c:\\test.txt"); // if you have physical file on server use this
+		Response.Flush();
+		Response.End();
+	}
+
+	public static byte[] StrToByteArray(string str) {
+		System.Text.ASCIIEncoding encoding = new System.Text.ASCIIEncoding();
+		return encoding.GetBytes(str);
+	}
+
+***Note
+Try this if you have file
+ Response.TransmitFile(...
+
+#navi(ASP.NET)
+

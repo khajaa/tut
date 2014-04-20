@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<title>Java/Android - Map Draggable Overlay</title>
+<xmp theme="united" style="display:none;">
+
+##Android - Map Draggable Overlay
+
+###Draggable Overlay Item
+Usage
+
+```java
+ Drawable marker=getResources().getDrawable(R.drawable.pin_off);
+ marker.setBounds(0, 0, marker.getIntrinsicWidth(),marker.getIntrinsicHeight());
+ Bitmap dragImage = BitmapFactory.decodeResource(getResources(), R.drawable.pin_drag);
+ mMap.getOverlays().add(new MarkerOverlay(marker,dragImage));
+ ```
+
+ItemizedOverlay
+
+```java
+ 
+     private List<OverlayItem> items=new ArrayList<OverlayItem>();
+     private Drawable marker=null;
+     private OverlayItem inDrag=null;
+     private Bitmap dragImage=null;
+     private int xDragTouchOffset=0;
+     private int yDragTouchOffset=0;
+     private int x;
+     private int y;
+     private int action;
+ 
+     public MarkerOverlay(Drawable marker, Bitmap dragImage) {
+         super(marker);
+         this.marker=marker;
+         this.dragImage=dragImage;
+ 
+         // Test points
+         items.add(new OverlayItem(new GeoPoint(
+                 (int)(1000000.0 * 40.7622954),
+                 (int)(1000000.0 * -73.77426159999999)
+         ),"Test Location1", "Hello World"));
+ 
+         items.add(new OverlayItem(new GeoPoint(
+                 (int)(1000000.0 * 39.82807746783127),
+                 (int)(1000000.0 * -107.7818289781494)
+         ),"Test Location2", "Hello World"));
+ 
+         items.add(new OverlayItem(new GeoPoint(
+                 (int)(1000000.0 * 35.98081363118986),
+                 (int)(1000000.0 * -121.1851492906494)
+         ),"Test Location3", "Hello World"));
+ 
+         populate();
+     }
+ 
+     @Override
+     protected OverlayItem createItem(int i) {
+         return(items.get(i));
+     }
+ 
+     @Override
+     public void draw(Canvas canvas, MapView mapView, boolean shadow) {
+         super.draw(canvas, mapView, shadow);
+ 
+         boundCenterBottom(marker);
+ 
+         //Log.v("mylog", "x,y = " + x + "," + y);
+         if (action==MotionEvent.ACTION_MOVE && inDrag!=null){
+             canvas.drawBitmap(this.dragImage,this.x-this.dragImage.getWidth()/2,this.y-this.dragImage.getHeight(),null);
+         }
+         else {
+             canvas.drawBitmap(this.dragImage,-100,-100,null);
+         }
+         // Draw Lines from array...
+     }
+ 
+     @Override
+     public int size() {
+         return(items.size());
+     }
+ 
+     @Override
+     public boolean onTouchEvent(MotionEvent event, MapView mapView) {
+         action=event.getAction();
+         x=(int)event.getX();
+         y=(int)event.getY();
+         boolean result=false;
+ 
+         if (action==MotionEvent.ACTION_DOWN) {
+             for (OverlayItem item : items) {
+                 Point p=new Point(0,0);
+ 
+                 mapView.getProjection().toPixels(item.getPoint(), p);
+ 
+                 if (hitTest(item, marker, x-p.x, y-p.y)) {
+                     result=true;
+                     inDrag=item;
+                     items.remove(inDrag);
+                     populate();
+ 
+                     xDragTouchOffset=0;
+                     yDragTouchOffset=0;
+ 
+                     xDragTouchOffset=x-p.x;
+                     yDragTouchOffset=y-p.y;
+ 
+                     break;
+                 }
+             }
+         }
+         else if (action==MotionEvent.ACTION_MOVE && inDrag!=null) {
+             // Let draw Method draw
+             result=true;
+         }
+         else if (action==MotionEvent.ACTION_UP && inDrag!=null) {
+             GeoPoint pt=mapView.getProjection().fromPixels(x-xDragTouchOffset, y-yDragTouchOffset);
+             OverlayItem toDrop=new OverlayItem(pt, inDrag.getTitle(), inDrag.getSnippet());
+ 
+             items.add(toDrop);
+             populate();
+ 
+             inDrag=null;
+             result=true;
+         }
+         return(result || super.onTouchEvent(event, mapView));
+     }
+ }
+ ```
+###Reference
+
+https://github.com/commonsguy/cw-advandroid/blob/master/Maps/NooYawkTouch/src/com/commonsware/android/maptouch/NooYawk.java
+
+
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

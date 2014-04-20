@@ -1,0 +1,7 @@
+#navi(MacOS/iPhone -)
+**iPhone - Dynamic Class
+#contents
+***Create a class from string
+ [NSClassFromString(@"MyClass") performSelector:@selector(myFunc:) withObject:myObj];
+#navi()
+

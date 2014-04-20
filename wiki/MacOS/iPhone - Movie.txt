@@ -1,0 +1,30 @@
+#navi(MacOS)
+**iPhone - Movie
+#contents
+
+***Thumbnail
+***Movie Picker
+
+***Get Movie Length
+ AVURLAsset *asset = [[[AVURLAsset alloc] initWithURL:anURI 
+                      options:[NSDictionary dictionaryWithObjectsAndKeys:
+                      [NSNumber numberWithBool:YES], AVURLAssetPreferPreciseDurationAndTimingKey,
+                      nil]] autorelease];
+
+ NSTimeInterval durationInSeconds = 0.0;
+ if (asset) 
+    durationInSeconds = CMTimeGetSeconds(asset.duration) ;
+
+
+***Custom View
+
+Need to fix for URL but good tutorial
+
+ http://iphonedevelopertips.com/video/getting-mpmovieplayercontroller-to-cooperate-with-ios4-3-2-ipad-and-earlier-versions-of-iphone-sdk.html
+
+***Orientation
+
+ [moviePlayerViewController shouldAutorotateToInterfaceOrientation:YES];
+
+#navi(MacOS)
+

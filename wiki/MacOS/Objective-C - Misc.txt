@@ -1,0 +1,10 @@
+#navi(MacOS)
+**Objective-C - Misc
+#contents
+
+***Compile Without ARC
+ -fno-objc-arc
+
+to the compiler flag
+#navi(MacOS)
+

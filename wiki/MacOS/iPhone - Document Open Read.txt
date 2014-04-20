@@ -1,0 +1,7 @@
+#navi(MacOS)
+**iPhone - Document Open Read
+#contents
+***UTI
+ file:///Developer/Documentation/DocSets/com.apple.adc.documentation.AppleSnowLeopard.CoreReference.docset/Contents/Resources/Documents/documentation/Miscellaneous/Reference/UTIRef/UTIRef.pdf
+#navi(MacOS)
+

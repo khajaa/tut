@@ -1,0 +1,19 @@
+#navi(OpenGL)
+**Mouse2
+#contents
+***Callbacks
+Get xy while user press button. E.g. Drag and Drop motion
+ void glutMotionFunc(void (*func)(int x, int y));
+Get xy while user does not press button.
+ void glutPassiveMotionFunc(void (*func)(int x, int y));
+
+***Example
+Create a callback function
+ void PassiveMotion(int x, int y) {
+     printf("%d,%d\n");
+ }
+In main add a callback
+ glutPassiveMotionFunc(PassiveMotion);
+
+#navi(OpenGL)
+

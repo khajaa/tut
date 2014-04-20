@@ -1,0 +1,27 @@
+#navi(JavaScript)
+**JQuery - Effect
+#contents
+***Slide
+Include jquery in header
+ <script type="text/javascript" src="js/jquery.js"></script>
+
+Html
+ <img src="images/click.png" style="cursor:pointer" />
+ <div style="display:none">hello world</div>
+
+JQuery Script - add this in head
+ $(document).ready(function(){
+		$("#clickicon").click(function () {
+			if ($("#mybox").is(":hidden")) {
+				$("#mybox").slideDown("slow");
+			} 
+			else {
+				$("#mybox").slideUp("slow");
+			}
+		});
+ });
+
+***Reference
+http://docs.jquery.com/Effects
+#navi(JavaScript)
+

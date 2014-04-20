@@ -1,0 +1,32 @@
+#navi(JavaScript)
+**Namespace
+#contents
+***Example
+ var Lib = {
+     init : function() {
+        // implement
+     },
+     showDialog : function() {
+     },
+     calculateTotal : function() {
+     }
+ }
+
+ Lib.init();
+
+***Example2
+ var Kiichi = {
+     Lib : {
+     init : function() {
+        // implement
+     },
+     showDialog : function() {
+     },
+     calculateTotal : function() {
+     }
+ }
+ }
+
+ Kiichi.Lib.init();
+#navi()
+

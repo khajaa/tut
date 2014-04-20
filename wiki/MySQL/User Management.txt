@@ -1,0 +1,11 @@
+#navi(MySQL)
+**User Management
+#contents
+***Create user
+ grant all on *.* to 'myuser'@'localhost' identified by 'test123';
+
+***Create db and user
+ create database test;
+ grant all on test.* to 'testuser'@'localhost' identified by 'test';
+#navi(MySQL)
+

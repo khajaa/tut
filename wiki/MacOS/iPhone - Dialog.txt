@@ -1,0 +1,70 @@
+#navi(MacOS)
+**iPhone - Dialog
+#contents
+***Dialog Examples
+	// open an alert with just an OK button
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"UIAlertView" message:@"<Alert message>"
+							delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+	[alert show];	
+	[alert release];
+ 
+
+ @interface MainView : UIView<UIAlertViewDelegate> {	
+
+
+ - (void)alertView:(UIAlertView *)alert clickedButtonAtIndex:(NSInteger)buttonIndex {
+	// the user clicked one of the OK/Cancel buttons
+	if (buttonIndex == 0)
+	{
+		NSLog(@"cancel");
+	}
+	else
+	{
+		NSLog(@"ok");
+	}
+ }
+
+
+
+
+ - (void)alertOKCancelAction
+ {
+	// open a alert with an OK and cancel button
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"UIAlertView" message:@"<Alert message>"
+							delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+	[alert show];
+	[alert release];
+ }
+
+ - (void)alertOtherAction
+ {
+	// open an alert with two custom buttons
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"UIAlertView" message:@"<Alert message>"
+							delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Button1", @"Button2", nil];
+	[alert show];
+	[alert release];
+ }
+
+
+
+
+
+***Action Sheet
+
+	// open a dialog with two custom buttons
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Game Over! You reached %d meters!",mCount]
+															 delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil
+													otherButtonTitles:@"Start New Game", @"Upload Score",nil];
+	actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
+	//actionSheet.destructiveButtonIndex = 1;	// make the second button red (destructive)
+	[actionSheet showInView:self]; // show from our table view (pops up in the middle of the table)
+	[actionSheet release];
+
+ - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+ }
+
+
+
+
+#navi(MacOS)
+

@@ -1,0 +1,118 @@
+
+##-Install and Test
+
+###Environment
+-Fedora Core 4 - with all development package, don't install firewall
+
+###Download
+Asterisk
+http://asterisk.org
+Software phone client
+http://www.nch.com.au/talk
+
+###Plan
+-1 server (192.168.1.2)
+-3 clients (dynamic ip, 3 software phones = {201,202,203}
+Create 3 sip accounts
+|#|Username|Password|
+|201|CC201|test123|
+|202|CC202|test123|
+|203|CC203|test123|
+
+###Compile Asterisk
+```asterisk
+ make install
+ make sample
+ ```
+###Directory Structure
+```asterisk
+ /usr/lib/asterisk/ - lib, modules
+ /var/log/asterisk/ - logs
+ ```
+###SIP accounts
+Add these lines in
+/etc/asterisk/sip.conf
+```asterisk
+ type=friend ;INBOUND/OUTBOUND
+ secret=test123 ;password
+ username=CC201 ;username
+ host=dynamic ;allow host to be dynamic ip
+ canreinvite=no
+ 
+ [202] 
+ type=friend
+ secret=test123
+ username=CC202
+ host=dynamic
+ canreinvite=no
+ 
+ [203]
+ type=friend
+ secret=test123
+ username=CC203
+ host=dynamic
+ canreinvite=no
+ ```
+###Dial plan
+Add these lines in /etc/asterisk/extensions.conf
+under [default] line
+```asterisk
+ ;For 201
+ ; number, priority, function
+ exten => 201,1,Dial(SIP/201,12)
+ exten => 201,2,Congestion
+ exten => 201,102,Busy
+ ;For 202
+ exten => 202,1,Dial(SIP/202,12)
+ exten => 202,2,Congestion
+ exten => 202,102,Busy 
+ ;For 203
+ exten => 203,1,Dial(SIP/203,12)
+ exten => 203,2,Congestion
+ exten => 203,102,Busy
+ ;Other process
+ exten => _.,1,Answer()
+ exten => _.,2,Wait(2)
+ exten => _.,3,Playback(pbx-invalid)
+ exten => _.,3,Congestion
+ ```
+This means:
++If you received call on 201, Dial 201 for 12 seconds
++If 201 did not answer within 12 secs, call Congestion and play sound
++If priority is 102(busy), play busy sound
+
+###Commands
+To start asterisk simply
+```asterisk
+ ```
+```asterisk
+ ```
+To start client console
+```asterisk
+ ```
+then type
+```asterisk
+ ```
+
+
+To check users configuration
+```asterisk
+ ```
+```asterisk
+ 203                        test123                              default          No   RFC3581
+ 202                        test123                              default          No   RFC3581
+ 201                        test123                              default          No   RFC3581
+ ```
+
+
+###Client Settings
+-Display Name:Test201
+-SIP Number: 201
+-Server: 192.168.1.2
+-Password:test123
+
+Set similar configuration for the other two phones, and try call other number 202 or 203.
+
+
+
+

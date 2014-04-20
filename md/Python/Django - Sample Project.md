@@ -1,0 +1,193 @@
+
+##Django - Sample Project
+
+##Download Project
+
+
+###Generate Files
+```python
+ ```
+Example:
+```python
+ DATABASE_NAME = 'djtest.sqlite'
+ ```
+###Start Server
+```python
+ ```
+```python
+ ```
+```python
+ 
+ class AddressBook(models.Model): 
+ 	firstname = models.CharField(maxlength=200)
+ 	lastname = models.CharField(maxlength=200)
+ 	phone = models.CharField(maxlength=20)
+ 	address = models.CharField(maxlength=200)
+ 	mod_date = models.DateTimeField('date modified') 
+ 	def __str__(self):
+ 		return self.firstname + " " + self.lastname
+ 	class Admin:
+ 		list_display = ('firstname', 'lastname', 'phone', 'address', 'mod_date')
+ ```
+###Modify settings.py
+```python
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+ 'django.contrib.admin', # add this line
+ 'djtest.AddressBook' # add this line
+ )
+ ```
+```python
+ (r'^AddressBook/Index/', 'djtest.AddressBook.views.index'),
+ (r'^AddressBook/Detail/(?P<addressbook_id>\d+)/', 'djtest.AddressBook.views.detail'),
+ (r'^AddressBook/Edit/(?P<addressbook_id>\d+)/', 'djtest.AddressBook.views.edit'),    
+ (r'^AddressBook/New/', 'djtest.AddressBook.views.new'),    
+ ```
+The second line will be created later
+###Check the sql statements
+```python
+ ```
+```python
+ ```
+```python
+ ```
+```python
+ >>> from djtest.AddressBook.models import AddressBook
+ #Empty
+ >>> AddressBook.objects.all()
+ []
+ # Create a new AddressBook.
+ >>> from datetime import datetime
+ >>> obj = AddressBook(firstname="Jon", lastname="Doe", phone="1112223333",address="123 Main Street", mod_date=datetime.now())
+ # Save the object into the database. You have to call save() explicitly.
+ >>> obj.save()
+ >>> obj.id
+ 1
+ # Access database columns via Python attributes.
+ >>> obj.firstname
+ "Jon"
+ >>> obj.mod_date
+ datetime.datetime(2005, 7, 15, 12, 00, 53)
+ # Change values by changing the attributes, then calling save().
+ >>> obj.mod_date = datetime(2005, 4, 1, 0, 0)
+ >>> obj.save()
+ >>> AddressBook.objects.all()
+ [<AddressBook: AddressBook object>]
+ ```
+###Access Admin Panel 
+populate data http://localhost:8000/admin/
+
+###Change settings.py
+```python
+     "Template/",
+ )
+ ```
+###Create Directory for template
+template/AddressBook/index.html
+```python
+ <table>
+ 	<tr><td>FirstName</td><td><input type="text" name="firstname" /></td></tr>
+ 	<tr><td>LastName</td><td><input type="text" name="lastname" /></td></tr>
+ 	<tr><td>Phone</td><td><input type="text" name="phone" /></td></tr>
+ 	<tr><td>Address</td><td><input type="text" name="address" /></td></tr>
+    <tr><td colspan="2"><input type="submit" value="Add" /></td></tr>
+ </table>
+ </form>
+ <hr />
+ {% if all_list %}
+ 	<ul>
+ 	{% for elem in all_list %}
+ <li>{{ forloop.counter }} : <a href="../Detail/{{elem.id}}/">{{elem.firstname}} {{elem.lastname}}</a> - {{elem.phone}} (<a href="../Edit/{{elem.id}}/">edit</a>)</li>
+ 	{% endfor %}
+ 	</ul>
+ {% else %}
+ 	<p>No Address List is available.</p>
+ {% endif %}
+ ```
+template/AddressBook/detail.html
+```python
+ <table>
+ 	<tr><td>ID</td><td>{{detail_data.id}}</td></tr> <form action="/Index/New/" method="post">
+ <table>
+ 	<tr><td>FirstName</td><td><input type="text" name="firstname" /></td></tr>
+ 	<tr><td>LastName</td><td><input type="text" name="lastname" /></td></tr>
+ 	<tr><td>Phone</td><td><input type="text" name="phone" /></td></tr>
+ 	<tr><td>Address</td><td><input type="text" name="address" /></td></tr>
+    <tr><td colspan="2"><input type="submit" value="Add" /></td></tr>
+ </table>
+ </form>
+ ```
+template/AddressBook/edit.html
+```python
+ <form action="/AddressBook/Update/{{detail_data.id}}/" method="post">
+ <table>
+ 	<tr><td>ID</td><td>{{detail_data.id}}</td></tr>
+ 	<tr><td>FirstName</td><td><input type="text" name="firstname" value="{{detail_data.firstname}}" /></td></tr>
+ 	<tr><td>LastName</td><td><input type="text" name="lastname" value="{{detail_data.lastname}}" /></td></tr>
+ 	<tr><td>Phone</td><td><input type="text" name="phone" value="{{detail_data.phone}}" /></td></tr>
+ 	<tr><td>Address</td><td><input type="text" name="address" value="{{detail_data.address}}" /></td></tr>
+ 	<tr><td>Last Modified Date</td><td>{{detail_data.mod_date}}</td></tr>
+ 	<tr><td colspan="2"><input type="submit" value="Update" /></td></tr>
+ </table>
+ ```
+###Modify views.py
+```python
+ from djtest.AddressBook.models import AddressBook
+ from django.http import HttpResponse
+ from django.http import HttpResponseRedirect
+ from django.shortcuts import get_object_or_404, render_to_response
+ from djtest.AddressBook.models import AddressBook
+ from datetime import datetime
+ 
+ def index(request):
+ 	all_list = AddressBook.objects.all().order_by('-firstname')	
+ 	temp = loader.get_template('AddressBook/index.html')
+ 	cont = Context({'all_list':all_list})
+ 	return HttpResponse(temp.render(cont))
+ 
+ def detail(request,addressbook_id):
+ 	detail_data = AddressBook.objects.get(pk=addressbook_id)
+ 	temp = loader.get_template('AddressBook/detail.html')
+ 	cont = Context({'detail_data':detail_data})
+ 	return HttpResponse(temp.render(cont))
+ 
+ def edit(request,addressbook_id):
+ 	detail_data = AddressBook.objects.get(pk=addressbook_id)
+ 	temp = loader.get_template('AddressBook/edit.html')
+ 	cont = Context({'detail_data':detail_data})
+ 	return HttpResponse(temp.render(cont))
+ 
+ def new(request):
+ 	obj = AddressBook(firstname=request.POST['firstname'], lastname=request.POST['lastname'], phone=request.POST['phone'],address=request.POST['address'], mod_date=datetime.now())
+ 	obj.save()
+ 	return HttpResponseRedirect('/AddressBook/Index/')
+ 
+ def update(request,addressbook_id):
+ 	obj = get_object_or_404(AddressBook, pk=addressbook_id)
+ 	obj.firstname = request.POST['firstname']
+ 	obj.lastname = request.POST['lastname']
+ 	obj.phone = request.POST['phone']
+ 	obj.address = request.POST['address']
+ 	obj.mod_date = datetime.now()
+ 	obj.save()
+ 	return HttpResponseRedirect('/AddressBook/Edit/'+str(obj.id)+'/')
+ ```
+###Testing
+Access http://localhost:8000/AddressBook/Index/
+
+Index Page
+
+---------------------------------------------
+
+Edit Page
+
+---------------------------------------------
+
+Detail Page
+
+
+
+
+

@@ -1,0 +1,58 @@
+
+##JQuery - Slider Example
+
+###Example Slide Show
+```javascript
+ 	<head>
+ 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+ 		<script language="javascript">
+ 			var count = 0;
+ 			var pos = 0;
+ 			var imgw= 320;
+ 
+ 			$(document).ready(function(){
+ 				count = $("#mydiv img").size();
+ 
+ 				$("#mydiv").css("border","black 3px solid");
+ 				$("#mydiv").css("width",(count*imgw+100)+"px");
+ 				$("#mydiv img").css("position","relative");
+ 				$("#mydiv img").css("left",pos + "px");
+ 
+ 				$(".nav").click(function(){
+ 
+ 					if (this.id == "left" && pos > -((count-1)*imgw) ) {
+ 						pos -= imgw;
+ 					}
+ 					else if (this.id == "right" && pos < 0) {
+ 						pos += imgw;
+ 					}
+ 
+ 
+ 					$("#output").text(" pos="  + pos);
+ 
+ 					$("#mydiv img").animate({ 
+ 						left: pos + "px",
+ 					}, 500 );
+ 
+ 				});
+ 
+ 
+ 			});
+ 		</script>
+ 	</head>
+ 		<body>
+ 			<input type="button" id="left" value="left" class="nav"/>
+ 			<input type="button" id="right" value="right" class="nav"/><span id="output"></span>
+ 			<div id="mydiv">
+ 				<img src= "http://images.appshopper.com/screenshots/304/190739.jpg"/>
+ 				<img src= "http://images.appshopper.com/screenshots/304/190739_2.jpg"/>
+ 				<img src= "http://images.appshopper.com/screenshots/304/190739_3.jpg"/>
+ 				<img src= "http://images.appshopper.com/screenshots/304/190739.jpg"/>
+ 				<img src= "http://images.appshopper.com/screenshots/304/190739_2.jpg"/>
+ 			</div>
+ 		</body>
+ </html>
+ ```
+
+
+

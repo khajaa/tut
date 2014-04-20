@@ -1,0 +1,25 @@
+#navi(Bash)
+**File
+#contents
+***Check the file is exist or not
+ if [ -e "file.txt" ]; then
+    echo "Yes, it is there"
+ else
+    echo "No, it's not there"
+ fi
+
+***Check the dir is exist or not
+ if [ -d "/home/kiichi" ]; then
+    echo "Yes, it is there"
+ else
+    echo "No, it's not there"
+ fi
+
+***Compare timestamp of two files
+ if [ "file1.txt" -nt "file2.txt" ]; then
+&#12288;  echo "file1.txt is newer"
+ else 
+   echo "file2.txt is newer"
+ fi
+#navi(Bash)
+

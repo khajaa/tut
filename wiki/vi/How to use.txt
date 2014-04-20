@@ -1,0 +1,445 @@
+#navi(vi)
+**vi/How to use
+#contents
+:Note|This is ''not'' a general reference of vi usage, if you want to learn vi
+from scratch, just go [[Google:http://google.com/]] and search for ''[[how to use vi:http://www.google.com/search?hl=en&q=how+to+use+vi]]''
+If you are looking for a cheat sheet [[http://cac.uvi.edu/miscfaq/vi-cheat.html]]
+
+***Apply custom indent style
+put this line in file   
+ /* vim: set ts=4 sts=4 sw=4: */
+
+***Replace word / until end of line
+ cw - replace one word
+ c$ - replace until end
+
+***Read / Write file
+ :r file.txt - insert contents of file.txt under the cursor
+ :w file2.txt - save as
+
+***Copy & Cut within a line 
+ yw - yank word (4yw copy 4 words)
+ y$ - until end
+ ggyG - yank all file
+
+gg is begining, yank, G is end of file
+x is cut, so 25x means cuts 25 chars
+
+***Copy into register
+ Press v. (To enter visual mode so you can highlight stuff)
+ Use the arrow keys (or h,j,k,l,w,b,$) to higlight
+ Type "ay to yank into register a.
+ Type "ap to paste from register a.
+
+
+***Block Delete
+ dib - del inside ( )
+ dab - del all block of ( )
+
+ diB - del inside { }
+ daB - del all block of { }
+
+ dip - del inside paragraph
+ dap - del all paragraph
+
+***Visual Mode & Block Select
+ v - use arrow and y or d to copy paste
+
+ V - Line selection
+e.g.
+Press ''v'' and move cursor to select a section, then press ''d'' to cut (or ''y'' to copy). Go to position which you want to insert this section. These operation is very similar to Ctrl+X, Ctrl+V
+
+ Ctrl-V or Ctrl-Q if your vim reads mswin.vim file
+Then you can select sentenses in a blocks shape.
+
+
+e.g.Replacing the selected
+
+After selecting the area with above command, use 
+ :
+Then it should automatically fills in
+ :'<,'>
+which means from the begining of the block to at the end of the block
+and you can replace like this
+ :'<,'> s/oldword/newword/
+
+If you put g at the end, block selection is ignored (replace as many as the line contains the target word)
+
+
+***Increment & Decrement Numbers
+ Ctrl-A and Ctrl-X 
+But if you use mswin.vim file, Ctrl-A is select all in visual mode. So add
+ " Use CTRL-A to do what CTRL-V used to do
+ noremap <C-L>		<C-A>
+Then you can use Ctrl-L to increment the number
+
+***Insert sequence of numbers
+ i1<esc>qayyp<C-A>q100@a
+
+This use record function. 
+Meaning
+-i1<esc> - insert number 1 
+-qa - start recording at register "a"
+-yyp - copy the line and paste
+-<C-A> - increment the number
+-q - finish recording
+-100@a - execute 100 times of macro which is in register "a"
+ 
+Remember, if you using mswin.vim, <C-L> will be replaced with <C-A>
+
+or use let 
+ :let i=1|while i<=100|pu =i|let i=i+1|endwhile
+
+%%%Practical Example%%%
+If you want to create SQL statement which inserts 100 of sequence numbers
+First, type
+ INSERT INTO mytable VALUES(1);
+Then
+ qayypwwwwl<C-A>0q
+This means, you record into register "a".
+Copy the line and move cursor to the number,
+increment the number by Ctrl-A, move the cursor to the
+begining of the line, and then finish recording.
+
+After recording, do
+ 100@a
+to repeat 100 times
+
+***Recording
+see :help recording for full description
+baseically, use q to start/end recording.
+ q(register name)(do vi operation here)q
+e.g.
+ qayypq
+This register "copy and paste" into register a.
+In order to execute,
+ (number)@q
+So if you want to repeat 100 times
+ 100@q
+
+***Extract all * to the end of the file
+This will extract all <h1>test</h1> and append them at the end of file
+ %g/<h[12]>/ t$
+
+***Insert space at the begining of all lines
+For all lines
+ :1,$ s/^/ /
+
+For specific lines, e.g. 10-20
+ :10,20 s/^/ /
+See next section for more detail
+
+***Replace with groups
+basically, specify the group by \(regexp\) and capture it by \number
+
+Let's assume you have text like
+ 1
+ 2
+ 3
+ 4
+
+You want to insert these numbers in sql insert statement.
+
+ :% s/^\(.*\)$/INSERT INTO mytable (myval) VALUES ( \1 );/
+
+-^\(.*\)$ -  grab one line from the begining to the end
+-\1 is the first group that was captured in above
+
+
+***Search and Replace
+ >> Global search and replace  -->  :1,$ s/old/new/g
+                                     ^  ^  ^   ^  ^
+ In english, this means:              |  |  |   |  |
+                                      |  |  |   |  |
+             From 1 to $ (end of file)   |  |   |  |
+                                         |  |   |  |
+             substitute -----------------/  |   |  |
+                                            |   |  |
+             occurrences of "old" ----------/   |  |
+                                                |  |
+             with occurrences of "new" --------/   |
+                                                   |
+             globally (i.e., all instances of "old")
+
+ :g/happy/p 
+ globally search for all occurrences of 'happy' and print the lines 
+
+ :0,$ s/old/new/g 
+ :% s/old/new/g 
+ search for all occurrences of 'old' on all lines and replace with 'new' 
+
+Special characters in the text string are:
+ . - matches any single character 
+ * - matches any number of the preceding character 
+ ^ - matches the beginning of the line 
+ $ - matches the end of the line 
+
+ [list] 
+ matches any character included in 'list' 
+ A backslash (\) is used to override the special meaning.
+
+ /text 
+ search for 'text' 
+ ?text 
+ search backwards for 'text' 
+ /text/+3 
+ place cursor 3 lines after 'text' 
+ /text/-3 
+ place cursor 3 lines before 'text' 
+ /text\. 
+ search for 'text' 
+ n - repeat last search 
+ N - repeat last search in reverse direction 
+
+%%%Confirmation%%%
+Use c for confirmation
+ % s/before/after/gc
+
+
+***Replace Special New Line Character Like ^M
+ %s/^M//g
+Use Ctrl-V to input ^M, do not just put carrotM!
+
+***Delete blank line
+ %g/^$/d
+
+***Scroll forward / back one screen 
+ CTRL-f
+ CTRL-b 
+
+***Jump to next match blace { } or ( )
+ %
+Very useful to check { } or ( )
+
+***Goto Declaration 
+ gd or gD (go to global variable)
+e.g.
+ static int xxxx = 0;
+ // ...
+ void test() {
+      xxxx = 100; // type gd to jump to declaration
+ }
+
+***Marker
+There are marker slots 
+-a-z - Local register slots (within a same file) 
+-A-Z - Global register slots (able to mark on the other file)
+In order to mark, for instance
+ mj
+To jump this marker
+ 'j
+
+***Easy IDE Look
+ :vsp
+or specify the width
+ :20vsp
+then use Ctrl + W Ctrl + W to go another window and create filer
+ :e .
+When you open it in the previous visited window, press capital O
+ O
+
+***File Browser
+ :e .
+-j and k to move
+-Enter to open
+
+press ? for help
+
+***Multiple files
+Open like
+ vi test.txt test2.txt
+Check opened file list
+ :ls or :files
+Switch documents
+ (number) Ctrl+^
+If you press Ctrl+^ twice, switch to last opened document
+
+If you ommit the number, you just switch back to the last document
+You can check with MDI view with
+ :ar
+Next window
+ :bn or :n
+Previous
+ :bp, :e# or :rew
+Open another file
+ :e file.txt or :edit file.txt
+Open file open dialog
+ :bro e
+Open a new fiile
+ :new file.txt
+File open in split window. You can close with
+ :q
+But still buffer exist so that you can switch with :n and :bp
+
+Open a file in a same window
+ gvim --remote file.txt
+Close all files except for current file
+ :only
+
+
+
+***Split view 
+ :sp
+ :vsp
+Switch by Ctrl-W Ctrl-W
+
+Close window
+ :q
+But still buffer exist so that you can switch with :n and :bp
+
+***Jump Cursor
+ w forward a word 
+ b back a word 
+ $ end of line 
+ 0 beginning of line 
+    H
+    M
+    L
+you can also use PgUp and PgDn key
+ gg - go to begin
+ G - go to end
+    
+***Auto-fill:  
+    in insert mode, use 
+    Ctrl+P for previous similar word
+    Ctrl+N for post similar word
+
+***Clip board:  
+    "*p
+    "*y
+
+***Sort
+ %!sort
+
+***Fix all indent
+ gg=G
+gg is begining
+G is end
+= is fix indent command
+
+***Redirect
+Insert redirected output into cursor position
+ :r!cmd
+
+***Abbreviations, Mapping Keys, and Shortcut:  
+set vimrc like this
+
+ ab #s /*--------------------------------------------------------------------------*/
+
+then if you type #s in insert mode, it will be replaced.
+
+e.g2.
+
+ ab jso System.out.println("
+
+You can also type in command mode.
+Here is ab template for me
+ ab ab1 //===================================================================//
+ ab ab2 //-------------------------------------------------------------------//
+ ab ab3 //================================//
+ ab ab4 //--------------------------------//
+ ab ab8 fprintf(stderr,"Error: %s (%d) \n", __FILE__, __LINE__);
+ ab ab9 // Copyright (c) 200X, Kiichi Takeuchi zerogc.com info@zerogc.com
+ ab ab0 // vim: set ts=4 sts=4 sw=4:
+
+***Tag Jump
+-Create Tag file
+ ctags a.c b.c c.php d.tk
+This automatically detects file type.
+
+-Create Tag file recursivly
+ ctags -R DIRNAME
+tag file should be in current directory
+
+-You must edit with vi in same dir of tag file.
+-When a cursor is on object or method, hit 
+ Ctrl-]
+same as 
+ :tag
+-To go back, just hit 
+ Ctrl+T
+same as 
+ :pop
+-List all tags
+ :tags
+-Specify the target
+ :tag target
+
+***Load custom setting:  
+    create file like my_vimrc.vim
+    then 
+    :source my_vimrc.vim
+
+***See set up files:  
+    :scriptnames
+
+ Change syncolors.vim to change syntax color setting.
+ :colorschema blue
+
+***Fix Indent
+ gg=G
+= means fix indent
+gg is begining, G is end of file.
+
+***Undo/Redo
+ u / Ctrl-r
+
+***Window Maximize
+ :simalt ~x - Maximize
+ :simalt ~r - Restore
+or
+ Alt->Space->x
+ Alt->Space->r
+
+***Misc
+ xp - combo, switch two chars
+ I - Insert at the begining of the line
+ . - Repeat previous (useful when you insert same stuff)
+ C - Delete after cursor and insert mode
+ cc - Change the whole line
+ D - Delete after cursor
+ |
+ 0 - home
+ w3y - 3 words yank
+
+ J - JOIN
+ 5>> - indent 5 lines
+ 5<< - indent back 5 lines
+ G - jump to eof
+ R - keep replace sequence of chars
+
+ :set ts=4
+ :set ai
+ :set number
+
+ 0 - move to the start of the line 
+ $ - mve to the end of the line 
+
+***other quick reference: 
+ hjkl
+ i,a,A,o,O
+ J,r,w,de,yy,dd, 10yy,10dd,
+ :100
+ :! ls
+ /word, n
+ :w
+ :wq
+ :q!
+ ~ - change upper and lower case
+
+***links:
+(Japanese)
+http://pcmania.jp/~moraz/index.html    
+http://www.stackasterisk.jp/tech/engineer/vi01_01.jsp
+http://www.wakhok.ac.jp/~maruyama/Unix92/vi/section2.1.23.html
+http://www.mediaweb.biz/database/others/vi_manual.html
+http://www.wakhok.ac.jp/~kanayama/summer/02/site/node164.html
+http://www.glasscom.com/tone/linux/Reference/Vi/ViReference1.htm
+
+(English)
+http://www.bris.ac.uk/is/selfhelp/documentation/vi-r2/vi-r2.htm
+http://www.eng.hawaii.edu/Tutor/vi.html#map
+http://www.lagmonster.org/docs/vi.html
+
+#navi(vi)
+

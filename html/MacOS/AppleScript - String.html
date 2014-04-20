@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<title>MacOS/AppleScript - String</title>
+<xmp theme="united" style="display:none;">
+
+##&page
+
+###String replace
+```macos
+ on searchAndReplace(txt, srch, rpl)
+ 	set oldtid to AppleScript's text item delimiters
+ 	set AppleScript's text item delimiters to {srch}
+ 	set temp to every text item of txt
+ 	set AppleScript's text item delimiters to {rpl}
+ 	set temp to (temp as string)
+ 	set AppleScript's text item delimiters to oldtid
+ 	return temp
+ end searchAndReplace
+ ```
+
+
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

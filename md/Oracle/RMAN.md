@@ -1,0 +1,114 @@
+
+##RMAN
+
+
+###Introduction
+rman is another dump program to keep track all archive chronologicaly
++set database as archive log mode
++set flash recovery area
++access rman
+
+###Setup
+from sqlplus,
+```oracle
+ ```
+Set system as archivelog mode so that you can take backup without shutting down the database
+first 
+```oracle
+ startup mount;
+ ```
+```oracle
+ ```
+And check the parameter
+```oracle
+ ```
+Then, set each recovery parameters
+```oracle
+ alter system set db_recovery_file_dest='/dbdata/flash_recovery_area' scope=spfile; 
+ alter system set db_recovery_file_size=20G scope=spfile;
+ ```
+:note|/* scope=spfile or scope=both or scope=memory */
+
+You can also change parameter for how many keeps backup, check them
+```oracle
+ ```
+###Using rman
+rman is client program to connect the backup repository 
+
+```oracle
+ ```
+```oracle
+ ```
+
+Show all rman parameters
+```oracle
+ ```
+Set autobackup:If any changes in control file (e.g. new table spaces), automaticaly create backup of control file in autobackup folder
+```oracle
+ ```
+
+Checking backup history, date & scn (backup index number)
+```oracle
+ rman>list backup summary;
+ ```
+```oracle
+ ```
+Backup command manually
+```oracle
+ rman>backup database plus archivelog;
+ ```
+Backup Script Example(backup.rman)
+```oracle
+ {
+ ALLOCATE CHANNEL d1 DEVICE TYPE disk;
+ ALLOCATE CHANNEL d2 DEVICE TYPE disk;
+ ALLOCATE CHANNEL d3 DEVICE TYPE disk;
+ BACKUP DATABASE PLUS ARCHIVELOG;
+ }
+ ```
+Restore Script Example(restore.rman)
+```oracle
+ {
+ ALLOCATE CHANNEL d1 DEVICE TYPE disk;
+ ALLOCATE CHANNEL d2 DEVICE TYPE disk;
+ ALLOCATE CHANNEL d3 DEVICE TYPE disk;
+ SET UNTIL TIME "to_date('2006-07-07:12:56:00','YYYY-MM-DD:hh24:mi:SS')";
+ RESTORE DATABASE;
+ RECOVER DATABASE;
+ SQL 'alter database open resetlogs';
+ }
+ ```
+Save those scripts and you can call just like sqlplus:
+```oracle
+ ```
+```oracle
+ ```
+
+
+###create recoverty catalog (store recovery metadata in another database)
+
+let's assume you have another machine to make backup
+
++create rman account
++setup tns to make backup to remote machine
+
+```oracle
+ temporary tablespace temp quota 20G on users;
+ GRANT connect, resource, recovery_catalog_owner TO rman;
+ ```
+set up tns to make backup on the remote computer
+Edit $ORACLE_HOME/network/admin/tnsnames.ora
+or
+start netca command
+
+```oracle
+ ```
+```oracle
+ register catalog;
+ ```
+reference:
+http://www.oracle.com/technology/deploy/availability/htdocs/rman_overview.htm
+
+
+
+

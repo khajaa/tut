@@ -1,0 +1,19 @@
+#navi(Bash)
+**Environment Variable
+#contents
+***Set / Display
+Use ''export'' to set
+ export PATH=$PATH:~/bin
+Separator is '':''
+To display all variables, just type
+ export
+Or as for indivisual variable
+ echo $PATH
+
+***Language Setting
+ export LANG=en
+or
+ export LANG=ja
+
+#navi(Bash)
+

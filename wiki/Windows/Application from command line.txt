@@ -1,0 +1,27 @@
+#navi(Windows)
+**Application from command line
+#contents
+***IE & Explorer
+Windows Explorer
+ explorer [url|folder]
+IE
+ C:\Program Files\Internet Explorer>iexplore.exe
+
+ -new
+This option start explorer without any cache. Very usefule when you debug.
+
+***Start Service from Command Line
+Check all available names
+ net start
+e.g.
+ net stop "Windows Time"
+
+ net start "Windows Time"
+
+***Remote
+ mstsc
+Console Mode
+ mstsc /console
+
+#navi(Windows)
+

@@ -1,0 +1,24 @@
+#navi(MacOS)
+**iPhone - WiFi
+#contents
+***Fetch SSID information
+ #import <SystemConfiguration/CaptiveNetwork.h>
+ - (id)fetchSSIDInfo
+ {
+    NSArray *ifs = (id)CNCopySupportedInterfaces();
+    NSLog(@"%s: Supported interfaces: %@", __func__, ifs);
+    id info = nil;
+    for (NSString *ifnam in ifs) {
+        info = (id)CNCopyCurrentNetworkInfo((CFStringRef)ifnam);
+        NSLog(@"%s: %@ => %@", __func__, ifnam, info);
+        if (info && [info count]) {
+            break;
+        }
+        [info release];
+    }
+    [ifs release];
+    return [info autorelease];
+ }
+
+#navi(MacOS)
+

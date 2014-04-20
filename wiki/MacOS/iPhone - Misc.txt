@@ -1,0 +1,164 @@
+#navi(MacOS)
+**iPhone - Misc
+#contents
+
+***Detect Retina Display
+	if ([UIScreen instancesRespondToSelector:@selector(scale)]) {
+		CGFloat scale = [[UIScreen mainScreen] scale];
+		if (scale > 1.0) {
+			// hello
+		}
+	}
+
+***iOS version
+
+ float version = [[[UIDevice currentDevice] systemVersion] floatValue];
+ if (version >= 3.0)
+    {
+    // iPhone 3.0 code here
+    }
+
+
+***Detecting iPhone or iPad
+ if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
+     // The device is an iPad running iPhone 3.2 or later.
+ }
+ else {
+     // The device is an iPhone or iPod touch.
+ }
+
+***Taking Screenshot on Simulator
+
+ Control + Command + C
+
+This will copy a image into the clipboard
+
+***Default Screen for iPad
+ Default-Portrait.png * 	768w x 1004h
+ Default-PortraitUpsideDown.png 	768w x 1004h
+ Default-Landscape.png ** 	1024w x 748h
+ Default-LandscapeLeft.png 	1024w x 748h
+ Default-LandscapeRight.png 	1024w x 748h
+
+Startup Orientation Example
+
+For iPhone
+ <key>UIInterfaceOrientation</key>
+ <string>UIInterfaceOrientationPortrait</string>
+For iPad
+ <key>UIInterfaceOrientation~ipad</key>
+ <string>UIInterfaceOrientationLandscapeRight</string>
+
+***Main UI Orientation
+
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+
+
+
+***Access delegate
+ MyAppDelegate *appDelegate = (MyAppDelegate *)[[UIApplication sharedApplication] delegate];
+
+***Code Sigining Error
+Key chain -> Login -> Set as Default
+
+***Compile in older version
+
+Go to target -> baseSDK -> 2.0
+
+***Avoid ScreenLock
+ [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+
+To let it go sleep, 
+ [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
+
+***Allow play audio during screen lock
+ // Registers this class as the delegate of the audio session.
+ [[AVAudioSession sharedInstance] setDelegate: self];    
+ // Allow the app sound to continue to play when the screen is locked.
+ [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+
+
+***Hide Status Bar
+ [[UIApplication sharedApplication] setStatusBarHidden:YES];
+
+or (this is obsolete)
+ info.plist->UIStatusBarHidden->Boolean->check
+
+New way: You need to edit the value with text editor
+
+    <key>UIStatusBarHidden</key>
+    <true/>
+
+
+***Turn on Proximity Sensing (turn off screen when your face close to iphone)
+ [UIApplication sharedApplication].proximitySensingEnabled = YES;
+
+***Device Unique ID
+ [[UIDevice currentDevice] uniqueIdentifier]
+
+
+***Icon Badge Number
+Add this under AppDelegete, 
+
+
+ - (void)applicationDidFinishLaunching:(UIApplication *)application {
+ //...
+ [application setApplicationIconBadgeNumber:25];
+
+***Startup PNG
+Place
+ Default.png
+in the resource folder. This will be automatically loaded up when it's starting
+
+***Avoid Grossy Icon
+ info.plist->UIPrerenderedIcon->Boolean->Check
+
+***Conditional Compile
+ #if TARGET_IPHONE_SIMULATOR
+	NSLog(@"Simulator!");
+ #else
+	NSLog(@"Device!");
+ #endif
+
+***Conditional Define
+ #define ROWS ((self.view.bounds.size.width >= 768)? 20 : 10)
+
+***Fix Landscape mode
+ [UIApplication sharedApplication].statusBarOrientation = UIInterfaceOrientationLandscapeRight;
+
+***Get Screen Size
+ [[UIScreen mainScreen] applicationFrame]
+
+***Symbolic Link 3.0 to 3.0.1 
+ ln -s /Developer/Platforms/iPhoneOS.platform/DeviceSupport/3.0\ \(7A341\) /Developer/Platforms/iPhoneOS.platform/DeviceSupport/3.0.1
+
+
+***Read info.plist info
+
+ NSBundle* mainBundle = [NSBundle mainBundle]
+ [mainBundle objectForInfoDictionaryKey:@"myCustomKey"]
+ [mainBundle objectForInfoDictionaryKey:@"CFBundleVersion"]
+ [mainBundle bundleIdentifier]
+
+ #define MY_APP_NAME ((NSString *)[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"])
+
+***Checking System Version
+ NSString *sysVersion = [[UIDevice currentDevice] systemVersion];
+ // 2.x
+ if ([[sysVersion substringToIndex:2] isEqualToString:@"2."]) {
+ }
+ // 3.x or higher
+ else {}
+
+
+***Uninstall XCode
+ sudo /Developer/Library/uninstall-devtools --mode=all
+
+#navi(MacOS)
+

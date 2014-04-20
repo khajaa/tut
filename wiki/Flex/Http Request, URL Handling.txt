@@ -1,0 +1,13 @@
+#navi(Flex)
+**Http Request, URL Handling
+#contents
+***Url Encoding / Decoding
+ escape('http://...');
+ unescape('....');
+
+***POST
+ service.method="POST";
+ service.url="http://www....";
+ service.send({"name":"world","cool":"world"});
+#navi(Flex)
+

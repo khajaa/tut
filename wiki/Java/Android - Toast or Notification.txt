@@ -1,0 +1,16 @@
+#navi(Java)
+**Android - Toast or Notification
+#contents
+***Example
+ Toast.makeText(this,"Hello",5).show();
+
+***If text is too small
+In Manifest 1st level add this
+
+   <supports-screens android:resizeable="true"
+                  android:smallScreens="true"
+                  android:normalScreens="true"
+                  android:largeScreens="true"
+                  android:anyDensity="true"/>
+#navi(Java)
+

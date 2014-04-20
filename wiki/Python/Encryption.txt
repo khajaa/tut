@@ -1,0 +1,13 @@
+#navi(Python)
+**Encryption
+#contents
+***MD5
+ import md5
+ print md5.new('hello').hexdigest()
+
+***base64
+ import base64
+ print base64.urlsafe_b64encode('hello')
+
+#navi(Python)
+

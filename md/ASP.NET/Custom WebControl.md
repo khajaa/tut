@@ -1,0 +1,102 @@
+
+##Custom WebControl
+
+###Making Custom WebControl
++Create a new project > Class Library
++Add System.Web as a reference
+
+```asp.net
+ using System;
+ using System.Web.UI;
+ using System.Web.UI.WebControls;
+ using System.ComponentModel;
+ //using System.Text;
+ //using System.Drawing; // add reference
+ 
+ namespace MyWebControls {
+ 	/*
+ 	// for tool box
+ 	[DefaultProperty("ContentText"), 
+ 	ToolboxData("<{0}:MyButton runat=server></{0}:MyButton>"),
+        // add MyButton.bmp as "Embedded" resource into project
+ 	ToolboxBitmap(typeof(MyButton), "MyButton.bmp")] 
+ 	*/
+ 	public class MyButton : System.Web.UI.WebControls.WebControl {
+ 		private string mText;
+ 
+ 		public string Text {
+ 			get {
+ 				return mText;
+ 			}
+ 			set {
+ 				mText = value;
+ 			}
+ 		}
+ 		public MyButton() {
+ 			mText = "Test";
+ 		}
+ 		protected override void Render(HtmlTextWriter output) {
+ 			output.Write(@"<input type=button value=" + mText + ">");
+ 		}
+ 	}// end of class
+ } // end of ns
+ 
+ ```
++Right Click on Solution > Add a new ASP.NET Project
++Right click and select "Set as a startup project"
++Add above dll as a reference 
+
+```asp.net
+ <%@ Page language="c#" 
+ Codebehind="WebForm1.aspx.cs" 
+ AutoEventWireup="false" 
+ Inherits="MyButtonTest.WebForm1" %>
+ <%@ Register TagPrefix="my" Namespace="MyWebControls" Assembly="MyButton" %>
+ <HTML>
+ 	<body>
+ 			<my:MyButton id="MyButton1" runat=server></my:MyButton>
+ 	</body>
+ </HTML>
+ ```
+```asp.net
+ using System;
+ using System.Collections;
+ using System.ComponentModel;
+ using System.Data;
+ using System.Drawing;
+ using System.Web;
+ using System.Web.SessionState;
+ using System.Web.UI;
+ using System.Web.UI.WebControls;
+ using System.Web.UI.HtmlControls;
+ 
+ namespace MyWebControls {
+ 	public class WebForm1 : System.Web.UI.Page {
+ 		protected ObjectGraph.WebControls.OGDatePicker OGDatePicker1;
+ 		private void Page_Load(object sender, System.EventArgs e) { }
+ 		#region Web Form Designer generated code
+ 		override protected void OnInit(EventArgs e) {
+ 			InitializeComponent();
+ 			base.OnInit(e);
+ 		}
+ 		private void InitializeComponent() {    
+ 			this.Load += new System.EventHandler(this.Page_Load);
+ 		}
+ 		#endregion
+ 	} // end of class
+ } // end of ns
+ ```
+
+###ToolboxBitmap Problem
+When you change your namespace, you will have error to show icon on the toolbox. Work around is this way:
++Create fake stub class at outside of the namespace
+```asp.net
+ }
+ ```
+```asp.net
+ ```
+Don't forget to add this bmp as "Embeded" resource!
+
+
+
+

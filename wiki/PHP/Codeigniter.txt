@@ -1,0 +1,7 @@
+#navi(PHP)
+**Codeigniter
+#contents
+***Last Query
+ $this->db->last_query();
+#navi(PHP)
+

@@ -1,0 +1,80 @@
+#navi(MacOS)
+**iPhone - Deploy
+#contents
+***Initial Deploy
+-Make sure to install "Distribution Update" certificate. This is wild card for all app
+-Set all values in plist file
+-Project -> Edit Project Settings -> select "All Configuration" -> set '''Product Name'''
+-Change the title in RootViewController if you using utility type application
+-Project -> Edit Project Settings -> Configuration tab -> Duplicate release as "Distribution"
+-Screenshots 320x480 in jpg
+-icon_small.png 57x57 (make sure to specify this in plist file)
+-icon_large.jpg 512x512
+
+Build process
++Select Device|Distribution
+-Double click the target
++Set the value below in "Code signing Identity->Any iPhone OS Device"
+ iPhone Distribution: ObjectGraph LLC
++Select "Default..." in "Code signing provisioning file"
++Select "Distribution Update" in "Code signing provisioning file -> Any iPhone OS Device"
+
+If you build twice, make sure to follow the '''Clean up build process''' below.
+
+zip the binary.
+
+
+***Update 
+-Make sure version number in plist file changed
+-Select Device|Distribution
+
+***Clean up build process
+When you create a binary, make sure do this '''EVERY TIME'''
+
++Double click on the target
++Blank out "Code signing Identity->Any iPhone OS Device"
++Build -> Clean All
++Restart XCode
++Double click on the target
++Set the value below in "Code signing Identity->Any iPhone OS Device"
+ iPhone Distribution: ObjectGraph LLC
++Select "Default..." in "Code signing provisioning file"
++Select "Distribution Update" in "Code signing provisioning file -> Any iPhone OS Device"
++Build -> Build Result -> Search a word "embed" if you do not find, clean up procedure was failed. Do this process from step 1.
+
+
+***Checking code sign
+ codesign -vvv myapp.app
+
+***Ad-Hoc
++Add the friend's device id
++Provision->Distribution : Create mobile provision with star (*) app id. you can use same app id we use for our production package
++Download and drag and drop the prov file on xcode icon
++Replicate Distribution package and name it "AdHoc"
++Add a New File -> Entitlement ->"Entitlements.plist" on root
++Check off get-task-arrow
++Set project setting to Device|AdHoc
++Double click the target and set "Code Sign Entitlements" to "dist.plist"
++Go through clean up process
+++Remove Code Signing Identity->Any iPhone Device
+ iPhone Distribution: <company name>
+++Clean All Target
+++Close XCode
+++Set Code Signing Identity
+ iPhone Distribution: <company name>
+++Set Code Signing Provision File->Any iPhone Device
+ Ad Hoc
+which you just created
++Compile and make sure "embed" string exists in Build Results
++Send .app file and mobile provision file too.
+
+
+
+***Remove Shining Effect from Icon
+ UIPrerenderedIcon true
+in info.plist
+
+
+
+#navi(MacOS)
+

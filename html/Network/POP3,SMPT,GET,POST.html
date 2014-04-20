@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<title>Network/POP3,SMPT,GET,POST</title>
+<xmp theme="united" style="display:none;">
+
+##POP3,SMPT,GET,POST
+
+###POP3
+```network
+ USER myusername
+ PASS mypassword
+ LIST
+ ```
+To read email #100, just type
+```network
+ ```
+Other commands
+```network
+ TOP 10
+ QUIT
+ ```
+
+###SMTP
+```network
+ HELO local.domain.name
+ ```
+```network
+ RCPT TO: mail@destination.com
+ DATA
+ Subject:-type subject here-
+ my message body here
+ .
+ ```
+```network
+ ```
+
+###GET
+Run
+```network
+ ```
+```network
+ From: someuser@somwhere.com
+ User-Agent: MyAgent
+ ```
+and hit enter 2 times. Only the first line is required.
+
+Then you suppose to have
+```network
+ Date: Fri, 31 Dec 1999 23:59:59 GMT
+ Content-Type: text/html
+ Content-Length: 1354 
+ 
+ <html>
+ <body>
+ ....
+ ```
+###HEAD
+HEAD is same as GET. But it does not return the body, such as HTML file.
+
+###POST
+
+```network
+ From: somebody@somewhere.com
+ User-Agent: MyAgent
+ Content-Type: application/x-www-form-urlencoded
+ Content-Length: 25
+ 
+ fjalfja=bbbbbbbbbbccccc
+ &eee=dddd
+ &falfaaa=fjjajjjjj
+ ```
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

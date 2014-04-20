@@ -1,0 +1,296 @@
+#navi(CSharp)
+**String and Regex
+#contents
+
+***Base64 Encoding / Decoding
+        using System.Text;
+
+	public static string ToBase64(string val) {
+		ASCIIEncoding enc = new ASCIIEncoding();
+		return Convert.ToBase64String(enc.GetBytes(val));
+	}
+
+	public static string FromBase64(string val) {
+		ASCIIEncoding enc = new ASCIIEncoding();
+		return enc.GetString(Convert.FromBase64String(val));
+	}
+***Remove Html Tags
+ string strResult = Regex.Replace(strInput,@"<(.|\n)*?>",string.Empty); 
+
+***Get File Name
+ // string srcFile = @"C:\test\myfolder\file.txt";
+ int lastPos = srcFile.LastIndexOf("\\");
+ string fileName = srcFile.Substring(lastPos + 1, srcFile.Length - lastPos - 1);
+***Be careful - white space
+When you get string from input box or database, you should trim white space
+before you compare them.
+ if (userInput.Text.Trim() == "something") {
+     // ...
+ }
+
+***Format with internationalization 
+e.g. you can set currency format like this
+ string.Format("{0:c}", 321.23132131);
+However, the format is depend on your machin's locale.
+In my windows, it shows Yen sign.
+So, in order to force locale information, create culture information first
+ CultureInfo culInfo = new CultureInfo( "en-US", false );
+then use this class as a first argument.
+ Console.WriteLine(string.Format(culInfo.NumberFormat, "{0:c}", 321.32313))
+This will be doller sign.
+Fixed decimal
+ string.Format(culInfo, "{0:f}%", discount)
+
+:Example|
+-Phone format
+ String.Format("{0:(###) ###-####}", 18005551212);
+-If positive number, it will be $1,320.00, and if the number is negative,
+it comes with (). If number is 0, return string "Zero".
+ String.Format("{0:$#,##0.00;($#,##0.00);Zero}", value);
+-Alignment Right
+ Console.WriteLine(string.Format("{0,20:#}", 1111111));
+ Console.WriteLine(string.Format("{0,20:#}", 111111));
+ Console.WriteLine(string.Format("{0,20:#}", 11111));
+ Console.WriteLine(string.Format("{0,20:#}", 1111));
+
+***Padding Zero
+ string.Format("{0:000000}", 123);
+
+:Warning|Make sure right argument is integer. If you put string, it does not do anything!
+
+:References|
+http://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpguide/html/cpconFormattingOverview.asp?frame=true
+http://www.stevex.org/CS/blogs/dottext/articles/158.aspx
+http://idunno.org/displayBlog.aspx/2004071401#a2004071402-culture
+
+
+***Padding Space
+ String.Format("--{0,10}--", "test");  	//--      test--
+ String.Format("--{0,-10}--", "test"); 	//--test      --
+
+***Decimal Place
+ string.Format("{0:#.##}", 345.12345233); // two decimal places
+ string.Format("{0:0.00}", 345.12345233); // two decimal places fixed position adding zero
+
+***Date Format
+ string.Format("{0:yyyy_MM_dd}",DateTime.Parse(targetDate.Text))
+
+
+DateTime now = new DateTime(2006, 9, 07, 15, 06, 01, 08, DateTimeKind.Local);
+
+now.ToString();      //"09/27/2006 15:06:01"
+
+ 
+
+Year
+
+now.ToString("%y");   //"6"
+
+now.ToString("yy");   //"06"
+
+now.ToString("yyy");  //"2006"
+
+now.ToString("yyyy"); //"2006"
+
+ 
+
+Month
+
+now.ToString("%M");    //"9"
+
+now.ToString("MM");    //"09"
+
+now.ToString("MMM");   //"Sep"
+
+now.ToString("MMMM");  //"September"
+
+ 
+
+Day
+
+now.ToString("%d");    //"7"
+
+now.ToString("dd");    //"07"
+
+now.ToString("ddd");   //"Thu"
+
+now.ToString("dddd");  //"Thursday"
+
+ 
+
+Hour
+
+now.ToString("%h");    //"3"
+
+now.ToString("hh");    //"03"
+
+now.ToString("hhh");   //"03"
+
+now.ToString("hhhh");  //"03"
+
+now.ToString("%H");    //"15"
+
+now.ToString("HH");    //"15"
+
+now.ToString("HHH");   //"15"
+
+now.ToString("HHHH");  //"15"
+
+ 
+
+Minutes
+
+now.ToString("%m");    //"3"
+
+now.ToString("mm");    //"03"
+
+now.ToString("mmm");   //"03"
+
+now.ToString("mmmm");  //"03"
+
+ 
+
+Seconds
+
+now.ToString("%s");    //"1"
+
+now.ToString("ss");    //"01"
+
+now.ToString("sss");   //"01"
+
+now.ToString("ssss");  //"01"
+
+ 
+
+Milliseconds
+
+now.ToString("%f");    //"0"
+
+now.ToString("ff");    //"00"
+
+now.ToString("fff");   //"008"
+
+now.ToString("ffff");  //"0080"
+
+now.ToString("%F");    //""
+
+now.ToString("FF");    //""
+
+now.ToString("FFF");   //"008"
+
+now.ToString("FFFF");  //"008"
+
+ 
+
+Kind
+
+now.ToString("%K");    //"-07:00"
+
+now.ToString("KK");    //"-07:00-07:00"
+
+now.ToString("KKK");   //"-07:00-07:00-07:00"
+
+now.ToString("KKKK");  //"-07:00-07:00-07:00-07:00"
+
+// Note: The multiple K were just read as multiple instances of the
+
+// single K
+
+ 
+
+DateTime unspecified = new DateTime(now.Ticks, DateTimeKind.Unspecified);
+
+unspecified.ToString("%K");   //""
+
+ 
+
+DateTime utc = new DateTime(now.Ticks, DateTimeKind.Utc);
+
+utc.ToString("%K");           //"Z"
+
+ 
+
+TimeZone
+
+now.ToString("%z");     //"-7"
+
+now.ToString("zz");     //"-07"
+
+now.ToString("zzz");    //"-07:00"
+
+now.ToString("zzzz");   //"-07:00"
+
+ 
+
+Other
+
+now.ToString("%g");    //"A.D."
+
+now.ToString("gg");    //"A.D."
+
+now.ToString("ggg");   //"A.D."
+
+now.ToString("gggg");  //"A.D."
+
+ 
+
+now.ToString("%t");    //"P"
+
+now.ToString("tt");    //"PM"
+
+now.ToString("ttt");   //"PM"
+
+now.ToString("tttt");  //"PM" 
+
+2-c. Additional Resources
+
+Now that you understand what Standard and Custom format strings are, here is a table of Standard Format String to Custom Format String mapping:
+
+Year Month Day Patterns:
+d      = "MM/dd/yyyy"
+D      = "dddd, dd MMMM yyyy"
+M or m = "MMMM dd"
+Y or y = "yyyy MMMM"
+
+Time Patterns:
+t      = "HH:mm"
+T      = "HH:mm:ss"
+
+Year Month Day and Time without Time Zones:
+f      = "dddd, dd MMMM yyyy HH:mm"
+F      = "dddd, dd MMMM yyyy HH:mm:ss"
+g      = "MM/dd/yyyy HH:mm"
+G      = "MM/dd/yyyy HH:mm:ss"
+
+Year Month Day and Time with Time Zones:
+o      = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffffffK"
+R or r = "ddd, dd MMM yyyy HH':'mm':'ss 'GMT'"
+s      = "yyyy'-'MM'-'dd'T'HH':'mm':'ss"
+u      = "yyyy'-'MM'-'dd HH':'mm':'ss'Z'"
+U      = "dddd, dd MMMM yyyy HH:mm:ss"
+
+***Generate Random String
+ private string RandomString(int size) {
+	StringBuilder builder = new StringBuilder();
+	Random random = new Random();
+	char ch ;
+	for(int i=0; i<size; i++) {
+		builder.Append(Convert.ToChar(random.Next(32,127))); // contains simbol
+		//builder.Append(Convert.ToChar(random.Next(26) + 65)); // UpperCase
+		//builder.Append(Convert.ToChar(random.Next(26) + 97)); // LowerCase
+	}
+	return builder.ToString();
+ }
+
+
+***Regex Example
+ Regex regex = new Regex(@"Whatever(.*)Pattern", RegexOptions.IgnoreCase);
+ Match match = regex.Match(mSourceLine);
+ if (match.Success) {
+	// = match.Groups[1].Value
+	// match.NextMatch()
+ }
+[[Examples:http://www.windowsdevcenter.com/pub/a/oreilly/windows/news/csharp_0101.html]]
+
+#navi()
+

@@ -1,0 +1,94 @@
+#navi(MacOS)
+**iPhone - Audio, Sound
+#contents
+
+***Tips
+
+Convert iMovie' sound track e.g. iLife's music into mp3
+
+
+
+#Track->Delete Track
+#Drag & drop from iMovie to GrageBand
+#Share -> Export
+
+***AVAudioPlayer (recommended)
+
+ AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"test1" ofType:@"mp3"]] error:nil];
+ [player play];
+
+You need to add 
+ #import <AVFoundation/AVFoundation.h> 
+
+alos add 
+ AVFoundation.framework
+
+in the resouce folder.
+
+***Play while screen lock
+ // Registers this class as the delegate of the audio session.
+ [[AVAudioSession sharedInstance] setDelegate: self];    
+ // Allow the app sound to continue to play when the screen is locked.
+ [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback  error:nil];
+
+
+***Quick way to load sound from website using web browser
+ -(IBAction)playPodcast { [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.example.com/podcasts/file.mp3"]]]; }
+
+***Callback
+
+ -(void)playAndRelease{
+	AudioServicesAddSystemSoundCompletion (_soundID,NULL,NULL,
+		completionCallback,
+		(void*) self);
+	AudioServicesPlaySystemSound(_soundID);
+ }
+ 
+ static void completionCallback (SystemSoundID  mySSID, void* myself) {
+	//NSLog(@"completion Callback");
+	AudioServicesRemoveSystemSoundCompletion (mySSID);
+	[(SoundEffect*)myself release];
+ }
+
+***Sample Play Sound (System Sound)
+This is example to use AudioService. This framework is for playing sound less than 5 seconds.
+
+-Make sure to include the refernce and the sound file.
+++Right Click -> Add -> Existing Framework -> AudioToolbox.AudioServices
+++Right Click -> Add -> Existing Files -> Select sound file (e.g. boring.wav)
+
+MyView.h
+ #import <UIKit/UIKit.h>
+ #import <AudioToolbox/AudioServices.h>
+ 
+ @interface MyView : UIView {
+ 	UInt32 mSoundID;
+ }
+ 
+ @end
+
+MyView.m
+ #import "MyView.h"
+ 
+ @implementation MyView
+ - viewDidLoad{
+	AudioServicesCreateSystemSoundID((CFURLRef)[NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"hello.wav" ofType:nil]], &mSoundID); 
+ }
+ 
+ - (void) play {
+ 	AudioServicesPlaySystemSound(mSoundID);
+ }
+ 
+ - (void) vibrate: (id)sender {
+ 	AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+ }
+
+ -(void)dealloc{
+   AudioServicesRemoveSystemSoundCompletion(mSoundID);
+   [super dealloc];
+  
+ }
+ 
+
+#navi(MacOS)
+

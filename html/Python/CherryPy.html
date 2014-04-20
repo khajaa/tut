@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<title>Python/CherryPy</title>
+<xmp theme="united" style="display:none;">
+
+##CherryPy
+
+###Install
+Download latest version from
+http://cherrypy.org
+
+###Hello World
+This is the easiest hello world for web application ever.
+```python
+ 
+ class HelloWorld(object):
+     def index(self):
+         return "Hello World!"
+     index.exposed = True
+ 
+ cherrypy.quickstart(HelloWorld())
+ ```
+
+
+
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

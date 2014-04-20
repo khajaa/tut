@@ -1,0 +1,37 @@
+
+##Setup Visual Studio
+
+###GLUT
+You can extract glut zip file in same folder but for general setting...
+-Copy glut.h into
+```opengl
+ ```
+```opengl
+ ```
+```opengl
+ ```
+In program,
+-Link Static Lib
+```opengl
+ ```
+```opengl
+ ```
+Other libs you need to include, optional
+```opengl
+ #include <gl\gl.h>	// Header File For The OpenGL32 Library
+ #include <gl\glu.h>	// Header File For The GLu32 Library
+ #include <gl\glaux.h>	// Header File For The GLaux Library
+ ```
+```opengl
+ #pragma comment(lib, "glu32.lib")
+ #pragma comment(lib, "glaux.lib")
+ ```
+###Download
+Extract this in the same folder
+
+Latest version
+http://www.xmission.com/~nate/glut.html
+
+
+
+

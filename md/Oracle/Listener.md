@@ -1,0 +1,26 @@
+
+##Listener
+
+###lsnrctl
+```oracle
+ ```
+-stop - Stops the listener.  For Windows systems, the listener can also be stopped from the Control Panel.
+-status - Provides status information about the listener, including start date, uptime, and trace level.
+-services - Displays each service available, along with the connection history.
+-version - Displays the version information of the listener.
+-reload - Forces a read of the configuration file in order for new settings to take effect without stopping and starting the listener.
+-save_config - Creates a backup of the existing listener.ora file and saves changes to the current version.
+-trace - Sets the trace level to one of the following ? OFF, USER, ADMIN, or SUPPORT.
+-spawn - Spawns a program that runs with an alias in the listener.ora file.
+-dbsnmp_start - Starts the DBSNMP subagent.
+-dbsnmp_stop - Stops the DBSNMP subagent.
+-dbsnmp_status - Displays the status of the DBSNMP subagent.
+-change_password - Sets a new password for the listener.
+-quit and exit - Exits the utility.
+-set - Changes the value of any parameter.  Everything that can be shown can be set.
+-show - Displays current parameter settings.
+
+
+
+
+

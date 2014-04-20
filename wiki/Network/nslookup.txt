@@ -1,0 +1,10 @@
+#navi(Network)
+**nslookup
+#contents
+***nslookup
+ nslookup
+ >server dns1.yourdomain.com
+ >set type=MX
+ >mail.yourdomain.com
+#navi(Network)
+

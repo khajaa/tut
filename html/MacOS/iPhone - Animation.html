@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+<title>MacOS/iPhone - Animation</title>
+<xmp theme="united" style="display:none;">
+
+##iPhone - Animation
+
+
+###Curl Up
+```macos
+ //change to set the time
+ [UIView setAnimationDuration:1];
+ [UIView setAnimationBeginsFromCurrentState:YES];
+ [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];	
+ // do your view swapping here
+ //mTextView.text = [NSString stringWithFormat:@"page %d",mIndex];	
+ [UIView commitAnimations];
+ ```
+###Quick and easy modal view
+Call Another view
+
+     MyViewController *controller = [[MyViewController alloc]      initWithNibName:@"MyView" bundle:nil];
+     controller.delegate = self;
+     //controller.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+     [self presentModalViewController:controller animated:YES];
+     [controller myfunc];
+     [controller release];
+
+Prepare closing function
+```macos
+    [self dismissModalViewControllerAnimated:YES];
+ }
+ ```
+In the modal view controller itself, calll when it's done
+```macos
+    [self.delegate modalViewControllerDidFinish:self];   
+ }
+ ```
+
+
+
+
+
+###Setup
++Framework->Right Click->add QuartzCore
++Include QuartzCore/QuartzCore.h
+
+###Sample Code - Moving Example
+MyView.h
+```macos
+ 
+ @interface MyView : UIView {
+ 	UILabel *lblMsg;
+ }
+ 
+ - (void)simpleAnimation;
+ @end
+ ```
+MyView.m
+```macos
+ // Import QuartzCore for animations
+ #import <QuartzCore/QuartzCore.h>
+ 
+ @implementation MyView
+ - (id)initWithFrame:(CGRect)frame {
+ 	if (self = [super initWithFrame:frame]) {
+ 		self.backgroundColor = [UIColor lightGrayColor];
+         CGRect rect = CGRectMake(50,50,50,30);
+ 		lblMsg = [[[UILabel alloc] initWithFrame:rect] autorelease];
+ 		[lblMsg setText:@"Hello"];
+ 		[self addSubview:lblMsg];
+ 		[self simpleAnimation]; // animation start!
+ 	}
+ 	return self;
+ }
+ 
+ - (void)dealloc {
+ 	[lblMsg release];
+ 	[super dealloc];
+ }
+ 
+ - (void)simpleAnimation{
+ 	// Get Layer
+ 	CALayer *msgLayer = lblMsg.layer;
+ 	CAKeyframeAnimation *moveAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+ 	moveAnimation.removedOnCompletion = YES;
+ 	
+ 	// Create the path for the bounces
+ 	CGMutablePathRef thePath = CGPathCreateMutable();
+ 	
+ 	// starting this point
+ 	CGPathMoveToPoint(thePath, NULL, 50, 50);
+ 		
+ 	// Start the path at the current location 50,50 and 
+ 	int i=0;
+ 	for (i=0; i<100; i++) {
+ 		CGPathAddLineToPoint(thePath, NULL, 50+i, 50+i);
+ 	}
+ 
+ 	// set path and duration
+ 	moveAnimation.path = thePath;
+ 	moveAnimation.duration = 1.5;
+ 	
+ 	// Create an animation group to combine the keyframe and basic animations
+ 	CAAnimationGroup *theGroup = [CAAnimationGroup animation];
+ 
+ 	// Set self as the delegate to allow for a callback to reenable user interaction, if you need
+ 	theGroup.delegate = self;
+ 	theGroup.duration = 1.5;
+ 	theGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];	
+ 	theGroup.animations = [NSArray arrayWithObjects:moveAnimation, nil]; // you can add more
+ 		
+ 	// Add the animation group to the layer
+ 	[msgLayer addAnimation:theGroup forKey:@"simpleAnimation"];
+ 	
+ 	// set lblMsg's position around the end points
+ 	CGRect rect = CGRectMake(125,125,50,30);
+ 	lblMsg.frame = rect;
+ }
+ 
+ @end
+ ```
+###Create Custom View to make animation easier
+Since animation is created based on layer, you might want to '''pack''' multiple objects into one UIView class. Many common objects are inherited from UIView class;therefor, (UIView obj).layer is always available to animate the object.
+This is an example of customized UIView class. 
+
+MyView.h
+```macos
+ @interface MyView : UIView {
+ 	UIImage *mMyImage;
+ }
+ @property (nonatomic, retain) UIImage *mMyImage;
+ @end
+ ```
+
+```macos
+ @synthesize mMyImage;
+ - init {
+ 	UIImage *image = [UIImage imageNamed:@"mypic.png"];
+ 	CGRect frame = CGRectMake(0, 0, image.size.width, image.size.height);
+ 	if (self = [self initWithFrame:frame]) {
+ 		self.mMyImage = image;
+ 	}
+ 	return self;
+ }
+ 
+ - (void) dealloc {
+ 	[mMyImage release];
+ 	[super dealloc];
+ }
+ 
+ - (void)drawRect:(CGRect)rect {
+ 	[mMyImage drawAtPoint:(CGPointMake(0.0, 0.0))];
+ }
+ @end
+ ```
+
+###Basic Fade animation Example
+```macos
+ 	CABasicAnimation *theAnimation;
+ 	theAnimation=[CABasicAnimation animationWithKeyPath:@"opacity"];
+ 	theAnimation.duration=3.0;
+ 	theAnimation.repeatCount=2;
+ 	theAnimation.autoreverses=YES;
+ 	theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
+ 	theAnimation.toValue=[NSNumber numberWithFloat:0.0];
+ 	[myView.layer addAnimation:theAnimation forKey:@"animateMyOpacity"];
+ }
+ ```
+Or directly specify
+  [UIView beginAnimations:nil context:nil];
+  [UIView setAnimationDelegate:self];
+  [UIView setAnimationDidStopSelector:@selector(fadeAnimationDidStop)];
+  [UIView setAnimationDuration:3.0f];
+  self.view.alpha = 0;
+  [UIView commitAnimations];
+
+###Rotate Animation Example 1 - rotate view automatically with Key Path
+```macos
+ 	// [animationWithKeyPath example values]
+ 	//transform.rotation.x - The rotation, in radians, in the x axis. 
+ 	//transform.rotation.y - The rotation, in radians, in the y axis. 
+ 	//transform.rotation.z - The rotation, in radians, in the z axis. 
+ 	//transform.rotation - The rotation, in radians, in the z axis. This is identical to setting the rotation.z rotation field. 
+ 	//transform.scale.x - Scale factor for the x axis. 
+ 	//transform.scale.y - Scale factor for the y axis. 
+ 	//transform.scale.z - Scale factor for the z axis. 
+ 	//transform.scale - Average of all three scale factors. 
+ 	//transform.translation.x - Translate in the x axis. 
+ 	//transform.translation.y - Translate in the y axis. 
+ 	//transform.translation.z - Translate in the z axis. 
+ 	//transform.translation - Translate in the x and y axis. Value is an NSSize or CGSize. 
+ 	
+ 	CABasicAnimation *theAnimation;
+ 	theAnimation=[CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+ 	theAnimation.duration=2.0;
+ 	theAnimation.repeatCount=1;
+ 	theAnimation.autoreverses=NO;	
+ 	theAnimation.fromValue=[NSNumber numberWithFloat:DegreesToRadians(180)];
+ 	theAnimation.toValue=[NSNumber numberWithFloat:DegreesToRadians(0)];
+ 	[myView.layer addAnimation:theAnimation forKey:@"animateMyRotation"];
+ }
+ ```
+
+###Rotate Animation Example 2 - rotate when it's touched
+```macos
+ 	CATransform3D rotationTransform = CATransform3DIdentity;
+ 	rotationTransform = CATransform3DRotate(rotationTransform, rotateRadian, 0.0, 0.0, 1.0);
+ 	myView.layer.transform = rotationTransform;
+ }
+ ```
+You might want to call this function in motion such as touchesMoved event. See touches chapter too.
+```macos
+ 	UITouch *touch = [touches anyObject];
+ 	if ([touch view] == myView) {
+ 		CGPoint location = [touch locationInView:self];	
+ 		[self rotateMyView:atan2f(self.center.y - location.y, self.center.x - location.x)];
+ 	}	
+ }
+ ```
+
+###Sprite Animation Example
+
+You don't need QuartsCore lib
+
+MainView.h
+```macos
+ #import <AudioToolbox/AudioServices.h>
+ @interface MainView : UIView {
+ UIImageView *mCharacter;
+ UInt32 mSoundJumpID;
+ }
+ - (void)initMainView;
+ @end
+ ```
+MainView.m
+```macos
+ 
+ @implementation MainView
+ 
+ 
+ - (id)initWithCoder:(NSCoder *)coder {	
+ 	if (self = [super initWithCoder:coder]) {
+ 		[self initMainView];
+ 	}
+ 	return self;
+ }
+ 
+ - (id)initWithFrame:(CGRect)frame {
+ 	if (self = [super initWithFrame:frame]) {
+ 		[self initMainView];
+ 	}
+ 	return self;
+ }
+ 
+ - (void)initMainView {
+ 	mCharacter = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"anim01.gif"]];
+ 	// Load animations
+ 	
+ 	mCharacter.animationImages = [NSArray arrayWithObjects:[UIImage imageNamed:@"anim01.gif"],
+ 														   [UIImage imageNamed:@"anim02.gif"],								  
+ 														   [UIImage imageNamed:@"anim03.gif"],
+ 														   [UIImage imageNamed:@"anim04.gif"],
+ 														   [UIImage imageNamed:@"anim05.gif"],
+ 														   [UIImage imageNamed:@"anim06.gif"],
+ 														   [UIImage imageNamed:@"anim07.gif"],
+ 														   [UIImage imageNamed:@"anim08.gif"],
+ 														   [UIImage imageNamed:@"anim09.gif"],
+ 														   [UIImage imageNamed:@"anim10.gif"],
+ 														  nil];
+ 	mCharacter.animationDuration = 0.7;
+ 	mCharacter.animationRepeatCount = 1;
+ 	 
+ 	mCharacter.center = self.center;
+ 	[self addSubview:mCharacter];
+ 	
+ 	// Load sound
+ 	NSString *path = [[NSBundle mainBundle] pathForResource:@"jump02.wav" ofType:nil];	
+ 	AudioServicesCreateSystemSoundID((CFURLRef)[NSURL fileURLWithPath: path], &mSoundJumpID);
+ 	
+ 	
+ 	
+ }	
+ 
+ - (void)drawRect:(CGRect)rect {
+ 	// Drawing code
+ }
+ 
+ - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+ 	AudioServicesPlaySystemSound (mSoundJumpID);
+ 	AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+ 	
+ 	mCharacter.animationRepeatCount = 1;
+ 	[mCharacter startAnimating];
+ }
+ 
+ - (void)dealloc {
+ 	AudioServicesRemoveSystemSoundCompletion(mSoundJumpID);
+ 	AudioServicesDisposeSystemSoundID(mSoundJumpID);
+ 	[mCharacter release];
+ 	[super dealloc];
+ }
+ 
+ 
+ @end
+ ```
+
+
+###Some useful functions to calculate the degrees/radians
+```macos
+ CGFloat RadiansToDegrees(CGFloat radians) {return radians * 180/M_PI;};
+ ```
+
+###Flipping 2 views
+```macos
+ [UIView setAnimationDuration:0.75];     		
+ UIView *superview;
+ if ((superview = [frontSideView superview])) {
+ [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:superview cache:YES];
+ [frontSideView removeFromSuperview];
+ [superview addSubview:backSideView];
+ } 
+ else if ((superview = [backSideView superview])) {
+ [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:superview cache:YES];
+ [backSideView removeFromSuperview];
+ [superview addSubview:frontSideView];
+ }
+ [UIView commitAnimations];
+ ```
+###Show / Hide UIToolbar
+```macos
+ -(void)showToolbar{
+ 	
+ 	// Motion
+ 	CAKeyframeAnimation *motionAnim = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+ 	CGMutablePathRef thePath = CGPathCreateMutable();
+ 	CGPathMoveToPoint(thePath, NULL, mToolbar.center.x, 480 + mToolbar.bounds.size.height/2.0f);
+ 	
+ 	CGPathAddLineToPoint(thePath, NULL, self.center.x, 480 - mToolbar.bounds.size.height);
+ 	motionAnim.path = thePath;
+ 	
+ 	// Create an animation group to combine the keyframe and basic animations
+ 	CAAnimationGroup *theGroup = [CAAnimationGroup animation];
+ 	
+ 	// Set self as the delegate to allow for a callback to reenable user interaction, if you need
+ 	theGroup.delegate = self;
+ 	theGroup.duration = 1.8f;
+ 	theGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];	
+ 	theGroup.animations = [NSArray arrayWithObjects:motionAnim, nil]; // you can add more
+ 	theGroup.repeatCount = 0;//1e100f;
+ 	// Add the animation group to the layer
+ 	[mToolbar.layer addAnimation:theGroup forKey:@"modalViewAnimation"];
+ 	CFRelease(thePath);
+ 	mToolbar.center = CGPointMake(self.center.x, 480 - mToolbar.bounds.size.height);
+ }
+ 
+ -(void)hideToolbar{
+ 	
+ 	// Motion
+ 	CAKeyframeAnimation *motionAnim = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+ 	CGMutablePathRef thePath = CGPathCreateMutable();
+ 	CGPathMoveToPoint(thePath, NULL, mToolbar.center.x, mToolbar.center.y);
+ 	
+ 	CGPathAddLineToPoint(thePath, NULL, mToolbar.center.x, 480 + mToolbar.bounds.size.height/2.0f);
+ 	motionAnim.path = thePath;
+ 	
+ 	// Create an animation group to combine the keyframe and basic animations
+ 	CAAnimationGroup *theGroup = [CAAnimationGroup animation];
+ 	
+ 	// Set self as the delegate to allow for a callback to reenable user interaction, if you need
+ 	theGroup.delegate = self;
+ 	theGroup.duration = 1.8f;
+ 	theGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];	
+ 	theGroup.animations = [NSArray arrayWithObjects:motionAnim, nil]; // you can add more
+ 	theGroup.repeatCount = 0;//1e100f;
+ 	// Add the animation group to the layer
+ 	[mToolbar.layer addAnimation:theGroup forKey:@"modalViewAnimation"];
+ 	CFRelease(thePath);
+ 	
+ 	mToolbar.center = CGPointMake(mToolbar.center.x, 480 + mToolbar.bounds.size.height);
+ }
+ ```
+###Slide-In / Slide-Out Comic Reader Motion Example
+MainView.h
+```macos
+ #define DIRECTION_RIGHT 1
+ #define SLIDE_IN 1
+ #define SLIDE_AWAY 2
+ 
+ #import <UIKit/UIKit.h>
+ #import <QuartzCore/QuartzCore.h>
+ 
+ @interface MainView : UIView {
+ 	IBOutlet UIImageView *mTest1;
+ 	IBOutlet UIImageView *mTest2;
+ 	CGPoint mBeginPoint;
+ 	int mCurrentIndex;
+ }
+ -(void)slideAnimation:(int) direction slideType:(int)slideType imageView:(UIImageView*)imageView;
+ -(void)slideRight;
+ -(void)slideLeft;
+ @end
+ 
+ ```
+
+MainView.c
+```macos
+ 
+ @implementation MainView
+ 
+ 
+ - (id)initWithFrame:(CGRect)frame {
+     if (self = [super initWithFrame:frame]) {
+         // Initialization code
+     }
+     return self;
+ }
+ 
+ - (void)drawRect:(CGRect)rect {
+     // Drawing code
+ }
+ 
+ - (void)dealloc {
+     [super dealloc];
+ }
+ 
+ -(void)slideAnimation:(int) direction slideType:(int)slideType imageView:(UIImageView*)imageView{
+ 	
+ 	float startX = 0;
+ 	float startY = 240;
+ 	float endX = 0;
+ 	float endY = 240;
+ 	
+ 	if (direction == DIRECTION_LEFT) {
+ 		if (slideType == SLIDE_IN) {
+ 			startX = 480;
+ 			endX = 160;
+ 		}
+ 		else if (slideType == SLIDE_AWAY) {
+ 			startX = 160;
+ 			endX = -160;
+ 		}
+ 		
+ 	}
+ 	else if (direction == DIRECTION_RIGHT) {
+ 		if (slideType == SLIDE_IN) {
+ 			startX = -160;
+ 			endX = 160;
+ 		}
+ 		else if (slideType == SLIDE_AWAY) {
+ 			startX = 160;
+ 			endX = 480;
+ 		}
+ 	}
+ 	
+ 	// Motion
+ 	CAKeyframeAnimation *motionAnim = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+ 	CGMutablePathRef thePath = CGPathCreateMutable();
+ 	CGPathMoveToPoint(thePath, NULL, startX, startY);
+ 	CGPathAddLineToPoint(thePath, NULL, endX, endY);
+ 	motionAnim.path = thePath;
+ 	
+ 	// Create an animation group to combine the keyframe and basic animations
+ 	CAAnimationGroup *theGroup = [CAAnimationGroup animation];
+ 	
+ 	// Set self as the delegate to allow for a callback to reenable user interaction, if you need
+ 	theGroup.delegate = self;
+ 	theGroup.duration =  0.5f; 
+ 	theGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];	
+ 	theGroup.animations = [NSArray arrayWithObjects:motionAnim, nil]; // you can add more
+ 	
+ 	// Add the animation group to the layer
+ 	[imageView.layer addAnimation:theGroup forKey:@"slideAnimation"];
+ 	imageView.center = CGPointMake(endX,endY);
+ 	CFRelease(thePath);	
+ }
+ 
+ - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+ 	UITouch *touch = [touches anyObject];
+ 	mBeginPoint = [touch locationInView:self];
+ }
+ 
+ 
+ - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {	
+ 	
+ }
+ 
+ - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {	
+ 	UITouch *touch = [touches anyObject];
+ 	CGPoint location = [touch locationInView:self];
+ 	
+ 	// Single touch
+ 	if (location.x == mBeginPoint.x) {
+ 		if (location.x < 120) {
+ 			[self slideLeft];
+ 		}
+ 		else if (location.x >= 120 && location.x < 200) {
+ 			NSLog(@"Settings");
+ 		}
+ 		else if (location.x >= 200) {
+ 			[self slideRight];
+ 		}
+ 		
+ 		return;
+ 	}
+ 	
+ 	// right
+ 	if ( (mBeginPoint.x - location.x) < 0) {
+ 		[self slideRight];
+ 	}
+ 	// left
+ 	else {
+ 		[self slideLeft];
+ 	}
+ 	
+ }
+ 
+ -(void)slideRight{
+ 	if (mCurrentIndex == 0) {
+ 		[self slideAnimation:DIRECTION_RIGHT slideType:SLIDE_IN imageView:mTest1];
+ 		[self slideAnimation:DIRECTION_RIGHT slideType:SLIDE_AWAY imageView:mTest2];
+ 		mCurrentIndex = 1;
+ 	}
+ 	else {
+ 		[self slideAnimation:DIRECTION_RIGHT slideType:SLIDE_IN imageView:mTest2];
+ 		[self slideAnimation:DIRECTION_RIGHT slideType:SLIDE_AWAY imageView:mTest1];
+ 		mCurrentIndex = 0;
+ 	}
+ }
+ -(void)slideLeft{
+ 	if (mCurrentIndex == 0) {
+ 		[self slideAnimation:DIRECTION_LEFT slideType:SLIDE_IN imageView:mTest1];
+ 		[self slideAnimation:DIRECTION_LEFT slideType:SLIDE_AWAY imageView:mTest2];
+ 		mCurrentIndex = 1;
+ 	}
+ 	else {
+ 		[self slideAnimation:DIRECTION_LEFT slideType:SLIDE_IN imageView:mTest2];
+ 		[self slideAnimation:DIRECTION_LEFT slideType:SLIDE_AWAY imageView:mTest1];
+ 		mCurrentIndex = 0;
+ 	}
+ }
+ 
+ - (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag {
+ }
+ 
+ 
+ @end
+ ```
+
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

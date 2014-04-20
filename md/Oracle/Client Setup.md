@@ -1,0 +1,28 @@
+
+##Client Setup
+
+
+###Best way
+Go to regular oracle download page, and look for client package.
+
+%%%Important%%%
++You have to select ''Runtime'' to install.
++If you running ASP.NET application, add ''Network Service'' user on all folders under c:\oracle to execute the dlls.
++Add tnsnames.ora under (ORACLE_HOME)\NETWORK\ADMIN
++Check the connection with sqlplus
+
+###Instant Client for Windows, DLL
++Download latest version of Oracle Instant Client
++Copy all dll into
+```oracle
+ ```
+```oracle
+ ```
+Your connection string should be like
+```oracle
+ ```
+TNS is just instance name in client side. See sqlplus page for the example.
+
+
+
+

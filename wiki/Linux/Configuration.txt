@@ -1,0 +1,11 @@
+#navi(Linux)
+**Configuration
+#contents
+***Start Level
+Change
+ /etc/inettab
+and set 5 to 3 to stop at console
+ id:3:initdefault:
+
+#navi(Linux)
+

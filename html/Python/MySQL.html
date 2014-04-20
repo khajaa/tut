@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<title>Python/MySQL</title>
+<xmp theme="united" style="display:none;">
+
+##MySQL
+
+###Install
+http://sourceforge.net/projects/mysql-python
+
+or do easy_install
+```python
+ ```
+###Example
+```python
+ con = MySQLdb.connect (user='root', passwd='') 
+ #con = MySQLdb.connect(host = "148.4.110.9", user = "root", passwd = "", db = "test")
+ cur = con.cursor ()
+ #cur.execute ('SELECT * FROM mysql.user')
+ cur.execute ('SELECT * FROM test.testtbl')
+ res = cur.fetchall ()
+ print res
+ ```
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

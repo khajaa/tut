@@ -1,0 +1,48 @@
+
+##cron
+
+###Periodically Task
+Put shell scrip under 
+```linux
+ /etc/cron.daily
+ /etc/cron.weekly
+ /etc/cron.monthly
+ ```
+
+###crontab
+```linux
+ ```
+```linux
+ 01 * * * * root run-parts /etc/cron.hourly
+ 02 4 * * * root run-parts /etc/cron.daily
+ 22 4 * * 0 root run-parts /etc/cron.weekly
+ 42 4 1 * * root run-parts /etc/cron.monthly
+ ```
+```linux
+ ```
+
+|minute|hour|DateOfMonth|Month|DateOfWeek|user|cmd|h
+|01|*|*|*|*|root|run-parts /etc/cron.hourly|
+
+This means, every hour, 1st minute, it runs run-parts /etc/cron.hourly
+
+
+Values
+```linux
+ -----          --------------
+ minute         0-59
+ hour           0-23
+ day of month   0-31
+ month          0-12 (or names, see below)
+ day of week    0-7 (0 or 7 is Sun, or use names)
+ ```
+
+Check 
+```linux
+ ```
+
+###List all cron
+```linux
+ ```
+
+

@@ -1,0 +1,11 @@
+#navi(JavaScript)
+**Pop Up Window
+#contents
+***Open Window
+ <a href="#" onclick="javascript:window.open('order_detail.html', 
+ 'OrderDetail', 
+ 'width=500,height=500,toolbar=0,scrollbars=0,screenX=200,screenY=200,left=200,top=200')">Click here for detail</a>)
+***Close Window
+   <input name="Button" type="button" class="submit_button" id="Button" value="Close this window" onclick="window.close()">
+#navi(JavaScript)
+

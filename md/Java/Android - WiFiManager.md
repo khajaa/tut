@@ -1,0 +1,63 @@
+
+##Android - WiFiManager
+
+###Example
+
+MainActivity.java
+```java
+ 
+     WifiManager mWiFiManager;
+     WifiInfo mWiFiInfo;
+     BroadcastReceiver mReceiver;
+ 
+     /** Called when the activity is first created. */
+     @Override
+     public void onCreate(Bundle savedInstanceState){
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.main);
+ 
+ 
+         mWiFiManager = (WifiManager)getSystemService(Context.WIFI_SERVICE);
+ 
+ // Get local wifi details if you want...
+ //        mWiFiInfo = mWiFiManager.getConnectionInfo();
+ //        Log.v("mylog", mWiFiInfo.toString());
+ //        List<WifiConfiguration> configs = mWiFiManager.getConfiguredNetworks();
+ //        for (WifiConfiguration config : configs) {
+ //            Log.v("mylog", config.toString());
+ //        }
+ 
+         mReceiver = new WiFiReceiver(this);
+         registerReceiver(mReceiver, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
+ 
+         Button scanButton = (Button)findViewById(R.id.scanButton);
+         scanButton.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 mWiFiManager.startScan();   // this will trigger the onReceive event in WiFiScanreceiver class.
+             }
+         });
+     }
+ }
+ ```
+
+WiFiReceiver.java
+```java
+     MainActivity mMainActivity;
+ 
+     // Pass the main activity as constructor's parameter
+     public WiFiReceiver(MainActivity mainActivity){
+         super();
+         this.mMainActivity = mainActivity;
+     }
+ 
+     public void onReceive(Context context, Intent intent) {
+         List<ScanResult> results = mMainActivity.mWiFiManager.getScanResults();
+         for (ScanResult result : results) {
+             Log.v("mylog",result.SSID + ": " + result.level);
+         }
+     }
+ }
+ ```
+
+

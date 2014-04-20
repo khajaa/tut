@@ -1,0 +1,87 @@
+#navi(AIR)
+**Install and Hello World
+#contents
+***Install SDK and runtime
+Get Runtime and Samples
+http://labs.adobe.com/downloads/air.html
+
+Get Latest SDK from
+http://labs.adobe.com/downloads/airsdk.html
+
+Unzip & place it in 
+ c:\air
+
+Add c:\air\bin\ into PATh or do
+ set PATH=%PATH%;c:\air\bin
+
+in command line.
+
+***Hello World
+You need two files:
+
+AIRHelloWorld.xml
+ <?xml version="1.0" encoding="UTF-8"?>
+ 
+ <application xmlns="http://ns.adobe.com/air/application/1.0.M4"
+ 	appId="com.oreilly.AIRHelloWorld"
+ 	version="1.0">
+ 	<name>AIRHelloWorld</name>
+ 	<title>AIRHelloWorld Installer</title>
+ 	<description>Simple Hello World Example using HTML</description>
+ 	<copyright></copyright>
+ 	<rootContent 
+ 		systemChrome="standard" 
+ 		transparent="false" 
+ 		visible="true">AIRHelloWorld.html</rootContent>
+ </application>
+
+AIRHelloWorld.html
+ <html>
+ <head>
+     <title>AIRHelloWorld</title>
+     <script>
+         function init()
+         {
+             runtime.trace("init function called");
+         }
+     </script>
+ </head>
+ <body onload="init()">
+     <div align="center">Hello World</div>
+ </body>
+ </html>
+
+***Testing
+In command line
+ adl AIRHelloWorld.xml
+
+
+***Installing Aptana
+http://www.aptana.com/air/
+
++Create a project (assume the project name is Test1).
++External Tools
+-Location
+ C:\air\bin\adl.exe
+-Working Directory -> Browse Workspace
+ ${workspace_loc:/Test1}
+-Arguments
+ AIRHelloWorld.xml
+
+Setting UTF-8 for the editor
++Right click on Project
++Property->Information->Text File Encode->Other->UTF-8
+
+!!Building Package
+ adt -package AIRHelloWorld.air AIRHelloWorld.xml AIRHelloWorld.html
+
+or in Aptana, setup another external tool
+-Location
+ C:\air\bin\adt.bat
+-Working Directory -> Browse Workspace
+ ${workspace_loc:/Test1}
+-Arguments
+ -package AIRHelloWorld.air AIRHelloWorld.xml AIRHelloWorld.html
+
+#navi(AIR)
+

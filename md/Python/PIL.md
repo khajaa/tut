@@ -1,0 +1,113 @@
+
+##PIL
+
+###Install
+```python
+ ```
+###Install on mac
+Mac has problem with jpeg and truetype2 library
+
++Download jpeg and truetype2 package
+```python
+ http://freetype.sourceforge.net
+ http://www.ijg.org/files/jpegsrc.v6b.tar.gz
+ ```
+++./configure
+++make
+++sudo make install
++Then, download PIL (do this again if you setup above already)
+++http://www.pythonware.com/products/pil/
+++sudo python setup.py install
+
+###True transparent image and paste it on the background image
+```python
+ 
+ # Create a text image
+ width = 217 
+ height = 140 
+ 
+ # 1. Create a base image
+ baseim = Image.open("base.png")
+ 
+ # 2. Create a transparent text image
+ im = Image.new("RGB", (120, 210), (0,0,0))
+ alpha = Image.new("L", im.size, "black")
+ # Make a grayscale image of the font, white on black.
+ imtext = Image.new("L", im.size, 0)
+ drtext = ImageDraw.Draw(imtext)
+ font = ImageFont.truetype("Tahoma.ttf", 30) 
+ drtext.text((0,0), "helloworld", font=font, fill="white")
+ 
+ # Add the white text to our collected alpha channel. Gray pixels around
+ # the edge of the text will eventually become partially transparent
+ # pixels in the alpha channel.
+ alpha = ImageChops.lighter(alpha, imtext)
+ 
+ # Make a solid color, and add it to the color layer on every pixel
+ # that has even a little bit of alpha showing.
+ solidcolor = Image.new("RGBA", im.size, "#000000")
+ immask = Image.eval(imtext, lambda p: 255 * (int(p != 0)))
+ im = Image.composite(solidcolor, im, immask)
+ im.putalpha(alpha)
+ im.save("transtext.png", "PNG") #save for testing
+ 
+ # paste this on the base image with the alpha info
+ baseim.paste(im,(100,0),alpha)
+ baseim.save('helloworld.png','PNG')
+ ```
+Reference:
+```python
+ ```
+```python
+ 
+ # Create a background image
+ image = Image.new('RGB', (300, 50), (220,210,190))
+ draw = ImageDraw.Draw(image)
+ 
+ # Create a text image
+ textImg = Image.new('RGB',(150,40),(0,0,0))
+ tmpDraw = ImageDraw.Draw(textImg)
+ textFont = ImageFont.truetype('ARIAL.TTF',36)
+ tmpDraw.text((0, 0), 'Hello', font = textFont, fill = (10,200,200))
+ textImg = textImg.rotate(-10)
+ 
+ # Create a mask (same size as the text image)
+ mask = Image.new('L',(150, 40),0) 
+ mask.paste(textImg,(0,0))
+ 
+ # Paste text image with the mask
+ image.paste(textImg,(100,0),mask)
+ 
+ image.save('hello.jpg')
+ ```
+###Thumbnail
+```python
+ import Image
+ 
+ 
+ def resize(filename):
+    size = 48,48
+    im = Image.open(filename)
+    im.thumbnail(size)
+    im.convert('RGB').save(filename+'.jpg','JPEG')
+ 
+ resize('sample.png')
+ resize('sample.jpg')
+ resize('sample.gif')
+ ```
+###Simple watermarking
+import Image
+```python
+ logoim = Image.open("logo.png") #transparent image
+ baseim.paste(logoim,(baseim.size[0]-logoim.size[0],baseim.size[1]-logoim.size[1]),logoim) #specify the 3rd argument to add alpha 
+ baseim.save('new.png','PNG')
+ ```
+Reference:
+```python
+ http://nadiana.com/pil-tutorial-how-create-button-generator
+ ```
+
+
+
+
+

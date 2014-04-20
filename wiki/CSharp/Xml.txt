@@ -1,0 +1,32 @@
+#navi(CSharp)
+**Xml
+#contents
+***Reading Simple XML file
+ using System.Xml;
+
+ public static Hashtable GetParameters(string inputFile) {
+ 	Hashtable table = new Hashtable();
+ 	XmlTextReader reader = new XmlTextReader(inputFile);
+ 
+ 	// Read the Start Element
+ 	reader.ReadStartElement("parameters");
+ 
+ 	while (reader.Read()) {
+ 		if (reader.NodeType == XmlNodeType.Element) {
+ 			table[reader.GetAttribute("key")] = reader.Value;
+ 		}
+ 	}
+ 	reader.Close();
+ 
+ 	return table;
+ }
+
+sample xml file
+ <?xml version="1.0" encoding="utf-8" ?>
+ <parameters>
+   <parameter key="Campus">POST</parameter>
+   <parameter key="EmplID">100240977</parameter>
+ </parameters>
+
+#navi(CSharp)
+

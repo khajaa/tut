@@ -1,0 +1,29 @@
+
+##Misc - Arguments etc ...
+
+###Arguments Example - Echo all arguments
+```bash
+ echo $1
+ echo $2
+ echo $3
+ echo $4
+ echo $5
+ echo $6
+ echo $7
+ echo $8
+ echo $9
+ echo ${10}
+ ```
+```bash
+ ```
+###Arguments Example - Take arguments and check if its contain something
+```bash
+ echo "Usage: ./MyScript.bash [version number]"
+ exit 1
+ else
+ echo "processing..."
+ fi
+ ```
+
+
+

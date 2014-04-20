@@ -1,0 +1,50 @@
+#navi(Java)
+**Xerces
+#contents
+***Installation
+Makesure you set JAVA_HOME to your c:\jdk path.
+Ant for optional (to build)
+
+Download 3 files (bin, src, and tool) from
+http://xml.apache.org/xerces2-j/download.cgi
+
+Create dirctory ''c:\xerces''
+
+Move zip files into this diercotry and extract like this
+ jar xf Xerces-J-bin.2.7.0.zip
+ jar xf Xerces-J-src.2.7.0.zip
+ jar xf Xerces-J-tools.2.7.0.zip
+
+Run build command (Optional)
+ c:\xerces\build.bat
+
+Add 
+ c:\xerces\xml-apis.jar;c:\xerces\xercesImpl.jar;c:\xerces\xercesSamples.jar;
+into your ''CLASSPATH''
+
+Test sample program. Go go data directory and
+ java dom.Counter personal.xml
+
+This program just count xml file. If you remove .dtd file, it gives you an error message because it check the structure.
+
+If you have Ant (see other page) you can build xerces and samples
+ c:\xerces\build.bat all
+
+
+***Compile and Run Sample Program
+Download
+#ref(HelloXerces.zip)
+
+Extract this and
+ javac HelloXercesTest.java
+
+Run
+ java HelloXercesTest
+
+You should see some output.
+
+***Reference
+http://xml.apache.org/xerces2-j/api.html
+http://www.cse.lehigh.edu/~heflin/courses/semweb/xerces-trouble.html
+#navi(Java)
+

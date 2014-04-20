@@ -1,0 +1,59 @@
+#navi(MacOS)
+**AppleScript - GUI Automation
+#contents
+
+***Inspector
+ /Developer/Applications/Utilities/Accessibility Tools/
+
+***Delay
+ delay 1
+
+***Wait until
+ repeat until checkbox 1 of group 1 of drawer 1 of window 1 exists
+ delay 0.1
+ end repeat
+
+***Keyboard
+ key code 123 -- left arrow Key
+ key code 124 -- right arrow Key
+ key code 126 -- up arrow Key
+ key code 125 -- down arrow Key
+ key code 36 - return
+ keystroke tab
+ key code 123 - tab
+
+***Click ok in the dialog
+	if (exists sheet 1) then
+		click button "OK" of sheet 1
+	end if
+
+***Click Check Box in a list
+
+ click checkbox 1 of row 2 of table 1 of scroll area 2 of group 1
+ click checkbox "Change picture:" of group 1 of tab group 1 of window "Desktop & Screen Saver"
+
+			if (value of checkbox 1 of row 2 of table 1 of scroll area 2 of group 1) is equal to 0 then
+				display dialog "its' zero"
+			else
+				display dialog "its' NOt zero"
+			end if
+
+***Open / Close System Pref
+		tell application "System Preferences"
+			activate
+			set current pane to pane "com.apple.preferences.sharing"
+		end tell
+
+
+		ignoring application responses
+			tell application "System Preferences" to quit
+		end ignoring
+
+***Exception
+	try
+		--
+	end try
+
+
+#navi(MacOS)
+

@@ -1,0 +1,27 @@
+#navi(Linux)
+**Environment Variables
+#contents
+***Show
+-Linux
+ env
+or
+ echo $variable_name 
+-Windows
+ set
+or
+ echo %variable_name% 
+
+***Set
+-Linux
+ export CLASSPATH=/path/to/program 
+-Windows
+ set CLASSPATH=C:\path\to\program 
+
+:Note|Linux uses '':'' for separateor. Windows uses '';'' for separator.
+***Add
+-Linux
+ export CLASSPATH=$CLASSPATH:/path/to/program 
+-Windows
+ set CLASSPATH=%CLASSPATH%;C:\path\to\program 
+#navi(Linux)
+

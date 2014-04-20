@@ -1,0 +1,17 @@
+#navi(Linux)
+**sendmail
+#contents
+***Log
+This is example to monitor sendmail log in FreeBSD
+ tail -f /var/log/maillog
+Usually, two logs are recorded:
++Accepted
++Delivered
+***Relay Setting 
+Allow relay from specific ip addresses
+ /etc/mail/access 
+
+ 127.0.0.1      RELAY
+
+#navi(Linux)
+

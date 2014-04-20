@@ -1,0 +1,122 @@
+#navi(ASP.NET)
+**Globals
+#contents
+***GET - URL Request
+ http://xxki.com/app.aspx?action=new
+This request will be retrived as
+ string str = Request["Action"];
+or
+ string str = Request.QueryString["action"];
+and str holds "new"
+
+Dump Everything
+ for (int i=0; i<Request.QueryString.Keys.Count; i++) {
+     string key = Request.QueryString.Keys[i];
+     Response.Write(key + " - " + Request[key] + "<BR>");
+ }
+
+***POST
+Check posted or not
+ // If nothing was posted, feed table with default data
+ if (!IsPostBack) {
+ }
+
+Dump all form data
+ foreach (string key in Request.Form.AllKeys) {
+	Response.Write(key + " - " + Request.Form[key] + "<BR>");
+ }
+
+***Session
+ Session["username"] = "kiichi";
+
+Dump all session variables
+ foreach (string key in Session.Keys) {
+     Response.Write(key + " - " + Session[key] + "<br>");
+ }
+
+In order to destroy all session data
+ Session.Abandon();
+
+You can store class or array into sessin
+ DataRow dr = GetUserRecord(id,pass);
+ Session["user"] = dr;
+and you can retrive
+ DataRow tmp = (DataRow)Session["user"]; // Session is object. Need to cast
+
+***Script Name (My Self)
+ Request.CurrentExecutionFilePath
+ Request.ServerVariables["SCRIPT_NAME"]
+
+***ServerVariables
+ Request.ServerVariables["<variable name>"]
+-''ALL_HTTP'' - Returns all HTTP headers sent by the client. Always prefixed with HTTP_ and capitalized 
+-''ALL_RAW'' - Returns all headers in raw form 
+-''APPL_MD_PATH'' - Returns the meta base path for the application for the ISAPI DLL 
+-''APPL_PHYSICAL_PATH'' - Returns the physical path corresponding to the meta base path 
+-''AUTH_PASSWORD'' - Returns the value entered in the client's authentication dialog 
+-''AUTH_TYPE'' - The authentication method that the server uses to validate users 
+-''AUTH_USER'' - Returns the raw authenticated user name 
+-''CERT_COOKIE'' - Returns the unique ID for client certificate as a string 
+-''CERT_FLAGS'' - bit0 is set to 1 if the client certificate is present and bit1 is set to 1 if the cCertification authority of the client certificate is not valid 
+-''CERT_ISSUER'' - Returns the issuer field of the client certificate 
+-''CERT_KEYSIZE'' - Returns the number of bits in Secure Sockets Layer connection key size 
+-''CERT_SECRETKEYSIZE'' - Returns the number of bits in server certificate private key 
+-''CERT_SERIALNUMBER'' - Returns the serial number field of the client certificate 
+-''CERT_SERVER_ISSUER'' - Returns the issuer field of the server certificate 
+-''CERT_SERVER_SUBJECT'' - Returns the subject field of the server certificate 
+-''CERT_SUBJECT'' - Returns the subject field of the client certificate 
+-''CONTENT_LENGTH'' - Returns the length of the content as sent by the client 
+-''CONTENT_TYPE'' - Returns the data type of the content 
+-''GATEWAY_INTERFACE'' - Returns the revision of the CGI specification used by the server 
+-''HTTP_<HeaderName>'' - Returns the value stored in the header HeaderName 
+-''HTTP_ACCEPT'' - Returns the value of the Accept header 
+-''HTTP_ACCEPT_LANGUAGE'' - Returns a string describing the language to use for displaying content 
+-''HTTP_COOKIE'' - Returns the cookie string included with the request 
+-''HTTP_REFERER'' - Returns a string containing the URL of the page that referred the request to the current page using an <a> tag. If the page is redirected, HTTP_REFERER is empty 
+-''HTTP_USER_AGENT'' - Returns a string describing the browser that sent the request 
+-''HTTPS'' - Returns ON if the request came in through secure channel or OFF if the request came in through a non-secure channel 
+-''HTTPS_KEYSIZE'' - Returns the number of bits in Secure Sockets Layer connection key size 
+-''HTTPS_SECRETKEYSIZE'' - Returns the number of bits in server certificate private key 
+-''HTTPS_SERVER_ISSUER'' - Returns the issuer field of the server certificate 
+-''HTTPS_SERVER_SUBJECT'' - Returns the subject field of the server certificate 
+-''INSTANCE_ID'' - The ID for the IIS instance in text format 
+-''INSTANCE_META_PATH'' - The meta base path for the instance of IIS that responds to the request 
+-''LOCAL_ADDR'' - Returns the server address on which the request came in 
+-''LOGON_USER'' - Returns the Windows account that the user is logged into 
+-''PATH_INFO'' - Returns extra path information as given by the client 
+-''PATH_TRANSLATED'' - A translated version of PATH_INFO that takes the path and performs any necessary virtual-to-physical mapping 
+-''QUERY_STRING'' - Returns the query information stored in the string following the question mark (?) in the HTTP request 
+-''REMOTE_ADDR'' - Returns the IP address of the remote host making the request 
+-''REMOTE_HOST'' - Returns the name of the host making the request 
+-''REMOTE_USER'' - Returns an unmapped user-name string sent in by the user 
+-''REQUEST_METHOD'' - Returns the method used to make the request 
+-''SCRIPT_NAME'' - Returns a virtual path to the script being executed 
+-''SERVER_NAME'' - Returns the server's host name, DNS alias, or IP address as it would appear in self-referencing URLs 
+-''SERVER_PORT'' - Returns the port number to which the request was sent 
+-''SERVER_PORT_SECURE'' - Returns a string that contains 0 or 1. If the request is being handled on the secure port, it will be 1. Otherwise, it will be 0 
+-''SERVER_PROTOCOL'' - Returns the name and revision of the request information protocol 
+-''SERVER_SOFTWARE'' - Returns the name and version of the server software that answers the request and runs the gateway 
+-''URL'' - Returns the base portion of the URL 
+
+
+
+
+***Global.aspx
+Global.aspx catch event of all applicatoin. For example, let's assume you
+have method to send email. This is how to report your application error
+into your email account. This SMTP server should be dedicated from production.
+
+ protected void Application_Error(Object sender, EventArgs e) {
+	Exception ex = Server.GetLastError();
+	SendEmail("myemail@email.com", "test@test.com", ex.Message, ex.StatckTrace);
+	// Create Error Log on a file or database
+ }
+
+***Client IP Address
+%%%ASP.net page%%%
+ Response.Write(Request.UserHostAddress())
+
+%%%Web Service%%%
+ Context.Request.ServerVariables ["REMOTE_ADDR"]
+#navi(ASP.NET)
+

@@ -1,0 +1,19 @@
+#navi(PHP)
+**String
+#contents
+***Split
+ $val = "Super Package1,49";
+ list($name, $price) = split("\|", $val);
+Remember, the first arg is regex
+ $val = "Super Package1|49";
+ list($name, $price) = split("\|", $val);
+
+***Replace
+ $str = str_replace("_", " ", "Hello_World_String");
+
+***Format
+2 decimal points
+ number_format($val,2);
+
+#navi(PHP)
+

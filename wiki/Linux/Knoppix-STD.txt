@@ -1,0 +1,31 @@
+#navi(Linux)
+**Knoppix-STD
+#contents
+***Crack Windows 2000 Password
++Download Knoppix-STD and Burn ISO image
++If X does not boot, just Ctrl+Alt+F1 and switch to user1
++Create a directory
+ mkdir windows
++Mount the directly to your windows C drive
+ mount /dev/hda1 windows
++Goto
+ cd /windows/winnt/system32/config
++and if you see a file it is called SAM
+ chntpw SAM
++Default for Administrator account, and type * for blank password. Basically, follow the instruction
++Before shutdown, make sure to flash all buffer to the disk
+ sync
++Now shutdown and reboot with windows
+
+
+
+
+
+
+
+
+
+
+
+#navi(Linux)
+

@@ -1,0 +1,22 @@
+
+##Clean up Transaction Log
+
+
+
+###in SQL Server 2000
+
+backup log [database name] with truncate_only
+(run this in query analyzer)
+
+(open enterprise manager and expand the server tree)
+-right click on the database
+-all task
+-shrink database
+-bottom button (on right side of form) for files
+-select sql log file (default is data file so make sure and change it)
+-click ok
+
+
+
+
+

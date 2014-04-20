@@ -1,0 +1,7 @@
+#navi(Bash)
+**Date and Time
+#contents
+***Example - Create a backup directory of date
+ mkdir backup_`date "+%m_%d_%y"`
+#navi(Bash)
+

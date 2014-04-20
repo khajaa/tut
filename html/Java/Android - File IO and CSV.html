@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<title>Java/Android - File IO and CSV</title>
+<xmp theme="united" style="display:none;">
+
+##Android - File IO and CSV
+
+###CSV
+        InputStream is = getResources().openRawResource(R.raw.cities);
+        Scanner scanner = new Scanner(is);
+        while(scanner.hasNextLine()){
+            String[] parts = scanner.nextLine().split(",");
+            Log.v("myapp",parts[1] + "," + parts[2]);
+        }
+
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

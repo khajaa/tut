@@ -1,0 +1,19 @@
+#navi(MacOS)
+**iPhone - Website
+#contents
+***Meta tag settings
+ <meta name="viewport" content="initial-scale=1.00" />
+ <meta name="viewport" content="width=320" />
+
+
+***Detects iPhone
+
+ jQuery(document).ready(function($){
+	var deviceAgent = navigator.userAgent.toLowerCase();
+	var agentID = deviceAgent.match(/(iphone|ipod|ipad)/);
+	if (agentID) {
+        // do something special 
+	}
+ });
+#navi(MacOS)
+

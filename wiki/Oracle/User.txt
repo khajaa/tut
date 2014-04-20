@@ -1,0 +1,29 @@
+#navi(Oracle)
+**User
+#contents
+***Creating User
+Start sqlplus
+ sqlplus / as sysdba
+
+ create user kiichi identified by mypassword;
+
+In oracle 10g, user is created with minimal setting, so make sure to set quota
+ alter user kiichi quota unlimited on users;
+
+This is preferred setting:
+ create user kiichi identified by mypassword default tablespace users 
+ temporary tablespace temp quota unlimited on users;
+
+:Note|In order to change the password, login first, then use ''password'' command to change your password.
+
+See next section to setup privilege.
+
+***Privilege
+When you create user, it does not have any privilege at all.
+ grant connect, create mytable to kiichi;
+ grant select,insert,update,delete on mytable to kiichi;
+***Show all users
+ select username from all_users;
+
+#navi(Oracle)
+

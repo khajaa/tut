@@ -1,0 +1,8 @@
+#navi(MacOS)
+**iPhone - Copy and Paste, Clipboard Pasteboard
+#contents
+***Copy into the board
+ 		[[UIPasteboard generalPasteboard] setImage:myimage];
+		[[UIPasteboard generalPasteboard] setData:mydata forPasteboardType:@"com.compuserve.gif"];
+#navi(MacOS)
+

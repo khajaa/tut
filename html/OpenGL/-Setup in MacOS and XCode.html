@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<title>OpenGL/-Setup in MacOS and XCode</title>
+<xmp theme="united" style="display:none;">
+
+##-Setup in MacOS and XCode
+
+
+###Steps Summary
++Start XCode and Create Empty Project from the category Other
++Right Click on Target->Add New Target->Cocoa Application
++In target info screen->Build tab->set GCC_PREFIX_HEADER value to blank
++Right click on project->Add Existing Framework->Add OpenGL.framework and GLUT.framework
++Right click on project > add file => main.c file (c file)
++Now you can write OpenGL code. try copy and paste some sample code from this website
+
+:Note|Change <GL/glut.h> to <GLUT/glut.h>
+
+###Reference
+http://blog.onesadcookie.com/2007/12/xcodeglut-tutorial.html
+
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

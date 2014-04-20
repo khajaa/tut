@@ -1,0 +1,37 @@
+#navi(CSharp)
+**Misc
+#contents
+***Host name and IP address
+ string hostName = System.Net.Dns.GetHostName()
+ System.Net.Dns.GetHostAddresses(hostName)[0].ToString();
+
+***Get MAC Address
+ using System.Management; 
+	public static string GetMacAddress() {
+		string retStr = "";
+		ManagementClass oMClass = new ManagementClass ("Win32_NetworkAdapterConfiguration");
+		ManagementObjectCollection colMObj = oMClass.GetInstances();
+		foreach(ManagementObject objMO in colMObj) {
+			if (objMO["MacAddress"] != null) {
+				retStr = objMO["MacAddress"].ToString();
+				break;
+			}
+		}			
+		return retStr;
+	}
+
+
+
+***Assembly Version
+  System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Trim();
+
+***Avoid Multiple Instance
+ if (System.Diagnostics.Process.GetProcessesByName(
+	System.Diagnostics.Process.GetCurrentProcess().ProcessName).Length > 1) {
+	Application.Exit();
+	return;
+ }
+
+
+#navi(CSharp)
+

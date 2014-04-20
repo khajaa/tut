@@ -1,0 +1,18 @@
+#navi(MacOS)
+**Objectice-C - Thread
+#contents
+***Threading
+ [NSThread detachNewThreadSelector:@selector(myMethod) toTarget:self withObject:nil];
+
+ - (void)myMethod { 
+       NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];  
+       // do something 
+       [pool release]; 
+ } 
+
+***Timer
+   [self performSelector: @selector(doSomething)
+             withObject: nil
+             afterDelay: 1.0];
+#navi(MacOS)
+

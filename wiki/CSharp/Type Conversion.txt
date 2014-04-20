@@ -1,0 +1,19 @@
+#navi(CSharp)
+**Type Conversion
+#contents
+***String to Byte Array
+ public static byte[] StrToByteArray(string str) {
+    System.Text.ASCIIEncoding  encoding=new System.Text.ASCIIEncoding();
+    return encoding.GetBytes(str);
+ }
+***Byte Array to String
+ byte [] dBytes = ...
+ string str;
+ System.Text.ASCIIEncoding enc = new System.Text.ASCIIEncoding();
+ str = enc.GetString(dBytes);
+
+***To Boolean from String or Int etc...
+ Convert.ToBoolean(1);
+
+#navi(CSharp)
+

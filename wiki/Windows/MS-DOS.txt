@@ -1,0 +1,10 @@
+#navi(Windows)
+**MS-DOS
+#contents
+***SUBST - Create a drive
+This command set a folder to a drive
+Example
+ SUBST z: .
+   
+#navi(Windows)
+

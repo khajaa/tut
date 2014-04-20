@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<title>JavaScript/Credit Card Validation</title>
+<xmp theme="united" style="display:none;">
+
+##Credit Card Validation
+
+###Example - mod10_simple.html
+```javascript
+ <head>
+ <!--- Mod 10 credit card number validator -->
+ <!--- Created by mattf (mattf@mail.com) 2002-09-13 -->
+ <!--- This Software is Free with no implied warrantees or guarantees -->
+ <!--- You can use or modify this software any way you may like -->
+ <script language="JavaScript1.2">
+ function Mod10(ccno) {
+ 	vlengthgood=0;
+ 	ccsum=0;
+ 	cclen=ccno.length;
+ 	if (cclen<13)
+ 	{
+ 		alert("Credit cards must have at least 13 digits.");
+ 	}
+ 	else
+ 	{
+ 		for (i=1; i<cclen; i++)
+ 		{
+ 			ccdig=parseInt(ccno.charAt(cclen-(i+1)));
+ 			if (i%2==1)
+ 			{
+ 				ccdig*=2;
+ 				if (ccdig.toString().length==2)
+ 				{
+ 					ccdig=(parseInt(ccdig.toString().charAt(0))+parseInt(ccdig.toString().charAt(1)));
+ 				} 
+ 			}
+ 			ccsum+=ccdig;
+ 		}
+ 		ccsum+=parseInt(ccno.charAt(cclen-1));
+ 		if (ccsum%10==0)
+ 		{
+ 			document.forms[0].cardrslt.value="Mod10 PASSED";
+ 
+ 				cc_type_id = 'NOT VALID TYPE';
+ 			if (ccno.match(/^4/) )
+ 				{cc_type_id = 'VISA';   if (cclen==13 || cclen==16) {vlengthgood=1;}   else {vlengthgood=0;} }
+ 			if (ccno.match(/^50|^56|^57|^58|^6/) )
+ 				{cc_type_id = 'MAESTRO';   vlengthgood=1;}
+ 			if (ccno.match(/^51|^52|^53|^54|^55/) )
+ 				{cc_type_id = 'MASTERCARD';   if (cclen==16) {vlengthgood=1;}   else {vlengthgood=0;} }
+ 			if (ccno.match(/^413733|^413734|^413735|^413736|^413737|^4462|^453978|^453979|^454313|^454313|^454432|^454433|^454434|^454435|^454742|^456725|^456726|^456727|^456728|^456729|^45673|^456740|^456741|^456742|^456743|^456744|^456745|^46583|^46584|^46585|^46586|^46587|^484409|^484410|^49096|^49097|^492181|^492182|^498824/) )
+ 				{cc_type_id = 'DELTA';   if (cclen==16) {vlengthgood=1;}   else {vlengthgood=0;} }
+ 			if (ccno.match(/^450875|^484406|^484407|^484408|^484411|^484412|^484413|^484414|^484415|^484416|^484417|^484418|^484419|^48442|^48443|^48444|^484450|^484451|^484452|^484453|^484454|^484455|^49173|^49174|^49175|^491880/) )
+ 				{cc_type_id = 'ELECTRON';   if (cclen==16) {vlengthgood=1;}   else {vlengthgood=0;} }
+ 			if (ccno.match(/^405501|^405502|^405503|^405504|^405550|^405551|^405552|^405553|^405554|^415928|^424604|^424604|^427533|^4288|^443085|^4484|^4485|^4486|^4715|^4716|^4804/) )
+ 				{cc_type_id = 'VISA PURCHASING';   if (cclen==16) {vlengthgood=1;}   else {vlengthgood=0;} }
+ 			if (ccno.match(/^490300|^490301|^49031|^49032|^490330|^490331|^490332|^490333|^490334|^49034|^49035|^49036|^49037|^49038|^49039|^49040|^490419|^490451|^490459|^490467|^490475|^490476|^490477|^490478|^4905|^491103|^491104|^491105|^491106|^491107|^491108|^491109|^49111|^49112|^49113|^49114|^49115|^49116|^491170|^491171|^491172|^491173|^491183|^491184|^491185|^491186|^491187|^491188|^491189|^49119|^4928|^4987/) )
+ 				{cc_type_id = 'VISA_ATM';   if (cclen==16) {vlengthgood=1;}   else {vlengthgood=0;} }
+ 			if (ccno.match(/^60/) )
+ 				{cc_type_id = 'DISCOVER';   if (cclen==16) {vlengthgood=1;}   else {vlengthgood=0;} }
+ 			if (ccno.match(/^63345|^63346|^63347|^63348|^63349|^6767/) )
+ 				{cc_type_id = 'SOLO';   if (cclen==16 || cclen==18 || cclen==19) {vlengthgood=1;}   else {vlengthgood=0;} }
+ 			if (ccno.match(/^490302|^490303|^490304|^490305|^490306|^490307|^490308|^490309|^490335|^490336|^490337|^490338|^490339|^491101|^491102|^491174|^491175|^491176|^491177|^491178|^491179|^491180|^491181|^491182|^4936|^564182|^63330|^63331|^63332|^63333|^63334|^6759/) )
+ 				{cc_type_id = 'SWITCH';   if (cclen==16 || cclen==18 || cclen==19) {vlengthgood=1;}   else {vlengthgood=0;} }
+ 			if (ccno.match(/^34|^37/) )
+ 				{cc_type_id = 'AMEX';   if (cclen==13 || cclen==15) {vlengthgood=1;}   else {vlengthgood=0;} }
+ 			if (ccno.match(/^3528|^3529|^353|^354|^355|^356|^357|^358|^2131|^1800/) )
+ 				{cc_type_id = 'JCB';   if (cclen==15 || cclen==16) {vlengthgood=1;}   else {vlengthgood=0;} }
+ 			if (ccno.match(/^300|^301|^302|^303|^304|^305|^36|^380|^381|^382|^383|^384|^385|^386|^387|^388/) )
+ 				{cc_type_id = 'DINERS CLUB';   if (cclen==14) {vlengthgood=1;}   else {vlengthgood=0;} }
+ 			if (ccno.match(/^389/) )
+ 				{cc_type_id = 'CARTE BLANCHE';   if (cclen==14) {vlengthgood=1;}   else {vlengthgood=0;} }
+ 			if (ccno.match(/^2014|^2149/) )
+ 				{cc_type_id = 'ENROUTE';   if (cclen==15) {vlengthgood=1;}   else {vlengthgood=0;} }
+ 
+ 			document.forms[0].checksum.value=ccsum;
+ 			document.forms[0].cclength.value=cclen;
+ 
+ 			if (vlengthgood==1) 
+ 				{
+ 				document.forms[0].cardtype.value=cc_type_id;
+ 				}
+ 			else
+ 				{
+ 				document.forms[0].cardrslt.value="BAD LENGTH";
+ 				document.forms[0].cardtype.value="BAD CARD";
+ 				}
+ 		} 
+ 		else
+ 		{
+ 			document.forms[0].cardrslt.value="Mod10 FAILED";
+ 			document.forms[0].checksum.value=ccsum;
+ 			document.forms[0].cclength.value=cclen;
+ 			document.forms[0].cardtype.value="";
+ 		}
+ 	}	
+ }
+ function ClearC()
+ {
+ 	document.forms[0].cardrslt.value="";
+ 	document.forms[0].cardno.value="";
+ 	document.forms[0].cardtype.value="";
+ 	document.forms[0].checksum.value="";
+ 	document.forms[0].cclength.value="";
+ }
+ </script>
+ <title>Quick CC Validator</title>
+ </head>
+ <body>
+ <form>
+   <br>
+   <div align="center"><strong>Credit Card Number Quick Validator</strong><br>
+ </div>
+ <table cellpadding=5>
+ <tr>
+ 	<td width=350 align=right>Enter CC# :</td>
+ 	<td width=350 align=left><input type=text name=cardno size=20 maxlength=19 ONKEYPRESS="var keyCode = event.which ? event.which : event.keyCode;
+                   return keyCode >= '0'.charCodeAt() && keyCode <= '9'.charCodeAt()"></td>
+ </tr>
+ <tr>
+ 	<td width=350 align=right>Mod10 Result :</td>
+ 	<td width=350 align=left><input type=text name=cardrslt size=20 maxlength=19 readonly></td>
+ </tr>
+ 
+ 
+ 
+ <tr>
+   <td align=right>Checksum :</td>
+   <td align=left><input type=text name=checksum size=3 maxlength=3 readonly></td>
+ </tr>
+ <tr>
+   <td align=right>Length :</td>
+   <td align=left><input type=text name=cclength size=2 maxlength=2 readonly></td>
+ </tr>
+ <tr>
+ 	<td width=350 align=right>Card Type :</td>
+ 	<td width=350 align=left><input type=text name=cardtype size=20 maxlength=19 readonly></td>
+ </tr>
+ <tr>
+ 	<td colspan=2 align=center><input type=button value="CHECK IT" onClick="Mod10(document.forms[0].cardno.value)">&nbsp;&nbsp;&nbsp;&nbsp;<input type=button value="CLEAR IT" onClick="ClearC()"></tr>
+ </table>
+ </form>
+ </body>
+ </html>
+ ```
+###Reference
+http://www.eflo.net/downloads.php#mod10
+
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

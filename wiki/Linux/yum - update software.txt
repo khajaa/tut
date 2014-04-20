@@ -1,0 +1,38 @@
+#navi(Linux)
+**yum - update software
+#contents
+
+***Update 
+ # rpm --import http://www.fedoralegacy.org/FEDORA-LEGACY-GPG-KEY
+
+ # yum update
+
+***yum usage 
+Now, you can see a list of the available software:
+ yum list available
+
+To install some software, you type: 
+ yum install packagename
+
+To update some software, you type: 
+ yum update packagename
+
+If you leave out "packagename" yum will update all your software
+
+To see what updates are available, you can do: 
+ yum check-update
+
+To search for a package, you can do: 
+ yum search (something)
+
+
+***Install Tcl/Tk 
+ yum install tcl-devel
+ yum install tk-devel
+
+***Reference
+http://www.howtoforge.com/perfect_setup_fedora_core_4
+http://www.atmarkit.co.jp/flinux/rensai/linuxtips/599endrhlup.html
+
+#navi(Linux)
+

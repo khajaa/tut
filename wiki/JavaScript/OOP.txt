@@ -1,0 +1,30 @@
+#navi(JavaScript)
+**OOP
+#contents
+***Creating Class Example
+ function Employee() {
+ 	var mName = "Jon Doe";
+ 
+ 	function SetName(val) {
+ 		mName = val;
+ 	}
+ 	this.SetName = SetName;
+ 
+ 	function GetName() {
+ 		return mName;
+ 	}
+ 	this.GetName = GetName;
+ 
+ 	function SayHello() {
+ 		alert('Hello, ' + mName);
+ 	}
+ 	this.SayHello = SayHello;
+ }
+
+
+ var kiichi = new Employee();
+ kiichi.SetName('Kiichi Takeuchi');
+ kiichi.SayHello();
+
+#navi(JavaScript)
+

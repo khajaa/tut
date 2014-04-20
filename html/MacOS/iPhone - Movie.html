@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<title>MacOS/iPhone - Movie</title>
+<xmp theme="united" style="display:none;">
+
+##iPhone - Movie
+
+
+###Thumbnail
+###Movie Picker
+
+###Get Movie Length
+```macos
+                      options:[NSDictionary dictionaryWithObjectsAndKeys:
+                      [NSNumber numberWithBool:YES], AVURLAssetPreferPreciseDurationAndTimingKey,
+                      nil]] autorelease];
+
+```macos
+ if (asset) 
+    durationInSeconds = CMTimeGetSeconds(asset.duration) ;
+
+
+###Custom View
+
+Need to fix for URL but good tutorial
+
+```macos
+ ```
+###Orientation
+
+```macos
+ ```
+
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

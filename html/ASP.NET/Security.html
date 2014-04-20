@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<title>ASP.NET/Security</title>
+<xmp theme="united" style="display:none;">
+
+##Security
+
+###Strip malicious tags from HTML text
+
+```asp.net
+ ```
+###Sanitizing in ASP.NET - User try to inject some html codes
+put 
+```asp.net
+ ```
+
+```asp.net
+ ```
+This encoding does not encode single quote (apostrophe) so combine Replace method
+
+Encoding
+```asp.net
+ ```
+```asp.net
+ ```
+###Encoding
+Add System.Web.dll into your reference and
+```asp.net
+ HashPasswordForStoringInConfigFile(str, "md5").ToLower();
+ ```
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

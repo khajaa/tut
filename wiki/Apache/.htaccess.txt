@@ -1,0 +1,21 @@
+#navi(Apache)
+**.htaccess
+#contents
+***DirectoryIndex - Default Page
+ DirectoryIndex index.html index.cgi index.php index.shtml
+
+***ErrorDocument - 404 Page
+ ErrorDocument 404 /error/error_msg.html
+
+***Hide the list of directory
+ Options -Indexes
+
+***Redirect
+ Redirect 301 / http://www.example.com/
+
+***Rewrite
+ RewriteEngine on
+ RewriteRule rental/* index.php?option=com_wrapper&Itemid=30
+
+#navi(Apache)
+

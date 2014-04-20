@@ -1,0 +1,19 @@
+#navi(Linux)
+**X
+#contents
+***Using X on the remote server
+
+on my machine, cygwin
+ startx
+then
+ xhost +
+
+on remote server
+ export DISPLAY=(my machine's ip):0.0
+Testing
+ xclock
+
+If you do not have remote server, you can try to bring up two cygwin window
+and use 127.0.0.1
+#navi(Linux)
+

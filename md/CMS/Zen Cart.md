@@ -1,0 +1,16 @@
+
+##Zen Cart
+
+###Customize Quick Start
+ZenCart Customize Quick Start
+1.Copy ''include/template/zencss'' to ''include/template/mycss''
+2.Copy ''includes/languages/japanese/zencss'' to ''includes/languages/japanese/mycss''
+3.Change include/template/mycss/template_info.php
+4.Login as admin and ''Tools>Template'' Selection
+5.Tools>Layout Boxes Controller and turn on boxes
+
+###Change Main page contents 
+''includes/languages/japanese/mycss/index.php''
+
+
+

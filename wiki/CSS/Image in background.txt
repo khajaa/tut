@@ -1,0 +1,25 @@
+#navi(CSS)
+**Image in background
+#contents
+***Image in background of span tag
+ #header_logo {
+	width:500px;
+	height:80px;
+	background:url(logo.jpg);
+ }
+
+and use this like
+ <span id="header_logo"></span>
+
+
+***Stripe Background
+This is very simple technique. You need only a small transparent gif image. 
+
+Download slash.gif at the bottom of this page
+
+In CSS, use background element like
+ background: #FFF2D7 url(slash.gif); 
+
+
+#navi(CSS)
+

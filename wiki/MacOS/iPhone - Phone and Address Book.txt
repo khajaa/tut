@@ -1,0 +1,12 @@
+#navi(MacOS)
+**iPhone - Phone and Address Book
+#contents
+***Making Phone Call
+ // Format to make phone call is "tel:+18001231234"
+ NSString *phoneStr = [[NSString alloc] initWithFormat:@"tel:+1%@", txtNumbers.text];
+ [[UIApplication alloc] openURL:[[NSURL alloc] initWithString:phoneStr]];
+ [phoneStr release];
+
+
+#navi(MacOS)
+

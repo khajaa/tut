@@ -1,0 +1,81 @@
+
+##Tomcat
+
+###Tomcat5 in Fedora Core 4
+%%%Install%%%
+```java
+ ```
+```java
+ ```
+%%%Configuration%%%
+In Service, check tomcat5 and right click then start
+In Security Level, the other open port should contain 8080:tcp
+
+%%%PATH%%% 
+Environment Variables to run tomcat were already set.
+When you compile, 
+```java
+ ```
+or add in .bash_profile like this
+```java
+ export CLASSPATH
+ ```
+Then do
+```java
+ ```
+%%%Test server%%%
+In
+```java
+ ```
+```java
+ <%
+ String str = "this is jsp test";
+ out.println(str);
+ %>
+ </html>
+ ```
+You can check via http://localhost:8080/test.jsp
+
+```java
+ ```
+```java
+ import javax.servlet.*;
+ import javax.servlet.http.*;
+ 
+ public class MyTest extends HttpServlet {
+ 
+     public void doGet(HttpServletRequest request, HttpServletResponse response)
+     throws IOException, ServletException
+     {
+         response.setContentType("text/html");
+         PrintWriter out = response.getWriter();
+         out.println("<h1>Hello World!</h1>");
+     }
+ }
+ ```
+Edit web.xml
+```java
+ ```
+It should look like this
+```java
+ <web-app xmlns="http://java.sun.com/xml/ns/j2ee" 
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
+ <servlet>
+ <servlet-name>MyTest</servlet-name> 
+ <servlet-class>MyTest</servlet-class> 
+ </servlet>
+ <servlet-mapping>
+ <servlet-name>MyTest</servlet-name> 
+ <url-pattern>/MyTest</url-pattern> 
+ </servlet-mapping>
+ </web-app>
+ ```
+Then you can access via http://localhost:8080/MyTest
+
+If you need to copy quickly, just copy ROOT and rename it.
+
+
+
+

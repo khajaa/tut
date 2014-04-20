@@ -1,0 +1,17 @@
+#navi(SQL Server)
+**Conditional Statements
+#contents
+***IF EXISTS
+ IF NOT EXISTS (SELECT * FROM ListUser WHERE Username='takeuchi')
+     INSERT INTO ListUser (Username) VALUES('takeuchi')
+ ELSE
+     UPDATE ListUser SET IsActive=1 WHERE Username='takeuchi'
+
+***CASE WHEN
+ SELECT (CASE WHEN o.Stat='Y' THEN 'Yes' ELSE 'No' END) AS StatYesOrNo FROM MyTable WHERE MID=1
+
+Example: Gender
+ (CASE WHEN lu.Gender='M' THEN 'Male' WHEN lu.Gender='F' THEN 'Female' END) AS GenderFormat
+
+#navi(SQL Server)
+

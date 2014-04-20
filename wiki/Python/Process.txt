@@ -1,0 +1,9 @@
+#navi(Python)
+**Process
+#contents
+***Call
+ import subprocess
+ subprocess.call("ls -l", shell=True)
+ subprocess.call(["ls", "-l"])
+#navi(Python)
+

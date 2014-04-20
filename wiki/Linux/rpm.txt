@@ -1,0 +1,10 @@
+#navi(Linux)
+**rpm
+#contents
+***Find installed package
+ rpm -qa | grep packagename
+
+e.g.
+ rpm -qa | grep vsftpd
+#navi(Linux)
+

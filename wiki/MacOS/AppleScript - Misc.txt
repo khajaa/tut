@@ -1,0 +1,13 @@
+#navi(MacOS)
+**AppleScript - Misc
+#contents
+***Transition from Objective-C to AppleScript
+http://developer.apple.com/library/mac/#releasenotes/ScriptingAutomation/RN-AppleScriptObjC/index.html
+
+***Get Username
+
+ set userHome to (short user name of (system info))
+ display dialog userHome
+
+#navi(MacOS)
+

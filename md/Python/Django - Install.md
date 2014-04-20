@@ -1,0 +1,45 @@
+
+##Django - Install
+
+###Installation
++Install Python 2.4
++Set Environment Path to
+```python
+ ```
+```python
+ ```
+```python
+ easy_instal mysql-python
+ ```
+```python
+ ```
+http://www.djangoproject.com/download/
+then you run command in the directory
+```python
+ ```
+:Note|Do not use regular archiver software like winzip. Because it ignores 0byte files. That means, it does not extract some of __init__.py file. This will be cause of mising .core module when you start django-admin.py use tar command in cygwin.
+```python
+ ```
+After install, test django-admin tool
+```python
+ ```
+###Admin design problem
+If you have corrupted admin design or throwing error TemplateDoesNotExist, copy these 2 folders
+From
+```python
+ <django source dir>/django/contrib/admin/media 
+ ```
+To your python site-packages folder. This is example in MacOSX
+
+```python
+ Library/Python/2.5/site_packges/django/contrib/admin/media 
+ ```
+
+###Reference
+-http://www.djangoproject.com/documentation/install/
+-http://ymasuda.jp/python/django/minimal_win32_django_installation.html
+
+
+
+
+

@@ -1,0 +1,133 @@
+#navi(JavaScript)
+**Loading
+#contents
+***Introduction
+This is useful page transition method when you have very heavy search result.
+
+***Download
+#ref(loading.zip)
+
+***Demo
+http://xxki.com/file/loading/start.html
+
+***Start.html
+ <html>
+ 	<head>
+ 		<title>Start</title>
+ 	</head>
+ 	<body>
+ 		<form name="sleepform" method="GET" action="loading.php">
+ 			Enter time to wait in seconds: 
+ 			<input type="text" name="sleep" value="10" />
+ 			<input type="hidden" name="page" value="heavy.php"/>
+ 			<input type="submit" name="submit" value="submit" />
+ 		</form>
+ 	</body>
+ </html>
+
+***loading.php
+ <HTML>
+ 	<HEAD>
+ 		<title>Loading</title>
+ 		<script language="javascript">
+ 			var mLoopCounter = 1;
+ 			var mMaxLoop = 5;
+ 			var mIntervalId;
+ 			
+ 			function BeginPageLoad() {
+ 				location.href = "<?=htmlspecialchars($_GET['page'].'?sleep='.$_GET['sleep']);?>";
+ 				mIntervalId = window.setInterval("mLoopCounter=UpdateProgress(mLoopCounter, mMaxLoop)", 500);
+ 			}
+ 		
+ 			function EndPageLoad() {
+ 				window.clearInterval(mIntervalId);
+ 				document.getElementById("Progress").innerHTML = "Page Loaded -- Not Transferring";
+ 			}
+ 		
+ 			function UpdateProgress(currentCounter, mMaxLoopCount) {
+ 			
+ 				currentCounter += 1;
+ 				
+ 				if (currentCounter <= mMaxLoopCount) {
+ 					document.getElementById("Progress").innerHTML += ".";
+ 					return currentCounter;
+ 				}
+ 				else {
+ 					document.getElementById("Progress").innerHTML = "&nbsp;";
+ 					return 1;
+ 				}
+ 			}
+ 		</script>
+ 	</HEAD>
+ 	<body onload="BeginPageLoad()" onunload="EndPageLoad()" bgcolor="white">
+ 		<form id="Form1" method="post">
+ 			<table border="0" cellpadding="0" cellspacing="0" width="99%" height="99%" align="center" valign="middle">
+ 				<tr>
+ 					<td align="center" valign="middle">
+ 						<div style="width:200px;text-align:left;font-family:Tahoma;font-size:16px;color:#333333;">
+ 						<span id="Message">Loading - Please Wait </span>
+ 						<span id="Progress"></span>
+ 						</div>
+ 					</td>
+ 				</tr>
+ 			</table>
+ 		</form>
+ 	</body>
+ </HTML>
+***heavy.php
+ <html>
+ <head>
+ <title>Heavy Page</title>
+ </head>
+ <body>
+ <?php
+ 	if (isset($_GET['sleep'])) {
+ 		sleep($_GET['sleep']);
+ 		echo "sleep=".htmlspecialchars($_GET['sleep']);
+ 	}
+ 	else {
+ 		sleep(5);
+ 		echo "(default)sleep=5";
+ 	}
+ 	echo "<br>Done.";
+ 
+ /*
+ // drawing table is another issue. This will be delay after moving to the destination
+ 	echo "<table>";
+ 	for ($i=0; $i<5000;$i++) {
+ 		echo "<tr>";
+ 		for ($j=0; $j<20;$j++) {
+ 			echo "<td>".rand()."</td>";
+ 		}
+ 		echo "</tr>\r\n";
+ 	}
+ 	echo "</table>";
+ */
+ ?>
+ </body>
+ </html>
+
+***Loading Animation within the same page
+ <body>   
+ <div id="loading" style="display:block;position: absolute;left:900px;top:55px;background-color:White;border:dashed 2px gray">
+ <table><tr><td valign=middle>&nbsp;Loading...&nbsp;</td><td>&nbsp;<img src="img/loading1.gif" />&nbsp;</td></tr></table></div>
+ 
+ 
+ A lot of contents here....
+ A lot of contents here....
+ A lot of contents here....
+ 
+ 
+ <!-- Loading Control -->
+ 
+ <script type="text/javascript">
+ <!--
+ document.getElementById("loading").style.display = "none";
+ // -->
+ </script>
+ </body>
+
+
+
+#navi(JavaScript)
+

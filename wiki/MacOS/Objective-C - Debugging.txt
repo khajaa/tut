@@ -1,0 +1,10 @@
+#navi(MacOS)
+**Objective-C - Debugging
+#contents
+***Dump Log in Console
+ #import <Foundation/Foundation.h>
+
+and use NSLog function
+ NSLog(@"hello");
+#navi(MacOS)
+

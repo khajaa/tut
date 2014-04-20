@@ -1,0 +1,48 @@
+#navi(Linux)
+**User and Group
+#contents
+***Add a User
+ useradd kiichi
+In redhat/fedora, it will create home directory too.
+
+If it does not create, use options
+ -d home directory 
+ -s starting program (shell) 
+ -p password 
+ -g (primary group assigned to the users) 
+ -G (Other groups the user belongs to) 
+ -m (Create the user's home directory 
+
+e.g.
+ useradd -gPrimaryGroup -GOtherGroup -s/bin/bash -pMyPassword -d/home/kiichi -m kiichi
+
+***Add user to Other Groups
+ usermod -GOtherGroup kiichi
+
+***Check user group
+ gorups kiichi
+
+***Delete a User
+ userdel
+
+***Add / Delete Groups
+ groupadd NewGroup
+ groupdel OldGroup
+
+***Switch User
+ su kiichi
+
+ su -
+means become root
+
+***Change Password
+ passwd
+
+***Change Ownership of a File
+ chown kiichi:GroupName file.txt
+
+
+
+
+#navi(Linux)
+

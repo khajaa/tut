@@ -1,0 +1,43 @@
+#navi(SQL Server)
+**SQL
+#contents
+
+***Copy row to another table
+Assume table 1 and table 2 are identical, and table1 does not hold "identity" column which automatically increment the value.
+ INSERT INTO table1 SELECT * FROM table2
+ INSERT INTO table1 (col1,col2,col3) SELECT col1,col2,col3 FROM table2
+
+This is useful when you take a snapshot as a log. If you add additional column, (In this case, table1 has ''LogDate'' as extra column)
+ INSERT INTO table1 SELECT GETDATE(), * FROM table2
+
+The easiest way to copy a table is that you generate sql from one table and replace the table name, then insert as a sql.
+
+***TOP
+Use TOP to limit number of return rows
+ SELECT TOP 10 * FROM table1;
+
+This is important to reduce the number of the transaction
+
+***USE
+ USE MyDB
+USE is useful when you write a batch sql file or without any Initial Catalog phrase in your connection string.
+
+
+***Transaction
+ BEGIN TRANSACTION
+ INSERT INTO ListCar (IsActive) VALUES (1);
+ SELECT IDENT_CURRENT('ListCar');
+    IF @@ERROR <> 0
+       BEGIN
+           RAISERROR('error occured', 16, 1)
+           ROLLBACK
+       END
+ COMMIT TRANSACTION
+
+***Top1 of each GROUP BY
+Use MAS to pickup the first one within the group
+ SELECT Max(CustomerName) AS SampleCustomer, COUNT(Category) FROM Sales GROUP BY Category
+
+
+#navi(SQL Server)
+

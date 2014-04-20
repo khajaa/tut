@@ -1,0 +1,105 @@
+***Overview
+Entire Structure
+|Header|
+|Hash Table|
+|Record|
+|Record|
+|Record|
+|...|
+|Hash Table|
+|Record|
+|Record|
+|Record|
+|...|
+
+
+***Header Section
+ ADDRESS: 0001 0203 0405 0607 0809 0A0B 0C0D 0E0F  ASCII
+ -----------------------------------------------------------------
+ 0000000: 436c 6965 6e74 2055 726c 4361 6368 6520  Client UrlCache 
+ 0000010: 4d4d 4620 5665 7220 352e 3200 0000 0200  MMF Ver 5.2.....
+ 0000020: 0050 0000 8003 0000 da02 0000 0000 0000  .P..............
+ 0000030: 0000 0010 0000 0000 0030 1400 0000 0000  .........0......
+ 0000040: 0000 0100 0000 0000 0400 0000 3000 0000  ............0...
+ 0000050: 5431 4738 4e56 5759 3200 0000 4b58 414a  T1G8NVWY2...KXAJ
+ 0000060: 4754 514a 3000 0000 4336 3756 4753 384c  GTQJ0...C67VGS8L
+ 0000070: 2e00 0000 5135 374f 4f52 3335 0000 0000  ....Q57OOR35....
+
+|Start|Size|Meaning|Description|h
+|0x00|32|Version||
+|0x20|2|Hash Table Address|e.g. If you see 0050, reverse the order of 0x21 and 0x20 then you get 5000. If you go to the address, you will see "HASH".|
+|0x48|1|The number of the subdirectory|e.g 04|
+|0x50|each 12 bytes (Firt 8 bytes)|Subdirectory|The first 8 bytes indicates Subdirectory name. e.g. T1G8NVWY2|
+|0x1C|48|File Size|e.g. Reverse the order 00 00 02 00 -> 00 02 00 00 = (131,072bytes)|
+
+
+***Hash Table
+ OFFSET  ADDRESS: 0001 0203 0405 0607 0809 0A0B 0C0D 0E0F  ASCII
+ -----------------------------------------------------------------
+ 0x00    0005000: 4841 5348 2000 0000 0080 0100 0000 0000  HASH ...........
+ 0x01    0005010: 80bb 0092 806e 0000 00ec b68e 006b 0100  .....n.......k..
+ 0x02    0005020: 0300 0000 0300 0000 0300 0000 0300 0000  ................
+ 0x03    0005030: 0300 0000 0300 0000 0300 0000 0300 0000  ................
+ 0x04    0005040: 0300 0000 0300 0000 40ec cfff 8076 0000  ........@....v..
+
+Hash table size = 128 * 32 = 4096
+e.g. 0x005000 - 0x006000
+
+These address are offset which is begining from the hash table.
+|Start|Size|Meaning|Description|h
+|0x04|4|Hash Table Size|e.g. Reverse the order 20 00 00 00 -> 00 00 00 20 -> 32 * 128 = 4096bytes|
+|0x08|4|Next Hash Table Address|e.g. Reverse the order 00 08 01 00 -> 00 01 80 00. If you go to the address, you will see "HASH".|
+
+***Record
+ OFFSET  ADDRESS: 0001 0203 0405 0607 0809 0A0B 0C0D 0E0F  ASCII
+ -----------------------------------------------------------------
+ 0x00    000b700: 5552 4c20 0300 0000 006a 3042 0786 c601  URL .....j0B....
+ 0x01    000b710: c027 c349 0d8b c601 c834 f805 0000 0000  .'.I.....4......
+ 0x02    000b720: 8206 0000 0000 0000 0000 0000 0000 0000  ................
+ 0x03    000b730: 6000 0000 6800 0000 0000 1010 a000 0000  `...h...........
+ 0x04    000b740: 4100 0000 b400 0000 6c00 0000 0000 0000  A.......l.......
+ 0x05    000b750: c834 f578 0300 0000 0000 0000 c734 f8a5  .4.x.........4..
+ 0x06    000b760: 0000 0000 0000 0000 6874 7470 3a2f 2f6d  ........http://m
+ 0x07    000b770: 736e 2e66 6f78 7370 6f72 7473 2e63 6f6d  sn.foxsports.com
+ 0x08    000b780: 2f66 652f 696d 672f 4d69 7363 2f4d 534e  /fe/img/Misc/MSN
+ 0x09    000b790: 2f66 735f 7461 625f 6f6e 2e70 6e67 0000  /fs_tab_on.png..
+ 0x0a    000b7a0: 6673 5f74 6162 5f6f 6e5b 315d 2e70 6e67  fs_tab_on[1].png
+ 0x0b    000b7b0: 0000 0000 4854 5450 2f31 2e31 2032 3030  ....HTTP/1.1 200
+ 0x0c    000b7c0: 204f 4b0d 0a45 5461 673a 2057 2f22 3136   OK..ETag: W/"16
+ 0x0d    000b7d0: 3636 2d31 3134 3932 3236 3931 3630 3030  66-1149226916000
+ 0x0e    000b7e0: 220d 0a43 6f6e 7465 6e74 2d54 7970 653a  "..Content-Type:
+ 0x0f    000b7f0: 2069 6d61 6765 2f70 6e67 0d0a 436f 6e74   image/png..Cont
+ 0x10    000b800: 656e 742d 4c65 6e67 7468 3a20 3136 3636  ent-Length: 1666
+ 0x11    000b810: 0d0a 0d0a 7e55 3a6b 6969 6368 690d 0a00  ....~U:kiichi...
+ 0x12    000b820: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+ 0x13    000b830: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+ 0x14    000b840: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+ 0x15    000b850: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+ 0x16    000b860: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+ 0x17    000b870: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+
+Start is offset from the begining of the record
+|Start|Size|Meaning|Description|h
+|0x00|4|Type|URL, REDR, LEAK|
+|0x04|1|Record Length|0x04 * 128 e.g. Reverse order 03 00 00 00 -> 00 00 00 03, 3 * 128 = 378 bytes|
+|0x08|8|Modified Date|e.g.Reverse order 006a 3042 0786 c601 -> 01 C6 86 07 42 30 6A 00 -> Convert to epoch to windows time. Run command prompt and w32tm /ntte 0x01C6860742306A00 -> 148075 05:41:56.0000000 - 2006/06/02 1:41:56 (local time|
+|0x10|8|Access Date| e.g. c027 c349 0d8b c601 -> (Same Procedure) -> w32tm /ntte 0x01c68b0d49c327c0 -> 148081 15:07:41.5000000 - 2006/06/08 11:07:41 (local time)|
+|0x34|1|URL Offset|This number indicates where the http://.... starts in this record. e.g. 68 -> see offset 0x06 and 08 byte. That's begining of the url. \0 terminates the url string.|
+|0x39|1|Index number of subdirectories|In Header section, we extracted subdirectory. For example, if we have 4 subdirectories, this number indicates between 0 and 4 as the index. Therefore, in order to get subdirectory name, 0x50 + 12 * (index number at 0x39).|
+|0x3C|1|Local File Offset|Offset address of local file path.\0 terminates the local file path string.|
+|0x44|1|HTTP Header (and username) Offset|Offset Address of HTTP Header.\0 terminates the HTTP header string.Inside HTTP header, user name appear after ~U:|
+
+
+:Note|About the TYPE:URL is same as LEAK. REDR contains only the URL. 
+
+
+For example,
+ 000b680: 5245 4452 0100 0000 185c 0000 001f 64dd  REDR.....\....d.
+ 000b690: 6874 7470 3a2f 2f77 7777 2e66 6f78 7370  http://www.foxsp
+ 000b6a0: 6f72 7473 2e63 6f6d 2f66 652f 696d 672f  orts.com/fe/img/
+ 000b6b0: 4d69 7363 2f4d 534e 2f66 735f 7461 625f  Misc/MSN/fs_tab_
+ 000b6c0: 6f6e 2e70 6e67 0000 0000 0000 0000 0000  on.png..........
+ 000b6d0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+ 000b6e0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+ 000b6f0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+

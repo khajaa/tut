@@ -1,0 +1,10 @@
+#navi(MySQL)
+**Character and Collation
+#contents
+***Change all columns charset
+ ALTER TABLE tbl_name CONVERT TO CHARACTER SET charset_name [COLLATE collation_name];
+
+charset example: utf8
+collate example: utf8_general_ci
+#navi()
+

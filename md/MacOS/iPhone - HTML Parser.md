@@ -1,0 +1,53 @@
+
+##iPhone - HTML Parser
+
+###Install
+
+Downlaod
+http://github.com/topfunky/hpple
+
+1. Add libxml2.2 includes to your project
+
+   1. Double click the target -> Select All Config
+   2. Search for setting "Header Search Paths"
+   3. Add a new search path "${SDKROOT}/usr/include/libxml2"
+   4. Enable recursive option
+
+2. Add libxml2.2 library to to your project
+
+   1. Double click the target -> Select All Config
+   2. Search for setting "Other Linker Flags"
+   3. Add a new search flag "-lxml2"
+
+3. From hpple get the following source code files an add them to your project:
+
+   1. HTFpple.h
+   2. HTFpple.m
+   3. HTFppleElement.h
+   4. HTFppleElement.m
+   5. XPathQuery.h
+   6. XPathQuery.m
+
+
+###Example
+
+```macos
+ ```
+```macos
+ TFHpple *xpathParser = [[TFHpple alloc] initWithHTMLData:data];
+ ```
+```macos
+ NSArray *elements  = [xpathParser search:@"//table[3]/tr[2]/td"]; // "//a" -- all a tags
+ 
+ FHppleElement *element = [elements objectAtIndex:0];
+ NSString *content = [element content];  
+ [xpathParser release];
+ [data release];
+ ```
+###Note
+
+It did not work for EUC JP
+
+
+
+

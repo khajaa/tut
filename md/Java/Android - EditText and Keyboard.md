@@ -1,0 +1,88 @@
+
+##Android - EditText and Keyboard
+
+
+###In case if you still see keyboard comes up when another fragment is activated
+
+```java
+        try {
+            InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+        }
+        catch (Exception ex){
+            //
+        }
+ 
+        try {
+            // Dummy Layout to take the focus
+            //<LinearLayout
+            //android:id="@+id/layoutFocus"
+            //android:focusable="true"
+            //android:focusableInTouchMode="true"
+            //android:layout_width="0px"
+            //android:layout_height="0px"/>
+            LinearLayout  layoutFocus = (LinearLayout)getActivity().findViewById(R.id.layoutFocus);
+            layoutFocus.requestFocus();
+        }
+        catch (Exception ex){
+            // hello?
+        }
+    }
+
+###Force to Hide / Show Keyboard
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(filterTextSSD.getWindowToken(), 0);
+
+function version
+```java
+ 	InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+ 	EditText searchBox = (EditText)findViewById(R.id.searchEdit);
+ 	imm.hideSoftInputFromWindow(searchBox.getWindowToken(), 0);
+ }
+ ```
+```java
+ 	InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+ 	EditText searchBox = (EditText)findViewById(R.id.searchEdit);
+ 	imm.showSoftInput(searchBox, 0);
+ }
+ ```
+###Hit Enter and Hide Keyboard
+
+        final EditText filterTextSSD = (EditText)findViewById(R.id.filterTextSSID);
+        filterTextSSD.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER))
+                {
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(filterTextSSD.getWindowToken(), 0);
+                }
+                // Returning false allows other listeners to react to the press.
+                return false;
+            }
+        });
+
+###Avoid Keyboard show up when it is started
+
+In AndroidManifest.xml
+
+        <activity android:name="MainActivity"
+                  android:label="@string/app_name"
+                  android:windowSoftInputMode="stateHidden">
+
+
+###Remove Suggestions and Multiple Lines
+
+        <EditText
+                android:id="@+id/searchEdit"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="5dp"
+                android:hint="Enter Location Name"
+                android:inputType="textFilter|textMultiLine"
+ 	        />
+ ```
+
+

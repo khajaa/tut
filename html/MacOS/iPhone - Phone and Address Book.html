@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<title>MacOS/iPhone - Phone and Address Book</title>
+<xmp theme="united" style="display:none;">
+
+##iPhone - Phone and Address Book
+
+###Making Phone Call
+```macos
+ NSString *phoneStr = [[NSString alloc] initWithFormat:@"tel:+1%@", txtNumbers.text];
+ [[UIApplication alloc] openURL:[[NSURL alloc] initWithString:phoneStr]];
+ [phoneStr release];
+ ```
+
+
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

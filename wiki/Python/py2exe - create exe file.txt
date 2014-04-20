@@ -1,0 +1,19 @@
+#navi(Python)
+**py2exe - create exe file
+#contents
+***Steps
++Install py2exe from http://py2exe.org/
++Create setup.py file
++run
+
+ # setup.py
+ from distutils.core import setup
+ import py2exe
+ 
+ setup(console=["myprogram.py"])
+
+This is command to run
+ python setup.py py2exe
+
+#navi(Python)
+

@@ -1,0 +1,8 @@
+#navi(Oracle)
+**Management
+#contents
+***Check Oracle is running or not
+Check smon process to find out
+ ps -ef | grep smon
+#navi(Oracle)
+

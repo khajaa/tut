@@ -1,0 +1,17 @@
+
+##Pulldown (Select) onclick jump menu
+
+###Example
+```javascript
+ <SELECT NAME="SelectURL" 
+ onChange="document.location.href=document.form1.SelectURL.options[document.form1.SelectURL.selectedIndex].value">
+ <OPTION VALUE="" SELECTED>Please select an item:
+ <OPTION VALUE="http://www.yahoo.com">Yahoo
+ <OPTION VALUE="http://www.google.com/">Google
+ <OPTION VALUE="http://www.a9.com/">a9
+ <OPTION VALUE="http://www.zerogc.com/">My Website
+ </SELECT>
+ </FORM>
+ ```
+
+

@@ -1,0 +1,12 @@
+#navi(CSS)
+**Text
+#contents
+***Bold and Italic
+ font-weight: bold;
+ font-style: italic;
+
+***Example
+ font:12px Tahoma;
+
+#navi(CSS)
+

@@ -1,0 +1,84 @@
+
+##Drag and Drop
+
+###Demo
+http://xxki.com/file/js/dragndrop.html
+###Sample
+```javascript
+ 	<head>
+ 		<title>Drag and Drop Test</title>
+ 		<script language="JavaScript">
+ 			<!--
+ 			var pX = 100;
+ 			var pY = 100;
+ 			var pWidth = 100;
+ 			var pHeight = 100;
+ 			var isPressed = false;
+ 
+ 			// mouse offset from corner of panel
+ 			var deltaX = 0; 
+ 			var deltaY = 0;
+ 			document.write("<DIV onMouseUp='onPanelMouseUp()' onMouseDown='onPanelMouseDown()' " 
+ 			+ " style='width:100px;height:100px;position:absolute;z-index:2;top:100px;left:100px;"
+ 			+ " background-color:lightblue;cursor:move;' unselectable='on' id='Panel'></DIV>");
+ 
+ 			document.onmousemove = onMove;
+ 
+ 			function getX(inId) {
+ 				return document.getElementById(inId).offsetLeft;
+ 			}
+ 
+ 			function getY(inId) {
+ 				return document.getElementById(inId).offsetTop;
+ 			}
+ 
+ 			function setX(inId, val) {
+ 				document.getElementById(inId).style.left = val;
+ 			}
+ 
+ 			function setY(inId, val) {
+ 				document.getElementById(inId).style.top = val;
+ 			}
+ 
+ 			function onPanelMouseDown(inEvent) {
+ 				isPressed = true;
+ 			}
+ 
+ 			function onPanelMouseUp(inEvent) {
+ 				isPressed = false;
+ 			}
+ 
+ 			function onMove(inEvent){
+ 				if (isPressed) {
+ 					if(document.all){
+ 						pX = event.x - deltaX;
+ 						pY = event.y - deltaY;
+ 					}
+ 					else{
+ 						pX = inEvent.pageX - deltaX;
+ 						pY = inEvent.pageY - deltaY;
+ 					}
+ 					setX('Panel',pX);
+ 					setY('Panel',pY);
+ 				}
+ 				else {
+ 					if(document.all){
+ 						deltaX = event.x - pX;
+ 						deltaY = event.y - pY;
+ 					}
+ 					else {
+ 						deltaX = inEvent.pageX - pX;
+ 						deltaY = inEvent.pageY - pY;
+ 					}
+ 				}
+ 			}
+ 
+ 			// --></script>
+ 	</head>
+ 	<body>
+ 	</body>
+ </html>
+ ```
+
+
+

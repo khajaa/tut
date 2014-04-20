@@ -1,0 +1,25 @@
+#navi(PHP)
+**CakePHP - Template
+#contents
+***Simple link 
+
+ <?php echo $html->link('click here','index'); ?>
+
+ <?php echo $html->link('click here','../inventory/view'); ?>
+
+***Showing image
+ place the image in app/webroot
+ <?php echo $html->image('img/test.jpg'); ?>
+
+
+***Link with an image
+
+ <?php echo $html->link(
+         $html->image('test.gif', array('alt'=> 'hello', 'border'=>"0")),
+         'http://www.xxki.com/',
+         array('target'=>'_blank'), null, false
+     );  
+ ?>  
+
+#navi(PHP)
+

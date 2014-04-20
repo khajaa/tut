@@ -1,0 +1,12 @@
+#navi(CSS)
+**-Basics
+#contents
+***Write inside same HTML file	
+ <style type="text/css">
+ <!--
+ -->
+ </style>
+***Link to external file
+ <link rel="stylesheet" type="text/css" media="screen" href="style.css"/>
+#navi(CSS)
+

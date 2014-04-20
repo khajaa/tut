@@ -1,0 +1,7 @@
+#navi(Java)
+**Android - Gallery Photo
+#contents
+***Reference
+ http://stackoverflow.com/questions/4921183/android-copy-image-from-gallery-folder-onto-sd-card-alternative-folder
+#navi()
+

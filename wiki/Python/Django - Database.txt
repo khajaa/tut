@@ -1,0 +1,28 @@
+#navi(Python)
+**Django - Database
+#contents
+***WHERE
+You will add all WHERE conditions separated by comma in argument of filter, get, etc...
+e.g.
+ msg = Message.objects.filter(message='test',posted_by=request.user)
+
+-IS NULL
+ myval__isnull=True 
+
+***ORDER BY
+You just append .order_by function and specify column name in the argument.
+e.g.
+ msg = Message.objects.filter(message='test').order_by('posted_date')
+
+-ASC
+ .order_by('posted_date')
+-DESC - just add - (minus sign)
+ .order_by('-posted_date')
+
+***Random
+ .order_by('?')
+for one item
+ .order_by('?')[0]
+
+#navi(Python)
+

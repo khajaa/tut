@@ -1,0 +1,7 @@
+#navi(MacOS)
+**XCode - Tips
+#contents
+***Reference
+ Option + double click the function name->Open Documentation API
+#navi(MacOS)
+

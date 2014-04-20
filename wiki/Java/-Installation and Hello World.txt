@@ -1,0 +1,45 @@
+#navi(Java)
+**-Installation and Hello World
+#contents
+***Files to download
+http://java.sun.com/j2se/downloads/index.html
+
+***Environment Variable
++Right Click on My Computer > Property > Advanced > Environment Variable
++Add these values in user variable. If it is already there, use ; to separate these values.
+
+ PATH=C:\j2sdk1.4.2_07\bin;
+
+ CLASSPATH=.;
+
+ JAVA_HOME=C:\j2sdk1.4.2_07;
+
+:note|When you use custome class or library, you can also use -classpath option
+to specify the location of .class or .jar file
+
+***Helloworld
+Create a file Test.java
+and type in
+
+ import java.io.*;
+ class Test{
+	public static void main(String[] args) {
+		System.out.println("Hello World!");
+	}
+ }
+
+Start command prompt and go to the direcotry of this file.
+Type
+ javac Test.java
+
+and in order to run this program
+ java Test
+
+You should see an output.
+
+:note|You do not have to type .class when you run this program.
+
+***Documentation
+http://java.sun.com/docs/
+#navi(Java)
+

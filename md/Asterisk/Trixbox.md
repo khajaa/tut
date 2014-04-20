@@ -1,0 +1,34 @@
+
+##Trixbox
+
+###Instruction
+Trixbox is ex-Asterisk@Home. It's pbx one-shot installation.
+Coming with gui interface through your browser. It's start DHCP
+and you just type the browser's ip address
+
+###Network
+
+When you log in the system will tell you what IP address it received from your DHCP server. You can give the system a permanent address now by typing netconfig.
+
+
+###ARI
+Default authentication information
+-Username: admin
+-Password: ari_password
+
+Authenticatin file is located under
+```asterisk
+ ```
+###System Administration
+-username: maint 
+-password:password
+
+
+
+###Reference
+http://www.trixbox.org/modules/smartsection/item.php?itemid=4
+
+
+
+
+

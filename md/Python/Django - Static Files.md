@@ -1,0 +1,73 @@
+
+##Django - Static Media Files
+
+###Simply Create a tag
+settings.py
+```python
+   ...
+   'MyProject.myapp.templatetags'
+   ...
+
+and add your own parameter
+```python
+ ```
+in Application folder (myapp)
+```python
+       myapp/
+            templatetags/
+                  __init__.py
+                  custom_tags.py
+
+custom_tags.py
+```python
+ from django.template import Library
+ 
+ register = Library()
+ 
+ @register.simple_tag
+ def get_static_url():
+     return str(settings.STATIC_URL)
+
+Usage in template
+```python
+ ...
+ <link rel="stylesheet" href="{% get_static_url %}/css/default.css"/>
+ ```
+
+###Static File Strategy with RequestContext
+For development
+urls.py
+```python
+ ```
+For Production
+
+settings.py
+```python
+        "django.core.context_processors.auth",
+        #"django.core.context_processors.debug",
+        "django.core.context_processors.i18n",
+        "django.core.context_processors.media"
+ )
+ ```
+and you just switch this parameter in production
+```python
+ ```
+```python
+ ```
+views.py
+```python
+ ```
+... in method
+```python
+ ```
+
+template
+```python
+ ```
+
+###Reference
+http://mccormac.org/blog/2007/apr/04/dynamically-serving-static-content-django/
+
+
+
+

@@ -1,0 +1,12 @@
+#navi(Python)
+**Random
+#contents
+***Import
+ import random
+***Choosing from list
+ random.choice(string.uppercase)
+
+***Integer
+ random.randint(0,100)
+#navi(Python)
+

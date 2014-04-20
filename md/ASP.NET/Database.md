@@ -1,0 +1,160 @@
+
+##Database
+
+###ODBC
++Use MS Access to design a table. This step is optional because you can issue CREATE TABLE query later. That is, you do not need MS Access to create ODBC database!
++Control Panel -> Admin Tools -> Data Source (ODBC) -> System DSN Tab -> Add
++Select your mdb file and set DSN. This is the name that your program uses. 
++Check the connection from a software, such as ODBCView
+http://downloads-zdnet.com.com/ODBCView/3000-10255_2-10142653.html
++If you are using ASP.NET, add Everyone on the mdb file with modify permission
+-Right Click on mdb file > Property > Security Tab > Add Everyone + Check Modify 
+
+
+
+:Warning|If you are accessing from ASP.NET, do not put this mdb file in the public space!
+
+These are sample APS.NET codes
+```asp.net
+ OdbcConnection conn = new OdbcConnection("DSN=mydb;UID=admin;PWD=test;");
+ OdbcCommand command = new OdbcCommand(sql, conn);
+ OdbcDataAdapter adapter = new OdbcDataAdapter(command);
+ DataTable dt = new DataTable();
+ adapter.Fill(dt);
+ conn.Close();
+ ```
+```asp.net
+ OdbcConnection conn = new OdbcConnection("DSN=cueticketb2b;UID=admin;PWD=jikumaster;");
+ OdbcCommand command = new OdbcCommand(sql, conn);
+ conn.Open();
+ command.ExecuteNonQuery();
+ conn.Close();
+ ```
+
+
+
+###OleDb (MS Access)
+You need
+```asp.net
+ System.Data.OleDb;
+ ```
+Sample connection string
+```asp.net
+ ```
+Select Example
+```asp.net
+ con.ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0; Data Source=c:\\db1.mdb";
+ con.Open();
+ OleDbCommand com=new OleDbCommand("SELECT * from book;",con);
+ OleDbDataAdapter adapter=new OleDbDataAdapter(com);
+ DataTable dt=new DataTable();
+ adapter.Fill(dt);
+ dataGrid1.SetDataBinding( dt, "" ); 
+ con.Close();
+ ```
+Insertion Example
+    String myConn  ="Provider=Microsoft.JET.OLEDB.4.0;Data Source=C:\\Nwind.mdb;";
+    String myQuery  = "Insert into Customers(CustomerID,CompanyName) Values ('aaaaa', 'aaaaa')";
+    OleDbConnection cn = new OleDbConnection(myConn);
+    cn.Open();
+    OleDbCommand cmd = new OleDbCommand(myQuery, cn);
+    cmd.ExecuteNonQuery();
+    cn.close();
+
+
+:Note|Change permission of database before you do insertion/updating/deletion if you run above code in ASP.NET. ASP.NET program executes under aspnet account which may not have permission to write above .mdb file. In order to change permission in windows
+-Right Click on mdb file > Property > Security Tab > Add aspnet user + Check Modify
+(If this does not work, add Everyone)
+
+or
+
+-From command prompt
+```asp.net
+ ```
+or
+
+-From cygwin (This is easiest way, but not good for security)
+Go to the drive
+```asp.net
+ ```
+```asp.net
+ ```
+###SQL Client (SQL Server, ODBC, etc...)
+Sample Connection String
+```asp.net
+ User ID=test;Password=test;" 
+ ```
+DBMSSOCN is TCP/IP
+
+:Note|Server might require you to use Secure Connection 
+
+```asp.net
+ User ID=test;Password=test;" 
+ ```
+
+
+Sample
+```asp.net
+ using System.Data;
+ using System.Data.SqlClient;
+ namespace MSSQLServerTest {
+ class SQLTest {
+ 	static void Main(string[] args) {
+ 		try {
+ 			// @"Server=KIICHI\XXKI;"
+ 			// "Server=192.168.1.101,1433;"
+ 			// "Server=KIICHI"
+ 			SqlConnection myConnection = new SqlConnection(
+ 						"Server=127.0.0.1,1433;"
+ 						+ "Integrated Security=SSPI;"
+ 						+ @"User Id=test;"
+ 						+ "Password=test;"
+ 						+ "Initial Catalog=testdb;");
+ 			SqlCommand myCommand = new SqlCommand(
+ 				"UPDATE testtable SET myval = 'abc' WHERE id = 1;");
+ 			myCommand.Connection = myConnection;
+ 			myConnection.Open();
+ 			myCommand.ExecuteNonQuery();
+ 			myCommand.Connection.Close();
+ 		} 
+ 		catch (Exception ex) {
+ 			Console.WriteLine(ex.Message);
+ 		}
+ 	}
+ }
+ }
+ ```
+This is a sample wrapper class
+```asp.net
+ 	string connStr;
+ 	SqlConnection conn;
+ 	public DBConn(string connStr){
+ 		this.connStr = connStr;
+ 		conn = new SqlConnection(connStr);
+ 	}
+ 
+ 	public DataTable ExecuteQuery(string sql) {
+ 		DataTable dt = new DataTable();
+ 		conn.Open();
+ 		SqlCommand sqlCmd = new SqlCommand(sql, conn);
+ 		SqlDataAdapter adapter = new SqlDataAdapter(sqlCmd);
+ 		adapter.Fill(dt);
+ 		conn.Close();
+ 		return dt;
+ 	}
+ 
+ 	public int ExecuteNonQuery(string sql) {
+ 		conn.Open();
+ 		SqlCommand sqlCmd = new SqlCommand(sql, conn);
+ 		int affectedRows = sqlCmd.ExecuteNonQuery();
+ 		conn.Close();
+ 		return affectedRows;
+ 	}
+ }// eoc
+ ```
+
+
+
+
+
+

@@ -1,0 +1,30 @@
+#navi(Linux)
+**Web Server - httpd
+#contents
+***Start / Stop
+ /sbin/service/httpd start
+ /sbin/service/httpd stop
+ /sbin/service/httpd restart
+
+***Check package
+ rpm -qa | grep httpd
+
+***Config Location
+ /etc/httpd/conf/httpd.conf
+
+***User directory
+Comment out 
+ #UserDir disable
+
+And enable
+ UserDir public_html
+
+then 
+ /home/myuser/public_html
+will be mapped on
+ http://localhost/~myuser/
+
+Make sure you have right permission on public_html
+
+#navi(Linux)
+

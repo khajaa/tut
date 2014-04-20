@@ -1,0 +1,26 @@
+
+##Database Link
+
+###Introduction
+Just Like SQL Server's DTS, Database Link allows you to see another database.
+Create TNS first, then create Database Link
+```oracle
+    connect to {account} identified by {password} using 'T:{ip address:dbname or TNS name}';
+
+Then, you can copy tables like this
+
+  create table {tablename}  [tablespace {tablespace name}]
+    as select * from {tablename}@{dblink name};
+
+:Note|tablespace ... is optional.
+
+###Example
+```oracle
+ connect to kiichi identified by password using 'MYDB2'
+ ```
+```oracle
+ ```
+
+
+
+

@@ -1,0 +1,21 @@
+#navi(JavaScript)
+**Add Event Safly without over writing existing event
+#contents
+***Function to add event
+
+ function addEvent(obj, evType, fn){ 
+	 if (obj.addEventListener){ 
+		   obj.addEventListener(evType, fn, false); 
+		   return true; 
+	 } else if (obj.attachEvent){ 
+		   var r = obj.attachEvent("on"+evType, fn); 
+		   return r; 
+	 } else { 
+		   return false; 
+	 } 
+ }
+
+and use this like:
+ addEvent(window, 'load', ogInit);
+#navi(JavaScript)
+

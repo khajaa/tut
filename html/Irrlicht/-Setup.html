@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<title>Irrlicht/-Setup</title>
+<xmp theme="united" style="display:none;">
+
+##Setup
+
+###Download
+Download SDK from here
+http://irrlicht.sourceforge.net/downloads.html
+
+###Path
+Let's put unzipped folder under c:
+e.g.
+```irrlicht
+ ```
++Create Win32 Project
++Go Tool->Options->Directories
++Click New Button and add 
+```irrlicht
+ ```
+
+###Irrlicht.lib
+Copy ''Irrlicht.lib'' to
+```irrlicht
+ ```
+###Irrlicht.dll
+After you compile a program below, copy ''Irrlicht.dll''
+into ''debug'' folder. or 
+```irrlicht
+ ```
+
+###Hello World Program
+
+```irrlicht
+ #include <windows.h>
+ #endif
+ #include <irrlicht.h>
+ using namespace irr;
+ 
+ using namespace core;
+ using namespace video;
+ 
+ #pragma comment(lib, "Irrlicht.lib")
+ 
+ #ifdef WIN32
+ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR strCmdLine, INT )
+ #else
+ int main()
+ #endif
+ {
+     IrrlichtDevice *Device 
+      = createDevice(EDT_OPENGL, dimension2d<s32>(512, 384), 16, false, false, 0);
+     IVideoDriver *Driver = Device->getVideoDriver();
+     while(Device->run())
+     {
+         Driver->beginScene(true, true, SColor(0,100,100,160));
+         Driver->endScene();
+     }
+     Device->drop();
+ 	return 0;
+ }
+ ```
+
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

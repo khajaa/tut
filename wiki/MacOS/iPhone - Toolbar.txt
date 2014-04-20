@@ -1,0 +1,28 @@
+#navi(MacOS)
+**iPhone - Toolbar
+#contents
+***Toggle Edit / Done
+
+In IB, make  sure you select "Custom" without title. Init the UIBarButtonItem like
+
+ 	mEditButton.title = NSLocalizedString(@"Edit", @"Edit"); 
+	mEditButton.style = UIBarButtonItemStyleBordered;
+	
+
+
+Then, toggle like:
+
+ - (IBAction) editData:(id)sender{
+	if(mIsEditing){		
+		mEditButton.title = NSLocalizedString(@"Edit", @"Edit"); 
+		mEditButton.style = UIBarButtonItemStyleBordered;				
+    }	
+    else{		
+		mEditButton.title = NSLocalizedString(@"Done", @"Done");
+		mEditButton.style = UIBarButtonItemStyleDone;
+    }	
+ }
+
+
+#navi(MacOS)
+

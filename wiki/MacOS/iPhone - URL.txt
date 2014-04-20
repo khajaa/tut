@@ -1,0 +1,13 @@
+#navi(MacOS)
+**iPhone - URL
+#contents
+***URL components
+     NSLog(@"%@",[url host]);
+    NSLog(@"%@",[url pathComponents]);
+
+***URL Parameters
+ http://stackoverflow.com/questions/2225814/nsurl-pull-out-a-single-value-for-a-key-in-a-parameter-string
+
+
+#navi(MacOS)
+

@@ -1,0 +1,45 @@
+#navi(Oracle)
+**Aggregate Function
+#contents
+***String
+-CONCAT
+ SELECT CONCAT(FirstName,LastName) AS FullName FROM Address;
+ SELECT FirstName || LastName AS FullName FROM Address
+
+-Remove after some character
+ SUBSTR(email, INSTR(email,'@'))
+This will give you after @ mark
+e.g. test@test.com -> @test.com
+
+-Length
+ SELECT LENGTH('hello') ...
+
+***Date
+-to_date
+ INSERT INTO store_service (workcode, workdate, workhours, reg_num) 
+ VALUES ('ABC00001', to_date('2004-10-11', 'yyyy/mm/dd'), 10, 987654321);
+-to_char
+ to_char(sysdate, 'HH24:MI:SS')
+ TO_CHAR(CREATED_DATE,'YYYY-MM-DD HH24:MI:SS')
+-sysdate
+ INSERT INTO store_history (stu_id, last_login, stu_memo) 
+ VALUES ('124', sysdate, 'tst');
+-dateadd
+ select DateADD('dd' , -10, to_date('05/APR/2004')) from mytable 
+
+Calculate difference between two dates
+ select trunc(end_date - start_date) from payments
+
+***Decode
+ SELECT qty,
+ DECODE(inventory_id,
+ 1,'Computer',
+ 2,'Network Device',
+ 3,'Software')
+ AS InventoryType
+ FROM Inventory;
+
+This is simple if statement for column conversion
+
+#navi(Oracle)
+

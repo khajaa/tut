@@ -1,0 +1,27 @@
+#navi(ASP.NET)
+**Security
+#contents
+***Strip malicious tags from HTML text
+
+ string cleanStr = Regex.Replace(inputStr, @"</?(?i:script|embed|object|frameset|frame|iframe|meta|link|style)(.|\n)*?>", ""); 
+
+***Sanitizing in ASP.NET - User try to inject some html codes
+put 
+ ValidateRequest="false" 
+in <%@ Page  %>
+
+ Label1.Text = Server.HtmlEncode(string);
+:Note|For all the PHP guys use htmlspecialchars.
+This encoding does not encode single quote (apostrophe) so combine Replace method
+
+Encoding
+ string str = Server.HtmlEncode("& \" < > '").Replace("'", "&#039;");
+Decoding
+ Response.Write(Server.HtmlDecode(str).Replace("&#039;", "'"));
+
+***Encoding
+Add System.Web.dll into your reference and
+ string hash = System.Web.Security.FormsAuthentication.
+ HashPasswordForStoringInConfigFile(str, "md5").ToLower();
+#navi(ASP.NET)
+

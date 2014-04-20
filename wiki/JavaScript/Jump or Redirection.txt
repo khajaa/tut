@@ -1,0 +1,18 @@
+#navi(JavaScript)
+**Jump or Redirection
+#contents
+***Jump Script
+Insert this script after body
+	<script language="JavaScript">
+	var time = null
+	function move() {
+	window.location = 'updates.html'
+	}
+	timer=setTimeout('move()',10*1000)
+	//-->
+	</script>
+
+***Go Back 
+ <a href="javascript:history.go(-1)">Go Back</a>
+#navi(JavaScript)
+

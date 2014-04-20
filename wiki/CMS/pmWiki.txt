@@ -1,0 +1,79 @@
+#navi(CMS)
+**pmWiki
+#contents
+***Including Another Page
+ (:include PageName:)
+***Set Authentication for editing
+ $DefaultPasswords['admin'] = crypt('test');
+ $DefaultPasswords['upload'] = crypt('test');
+ $DefaultPasswords['edit'] = crypt('test');
+ $DefaultPasswords['attr'] = crypt('test');
+
+***Relative Path
+ root:
+is reserved directive by sytem so you can show images like
+ root:/img/data_import01.jpg
+or create link to 
+ [[root:/files/software1.zip|Download]]
+
+For custom mapping directive, you can write in /scripts/intermap.txt or /local/localmap.txt
+
+***Page List
+ (:pagelist group=PmWiki* :)
+http://www.pmichaud.com/wiki/PmWiki/PageLists
+
+***Special Markup Page Reference
+http://www.pmwiki.org/wiki/PmWiki/SpecialMarkups
+ Search
+ 
+ (:searchbox:)
+     A PmWiki text-search box. Normally used in Main.SearchWiki? but can be placed anywhere. 
+ (:searchresults:)
+     Produces the results of a search in a wikipage, as coming from the q= URL parameter or a (:searchbox:) directive. 
+ 
+ Titles, Groups, etc.
+ 
+ See markup variables for a complete list of "variables" that you can access through the markup construction {$<variable>}. Here are some of the available variables.
+ {$Name} - The page's name, as in "SpecialMarkups"
+ {$Group} - the page's group name, as in "PmWiki"
+ {$DefaultGroup} - The name of the default (startup) group, here it's "Main"
+ {$Title} - the page's title, as in "Other special markups"
+ {$Namespaced} - the page title spaced, as in "Special Markups"
+ {$Groupspaced} - the group name spaced, as in "Pm Wiki"
+ {$LastModified} - the date the page was last modified
+ {$LastModifiedBy} - the author that performed the last modification
+ {$LastModifiedHost} - the host that performed the last modification
+ Headers and Footers
+ (:noheader:)
+ (:nofooter:)
+ (:notitle:)
+ (:nogroupheader:)
+ Turns off the PmWiki-generated header, footer, group header, or title for the page.
+ Redirects
+ (:redirect PageName:)
+ (:redirect GroupName.PageName:)
+ Redirects the browser to a different wiki page, adding a message to inform the user that the redirection has taken place.
+ Includes
+ 
+ (:include IncludeOtherPages#include-desc#include-desc-end:)
+ 
+ See include other pages for more details.
+ Misc Bracket Abuse
+ 
+ [[<<]]
+     Forces a line break, specifically inserts the HTML "<br clear='all'>" 
+ (:spacewikiwords:)
+     Place this directive in a page and it will cause all of the WikiWords 
+ in the page to be displayed with spaces. This can also be turned on by 
+ setting $SpaceWikiWords=1 in customization (see PmWiki.Variables). 
+ [[#anchorname]]
+     Creates an anchor in a page. 
+ [[#anchorname|text]]
+     Creates a link to an anchor within the same page. 
+ [[PageName#anchorname text]]
+     Creates a link to an anchor on PageName. 
+ 
+
+
+#navi(CMS)
+

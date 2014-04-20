@@ -1,0 +1,22 @@
+#navi(MacOS)
+**iPhone - i18n
+#contents
+
+***Check language
+ // ja or other like en
+ #define IS_JP ([(NSString*)[[NSLocale preferredLanguages] objectAtIndex:0] compare:@"ja"] == NSOrderedSame)
+ #define I18N_PHOTO_DIALOG_HEADER ((IS_JP)? @"nihongo" : @"eigo")
+
+***Identify Language Codes - locale
+	if ([[[NSLocale currentLocale] localeIdentifier] compare:@"en_US"] == NSOrderedSame){
+		NSLog(@"english");
+	}
+        else if ([[[NSLocale currentLocale] localeIdentifier] compare:@"ja_JP"] == NSOrderedSame){
+		NSLog(@"Japanese");
+	}
+	else {
+		NSLog(@"other");
+	}
+	
+#navi(MacOS)
+

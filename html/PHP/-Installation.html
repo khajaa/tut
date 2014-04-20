@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<title>PHP/-Installation</title>
+<xmp theme="united" style="display:none;">
+
+##-Installation
+
+###Windows2003 (IIS6) with CGI
+-Download Installer for CGI
+-Double click and install
+-Add ''IUSER_YourMachineName'' on these files and change permissions
+--c:\windows\php.ini (Read)
+--c:\PHP\php-cgi-exe (Read and Execute)
+--c:\PHP\php5ts.dll (Read and Execute)
+-Go to IIS Manager -> Web Service Extensions -> Set All Unknown CGI Extensions to Allowed
+
+-Install Extension (e.g. MySQL)
+--Copy DLLs in ext folder to c:\windows\system32
+--Copy DLLs in root folder such as libmysql.dll into c:\windows\system32
+
+
+##Linux
+download php source
+
+
+install modules
+```php
+ yum install php-zlib
+ yum install libjpeg-devel
+ ```
+```php
+ ```
+```php
+ ```
+```php
+ ```
+```php
+ ```
+restart httpd
+
+Note. If you are installing libjpeg-devel after php-gd, you need to do 
+```php
+ yum install php-gd
+ ```
+Note2. Make sure do 
+
+```php
+ ```
+if you are installing again
+
+
+
+
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

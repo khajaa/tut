@@ -1,0 +1,230 @@
+#navi(MacOS)
+**iPhone - Facebook
+#contents
+***Install
+http://developers.facebook.com/connect.php?tab=iphone
+
+My Example to make everything organized in one folder. It's just matter of path to specify.
++Download SDK and unzip
++Copy src folder in your project. Rename it "FacebookSupport" or something like that
++You need to specify where the sources are located.
+++Double click the target
+++Build Tab
+++Search by keyword "header"
+++Header Search Path
+ $(SRCROOT)/FacebookSupport
+and check recursive. Then your project can compile to import the path like FBConnect/(something) because FBConnect is the folder name that all header files are located.
++You can start using by importing like
+ #import "FBConnect/FBConnect.h"
+
+***Example - upload photo and let user share your app
+MyViewController.h
+ #import "FBConnect/FBConnect.h"
+ @interface MyViewController : UIViewController <FBDialogDelegate, FBSessionDelegate, FBRequestDelegate> {
+ 	FBSession* _session;					
+ 	UIImage *mImageToUpload;
+ 	bool mUploading;
+ 	// etc ...
+ }
+ -(void)initFacebookSession;
+ -(void)showFacebookLogin;
+ // don't really need the target argument if you do not hook up in IB
+ - (void)askPermission:(id)target;
+ - (void)publishFeed:(id)target;
+ - (void)uploadPhoto:(id)target ;
+ @end
+ 
+MyViewController.m - partial example
+ #pragma mark FaceBook
+ 
+ //----------------------------------------------------------------------------------------------------------------
+ -(void)initFacebookSession{
+ 	if (_session == nil){
+ 		_session = [[FBSession sessionForApplication:FACEBOOK_API_KEY secret:FACEBOOK_SECRET_KEY delegate:self] retain];
+ 	}
+ 	NSLog(@"facebook initialized. resuming session....");
+ 	//[_session resume]; // resume ???
+ }
+ 
+ //----------------------------------------------------------------------------------------------------------------
+ -(void)showFacebookLogin{
+ 	FBLoginDialog* dialog = [[[FBLoginDialog alloc] initWithSession:_session] autorelease]; 
+ 	dialog.delegate = self;	
+ 	[dialog show];
+ }
+ 
+ //----------------------------------------------------------------------------------------------------------------
+ // FBDialogDelegate
+ //----------------------------------------------------------------------------------------------------------------
+ - (void)dialog:(FBDialog*)dialog didFailWithError:(NSError*)error {
+ 	//_label.text = [NSString stringWithFormat:@"Error(%d) %@", error.code,
+ //				   error.localizedDescription];
+ 	
+ 	NSLog(@"ERROR didFailWithError");
+ 	NSLog(error.localizedDescription);
+ 	
+ 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" 
+ 													message:[NSString stringWithFormat:@"Error: %@ ", error.localizedDescription]
+ 												   delegate:self 
+ 										  cancelButtonTitle:@"OK" 
+ 										  otherButtonTitles: nil
+ 						  ];
+ 	[alert show];    
+ 	[alert release];
+ }
+ 
+ //----------------------------------------------------------------------------------------------------------------
+ - (void)dialogDidSucceed:(FBDialog*)dialog {
+ 	//NSLog([dialog className]);
+ 	Class cl = [dialog class];
+ 	NSLog([cl description]);
+ 	if ([[cl description] isEqualToString:@"FBPermissionDialog"] && mUploading){
+ 		NSLog(@"photo uploading");
+ 		[self disableScreen];
+ 		[self uploadPhoto:nil];
+ 		mUploading = false;
+ 		NSLog(@"photo uploaded");
+ 	}
+ 	NSLog(@"dialogDidSucceed");
+ }
+ 
+ //----------------------------------------------------------------------------------------------------------------
+ - (void)dialogDidCancel:(FBDialog*)dialog {
+ 	NSLog(@"dialogDidCancel");
+ 	[self enableScreen];
+ }
+ 
+ //----------------------------------------------------------------------------------------------------------------
+ // FBSessionDelegate
+ //----------------------------------------------------------------------------------------------------------------
+ - (void)session:(FBSession*)session didLogin:(FBUID)uid {
+ //	NSString* fql = [NSString stringWithFormat:
+ //					 @"select uid,name from user where uid == %lld", session.uid];	
+ //	NSDictionary* params = [NSDictionary dictionaryWithObject:fql forKey:@"query"];
+ //	[[FBRequest requestWithDelegate:self] call:@"facebook.fql.query" params:params];
+ 	NSLog(@"did login ");
+ 	[self askPermission:nil];	
+ }
+ 
+ //----------------------------------------------------------------------------------------------------------------
+ - (void)sessionDidNotLogin:(FBSession*)session {
+ 	NSLog(@"did not login ");
+ 	[self enableScreen];
+ }
+ 
+ //----------------------------------------------------------------------------------------------------------------
+ - (void)sessionDidLogout:(FBSession*)session {
+ 	NSLog(@"did logout");
+ 	[self enableScreen];
+ }
+ 
+ //----------------------------------------------------------------------------------------------------------------
+ // FBRequestDelegate
+ //----------------------------------------------------------------------------------------------------------------
+ - (void)request:(FBRequest*)request didLoad:(id)result {
+ 	if ([request.method isEqualToString:@"facebook.fql.query"]) {
+ 		//NSArray* users = result;
+ 		//NSDictionary* user = [users objectAtIndex:0];
+ 		//NSString* name = [user objectForKey:@"name"];
+ 		//_label.text = [NSString stringWithFormat:@"Logged in as %@", name];
+ 	} 
+ 	else if ([request.method isEqualToString:@"facebook.users.setStatus"]) {
+ 		NSString* success = result;
+ 		if ([success isEqualToString:@"1"]) {
+ 			//_label.text = [NSString stringWithFormat:@"Status successfully set"]; 
+ 		} else {
+ 			//_label.text = [NSString stringWithFormat:@"Problem setting status"]; 
+ 		}
+ 	} 
+ 	else if ([request.method isEqualToString:@"facebook.photos.upload"]) {
+ 		//NSDictionary* photoInfo = result;
+ 		//NSString* pid = [photoInfo objectForKey:@"pid"];
+ 		//_label.text = [NSString stringWithFormat:@"Uploaded with pid %@", pid];
+ 		
+ 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Image has been uploaded."
+ 													   delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+ 		[alert show];    
+ 		[alert release];
+ 		[self enableScreen];
+ 		
+ 		[self publishFeed:nil];
+ 	}
+ 	else {
+ 		NSLog(@"didLoad else-");
+ 	}
+ }
+ 
+ //----------------------------------------------------------------------------------------------------------------
+ - (void)request:(FBRequest*)request didFailWithError:(NSError*)error {
+ //	_label.text = [NSString stringWithFormat:@"Error(%d) %@", error.code,
+ //				   error.localizedDescription];
+ 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" 
+ 													message:[NSString stringWithFormat:@"Error: %@ ", error.localizedDescription]
+ 													delegate:self 
+ 													cancelButtonTitle:@"OK" 
+ 													otherButtonTitles: nil
+ 						];
+ 	[alert show];    
+ 	[alert release];
+ }
+ 
+ //----------------------------------------------------------------------------------------------------------------
+ - (void)askPermission:(id)target {
+ 	NSLog(@"creating permission dialog");
+ 	FBPermissionDialog* dialog = [[[FBPermissionDialog alloc] init] autorelease];
+ 	dialog.delegate = self;
+ 	//dialog.permission = @"status_update";
+ 	dialog.permission = @"photo_upload";
+ 	NSLog(@"showing permission dialog");
+ 	[dialog show];
+ }
+ 
+ 
+ 
+ //----------------------------------------------------------------------------------------------------------------
+ - (void)publishFeed:(id)target {
+ 	// Leaving the code for FBFeedDialog here as an example, but we encourage
+ 	// everyone to use FBStreamDialog moving forward.
+ 	/*
+ 	 FBFeedDialog* dialog = [[[FBFeedDialog alloc] init] autorelease];
+ 	 dialog.delegate = self;
+ 	 dialog.templateBundleId = 124879669193;
+ 	 dialog.templateData = @"{\"images\":[{\"src\":\"http://img40.yfrog.com/img40/5914/iphoneconnectbtn.jpg\",\"href\":\"http://developers.facebook.com/connect.php?tab=iphone\"}]}";
+ 	 dialog.userMessagePrompt = @"Example prompt";
+ 	 [dialog show];
+ 	 */
+ 	
+ 	FBStreamDialog* dialog = [[[FBStreamDialog alloc] init] autorelease];
+ 	dialog.delegate = self;
+ 	dialog.userMessagePrompt = @"Share this app with your friends!";
+ 	dialog.attachment = 	
+ 		[NSString stringWithFormat:@"{\"name\":\"%@\",\"href\":\"%@\",\"caption\":\"%@\",\"description\":\"Check this out!\",\"media\":[{\"type\":\"image\",\"src\":\"http://iphone.objectgraph.com/images/appstore.png\",\"href\":\"http://phobos.apple.com/WebObjects/MZSearch.woa/wa/search?entity=software&media=software&submit=seeAllLockups&term=ObjectGraph+LLC\"}],\"properties\":{\"another link\":{\"text\":\"iPhone Apps home page\",\"href\":\"http://iphone.objectgraph.com\"}}}",
+ 		 MY_APP_NAME,
+ 		 THIS_APP_LINK,
+ 		 MY_APP_NAME		 
+ 		 ];
+ 	// replace this with a friend's UID
+ 	// dialog.targetId = @"999999";
+ 	[dialog show];
+ }
+ 
+ //----------------------------------------------------------------------------------------------------------------
+ - (void)setStatus:(id)target {
+ 	NSString *statusString = @"Testing iPhone Connect SDK";
+ 	NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+ 							statusString, @"status",
+ 							@"true", @"status_includes_verb",
+ 							nil];
+ 	[[FBRequest requestWithDelegate:self] call:@"facebook.users.setStatus" params:params];
+ }
+ 
+ //----------------------------------------------------------------------------------------------------------------
+ - (void)uploadPhoto:(id)target {	
+ 	NSDictionary *params = nil;
+ 	[[FBRequest requestWithDelegate:self] call:@"facebook.photos.upload" params:params dataParam:(NSData*)mImageToUpload];
+ }
+
+
+
+#navi(MacOS)
+

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<title>JavaScript/OOP</title>
+<xmp theme="united" style="display:none;">
+
+##OOP
+
+###Creating Class Example
+```javascript
+ 	var mName = "Jon Doe";
+ 
+ 	function SetName(val) {
+ 		mName = val;
+ 	}
+ 	this.SetName = SetName;
+ 
+ 	function GetName() {
+ 		return mName;
+ 	}
+ 	this.GetName = GetName;
+ 
+ 	function SayHello() {
+ 		alert('Hello, ' + mName);
+ 	}
+ 	this.SayHello = SayHello;
+ }
+ ```
+
+```javascript
+ kiichi.SetName('Kiichi Takeuchi');
+ kiichi.SayHello();
+ ```
+
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

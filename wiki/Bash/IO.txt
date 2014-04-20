@@ -1,0 +1,11 @@
+#navi(Bash)
+**IO
+#contents
+***Read User Input & Output
+ #!/bin/bash
+ echo Please enter your name
+ read MYNAME
+ echo Hello, $MYNAME
+
+#navi(Bash)
+

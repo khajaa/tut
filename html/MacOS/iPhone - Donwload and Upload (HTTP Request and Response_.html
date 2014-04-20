@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<title>MacOS/iPhone - Donwload and Upload (HTTP Request and Response)</title>
+<xmp theme="united" style="display:none;">
+
+##iPhone - Donwload and Upload (HTTP Request and Response)
+
+###Using ASI-HTTP-Request library
+
++Unpack the file and include all library files.
++Add CFNetwork in the framework
++Fix header
+Add 
+```macos
+ ```
+```macos
+ ```
++Use @class
++Follow sample code for rest of part
+
+http://allseeing-i.com/ASIHTTPRequest/How-to-use
+see the sample source code with the lib
+
+example usage, asynchronous download
+```macos
+ - (void)awakeFromNib
+ {
+ 	networkQueue = [[ASINetworkQueue alloc] init];
+ }
+ 
+ - (id)initWithFrame:(CGRect)frame {
+     if (self = [super initWithFrame:frame]) {
+         // Initialization code
+     }
+     return self;
+ }
+ 
+ 
+ - (void)drawRect:(CGRect)rect {
+     // Drawing code
+ }
+ 
+ 
+ - (void)dealloc {
+ 	[networkQueue release];
+     [super dealloc];
+ }
+ 
+ 
+ -(IBAction)downloadTestClicked:(id)sender{
+ 	NSLog(@"test");
+ 	[imageView1 setImage:nil];
+ 
+ 	[networkQueue cancelAllOperations];
+ 	[networkQueue setDownloadProgressDelegate:progressIndicator];
+ 	[networkQueue setRequestDidFinishSelector:@selector(requestComplete:)];
+ 	//[networkQueue setShowAccurateProgress:true];// some bug
+ 	[networkQueue setDelegate:self];
+ 
+ 	// just add 3 things in queue
+ 	ASIHTTPRequest *request;
+ 	request = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:@"http://blog.objectgraph.com/wp-content/uploads/2008/10/y-27.JPG"]] autorelease];
+ 	[networkQueue addOperation:request];
+ 
+ 	request = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:@"http://blog.objectgraph.com/wp-content/uploads/2008/10/y-31.JPG"]] autorelease];
+ 	[networkQueue addOperation:request];
+ 
+ 	request = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:@"http://blog.objectgraph.com/wp-content/uploads/2008/10/y-59.JPG"]] autorelease];
+ 	[networkQueue addOperation:request];
+ 
+ 
+ 	[networkQueue go];
+ }
+ 
+ 
+ - (void)requestComplete:(ASIHTTPRequest *)request {
+ 	NSLog(@"test2");
+ 	UIImage *img = [UIImage imageWithData:[request receivedData]];
+ 	if (img) {
+ 		[imageView1 performSelectorOnMainThread:@selector(setImage:) withObject:img waitUntilDone:NO];
+ 	}
+ }
+ ```
+
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

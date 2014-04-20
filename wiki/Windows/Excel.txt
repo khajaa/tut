@@ -1,0 +1,11 @@
+#navi(Windows)
+**Excel
+#contents
+***How ot visualize value without graph
+ =REPT("|",A1)
+
+This will repeat vertical bar number of times in the cell A1
+
+#ref(meter.jpg)
+#navi(Windows)
+

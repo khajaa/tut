@@ -1,0 +1,9 @@
+#navi(CSharp)
+**ArrayList
+#contents
+***Convert ArrayList to array of string
+ string[] stringArray = (string[])arrayList.ToArray(typeof(string));
+
+
+#navi(CSharp)
+

@@ -1,0 +1,38 @@
+#navi(MacOS)
+**iPhone - Passing URL Schema
+#contents
+***Setup
+ Add a row in .plist
+
+ URL types
+     Item 0
+         URL Schemes
+              Item 0
+
+Set Item 0's value like
+
+ myapp
+
+
+***Implementation 
+ - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+    if (!url) {  
+        return NO; 
+    }
+    
+    NSLog(@"%@",[url host]);
+    NSLog(@"%@",[url pathComponents]);
+    
+    
+ //    NSString *URLString = [url absoluteString];
+ //    [[NSUserDefaults standardUserDefaults] setObject:URLString forKey:@"url"];
+ //    [[NSUserDefaults standardUserDefaults] synchronize];
+    return YES;
+ }
+
+***Linking example
+
+ myapp://some-param/hello/world/?one=two
+
+#navi(MacOS)
+

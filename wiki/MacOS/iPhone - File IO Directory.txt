@@ -1,0 +1,64 @@
+#navi(MacOS)
+**iPhone - File IO Directory
+#contents
+
+***Get Document Folder Path
+ #define DOC_DIR [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
+
+This folder is for the user, and it will not be deleted
+
+***Check File Exists
+ [[NSFileManager defaultManager] fileExistsAtPath:imagePath]
+
+***Remove
+    [[NSFileManager defaultManager] removeFileAtPath: filePath handler: nil];]
+
+***Saving an NSData to a file [permalink]
+
+    NSString *filename = @"/tmp/one.dat";
+    NSData *data = // assume you get data
+   [data writeToFile: filename  atomically: NO];
+
+***File list in a directory 
+ NSString *bundleRoot = [[NSBundle mainBundle] bundlePath];
+ NSArray *dirContents = [[NSFileManager defaultManager] directoryContentsAtPath:bundleRoot];
+ for (NSString *tString in dirContents) {
+    if ([tString hasPrefix:@"foo"] && [tString hasSuffix:@".jpg"]) {
+    }
+ }
+
+***Read all .png files in directory which start with TEST_
+
+    NSArray * paths = [NSBundle pathsForResourcesOfType: @"png" inDirectory: [[NSBundle mainBundle] bundlePath]];
+    NSMutableArray * allImageNames = [[NSMutableArray alloc] init];
+    
+    for ( NSString * path in paths )
+    {
+        if ( [[path lastPathComponent] hasPrefix: @"TEST_"] )
+            continue;
+        
+        [allImageNames addObject: [path lastPathComponent]];
+    }
+
+
+***List all subdirectories' files
+ [dirpath subpathsAtPath];
+
+***List all Subdirectory
+ for (NSString *aPath in contentOfFolder) {
+  NSLog(@"apath: %@", aPath);
+ 
+  BOOL isDir;
+  if ([[NSFileManager defaultManager] fileExistsAtPath:aPath isDirectory:&isDir] &&isDir) {
+    [directoriesOfFolder addObject:aPath];
+    NSLog(@"directoriesOfFolder %@", directoriesOfFolder);
+  }
+ }
+
+***Get list of files by type
+	NSString *bundleRoot = [[NSBundle mainBundle] bundlePath];
+	NSArray *dirContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:bundleRoot error:nil];
+	mFilesArr = [dirContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self ENDSWITH '.png'"]];
+
+#navi(MacOS)
+

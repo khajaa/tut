@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<title>MacOS/AppleScript - Interface Builder and GUI Controls</title>
+<xmp theme="united" style="display:none;">
+
+##AppleScript - Interface Builder and GUI Controls
+
+###IB Outlet
+```macos
+ property selectedPathLabel : missing value
+ property toggleButton : missing value
+ ```
+Connect from delegate in IB, and then use them like
+```macos
+ toggleButton's setTitle_("Stop Sharing")
+ ```
+###IB Action 
+
+don't forget the underscore!
+```macos
+ --
+ end myButtonClick_	
+ ```
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

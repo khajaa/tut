@@ -1,0 +1,12 @@
+#navi(Database)
+**Import and Export
+#contents
+***Import
+ mysql <my_db_name> -u<user_name> -p<password> <mysql.sql
+
+or
+
+ shell>source filename.sql
+
+#navi(Database)
+

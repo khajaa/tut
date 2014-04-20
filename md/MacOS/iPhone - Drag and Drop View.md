@@ -1,0 +1,41 @@
+
+##iPhone - Drag and Drop View
+
+###Draggable View
+  
+  #import <UIKit/UIKit.h> 
+ 
+ @interface DraggableView: UIView {
+  float deltaX;
+  float deltaY;
+ }
+ 
+ @end
+ 
+ @implementation DraggableView
+ 
+ - (void) touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event {
+ UITouch *touch = [touches anyObject];
+ CGPoint touchPoint = [touch locationInView:self.superview];
+ 
+ // Set the correct center when touched
+ touchPoint.x -= deltaX;
+ touchPoint.y -= deltaY;
+ 
+ self.center = touchPoint;
+ }
+ 
+ - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+ CGPoint beginCenter = self.center;
+ 
+ UITouch *touch = [touches anyObject];
+ CGPoint touchPoint = [touch locationInView:self.superview];
+ 
+ deltaX = touchPoint.x - beginCenter.x;
+ deltaY = touchPoint.y - beginCenter.y;
+ }
+ 
+ @end
+ ```
+
+

@@ -1,0 +1,9 @@
+
+##Timer
+
+###Interval
+```javascript
+ ```
+
+
+

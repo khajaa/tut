@@ -1,0 +1,58 @@
+#navi(Python)
+**Django - Amazon S3
+#contents
+***Setup
+1. download zip http://code.welldev.org/django-storages/downloads/ 
+2. run python setup.py install
+3. cd examples/s3project
+4. go to http://aws.amazon.com/
+ Your Account->Access Identifieer
+5. edit settings.py
+ # change this line
+ DEFAULT_FILE_STORAGE = 'backends.s3.S3Storage'
+ from S3 import CallingFormat
+ AWS_CALLING_FORMAT = CallingFormat.SUBDOMAIN
+ AWS_HEADERS = { 
+    'Expires': 'Thu, 15 Apr 2010 20:00:00 GMT', # see http://developer.yahoo.com/performance/rules.html#expires
+    'Cache-Control': 'max-age=86400',
+    }   
+
+ # copy from the website and add those 3 lines below
+ AWS_ACCESS_KEY_ID=''
+ AWS_SECRET_ACCESS_KEY=''
+ AWS_STORAGE_BUCKET_NAME='kiichi-test'
+Or you can separate these in local_settings.py
+6. Then create a kiichi-test in root. Use firefox plugin for s3 browser
+7. comment out some garbage in the model. like models.py line 10 is like test code
+8. start shell 
+ python manage.py shell
+9. Import things
+ from django.core.files.storage import default_storage
+ from django.core.files.base import ContentFile
+ from django.core.cache import cache
+ #from models import MyStorage
+10. Writing test
+ default_storage.exists('test.txt')
+ file = default_storage.open('test.txt', 'w')
+ file.write('hello world')
+ file.close()
+11.Reading test
+ default_storage.exists('test.txt')
+ file = default_storage.open('storage_test', 'r')
+ file.read()
+ file.close()
+
+
+***Sample URL
+ http://test-kiichi.s3.amazonaws.com/test.txt
+
+
+***Tips
+ If you need to give public access, right click on s3 organizer (firefox) then edit ACL access.
+
+***References
+http://code.welldev.org/django-storages/wiki/S3Storage
+
+
+#navi(Python)
+

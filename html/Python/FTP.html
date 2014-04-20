@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<title>Python/FTP</title>
+<xmp theme="united" style="display:none;">
+
+##FTP
+
+###Example - Upload
+```python
+ import os
+ 
+ def upload(ftp, file):
+     ext = os.path.splitext(file)[1]
+     if ext in (".txt", ".htm", ".html"):
+         ftp.storlines("STOR " + file, open(file))
+     else:
+         ftp.storbinary("STOR " + file, open(file, "rb"), 1024)
+ 
+ ftp = ftplib.FTP("myurl.dummy.com")
+ ftp.login("test", "test")
+ 
+ upload(ftp, "test.zip")
+ upload(ftp, "one.txt")
+ upload(ftp, "pic.jpg")
+ ```
+###List all sub directory recursively
+I tested two types of fuctions here. The first one is "try chdir" method and the second one is "parse dir command" method. The second one is fater because of the turn-around time of the response.
+```python
+ # list_ftp.py
+ #------------------------------------------------------------------------------------
+ import os, sys, time
+ from ftplib import FTP
+ from cStringIO import StringIO
+ #from getpass import getpass
+ 
+ remotesite = 'test.dummy.com'
+ remotedir = 'tmp/a'
+ remoteuser = 'test'
+ remotepass = 'mypass'
+ 
+ #------------------------------------------------------------------------------------
+ # try cwd -> catch exception model (Slower)
+ #------------------------------------------------------------------------------------
+ def printRemoteDir(connection, targetDir, level):
+ 	connection.cwd(targetDir)
+ 	print '	'*level,'[',targetDir,']'
+ 	level = level + 1
+ 	#print '-changing dir to ', targetDir
+ 	#print '-level ', level
+ 	remoteFiles = connection.nlst()
+ 	for remoteName in remoteFiles:
+ 		try:
+ 			if remoteName != '.' and remoteName != '..':
+ 				printRemoteDir(connection, remoteName, level)
+ 		except:
+ 			#print sys.exc_value
+ 			#print '-downloading ',remoteName
+ 			print '	'*level,remoteName
+ 	level = level - 1
+ 	connection.cwd('..')
+ 	return ''
+     
+ 
+ #------------------------------------------------------------------------------------
+ # dir -> capture list from stdout model (Faster)
+ #------------------------------------------------------------------------------------
+ def printRemoteDir2(connection, targetDir, level):
+ 	print '	'*level,'[',targetDir,']'
+ 	connection.cwd(targetDir)
+ 	level = level + 1
+ 	
+ 	fd = sys.stdout # save stdout file discripter
+ 	sys.stdout = StringIO()
+ 	connection.dir()
+ 	outStr = sys.stdout.getvalue() # capture the stdout buffer
+ 	#sys.stdout.close()
+ 	sys.stdout = fd 
+ 	
+ 	for line in outStr.split('\n'):
+ 		remoteName = line.split(' ').pop()
+ 		if (remoteName != '.' and remoteName != '..'):
+ 			if (len(line) > 0 and line[0] == 'd'):
+ 				printRemoteDir2(connection, remoteName, level)
+ 			else :
+ 				print '	'*level,remoteName
+ 		
+ 	level = level - 1
+ 	connection.cwd('..')
+ 	return
+ 	
+ #------------------------------------------------------------------------------------
+ # Main
+ #------------------------------------------------------------------------------------
+ print '-connecting ...'
+ connection = FTP(remotesite)
+ print '-connected'
+ connection.login(remoteuser, remotepass)
+ print '-authenticated'
+ 
+ # Test both functions 10 times and measure the average time
+ t1_total = 0
+ t2_total = 0
+ num = 10
+ 
+ for i in range(0,num):
+ 	connection.cwd('/') # reset dir
+ 	t1_start = time.clock()
+ 	try :
+ 		printRemoteDir(connection, remotedir, 0)
+ 	except:
+ 		print sys.exe_value
+ 	t1_end = time.clock()
+ 	
+ 	t1_total += (t1_end - t1_start)
+ 	
+ 	connection.cwd('/') # reset dir
+ 	
+ 	t2_start = time.clock()
+ 	try :
+ 		printRemoteDir2(connection, remotedir, 0)
+ 	except:
+ 		print sys.exc_value
+ 	t2_end = time.clock()
+ 	t2_total += (t2_end - t2_start)
+ 	
+ connection.close();
+ 
+ print '-----done-----'
+ print '1=',(t1_total / num),
+ print '2=',(t2_total / num)
+ # 1= 44.4780991439 2= 27.7828672639
+ # Second one is faster
+ ```
+
+
+
+
+
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

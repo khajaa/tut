@@ -1,0 +1,24 @@
+#navi(Python)
+**Date and Time
+#contents
+
+***Subtract
+ yesterday = (datetime.date.today() - datetime.timedelta(1))
+
+***Format 
+ d.strftime("%d/%m/%y")
+ d.strftime("%A %d. %B %Y")
+
+http://docs.python.org/library/datetime.html#strftime-strptime-behavior
+
+***Parse
+
+ import dateutil.parser
+ dateutil.parser.parse("2012")
+
+***Subtract
+ from datetime import *
+ now = datetime.now()
+ now - timedelta(days=10)
+#navi()
+

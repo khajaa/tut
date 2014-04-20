@@ -1,0 +1,165 @@
+#navi(Python)
+**File IO and Directory
+#contents
+***File Read
+ f=open('test.txt','r')
+ for line in f:
+     print line
+
+
+ # Text file(data.txt) read
+ try :
+     fin = open("data.txt")
+ 
+     while 1 :
+ 	line = fin.readline()
+ 	if not line:
+ 	    break
+ 	print line
+ 
+     fin.close()
+ except :
+     print "File read error."
+
+Read all lines
+ f = open("test.txt","r")
+ x = f.readlines()
+ f.close()
+ print x
+ # result is ['test\n', 'abc\n', 'mytext\n']
+
+or simply read all file in string
+ x = f.read()
+
+***File Write
+ x = ["test\n", "abc\n","mytext\n"]
+ f = open('test.txt','w')
+ f.writelines(x)
+ f.close()
+
+This is same as below
+ x = ["test", "abc","mytext"]
+ f = open('test.txt','w')
+ for line in x:
+ 	f.write("%s\n" % line)
+ f.close()
+
+***File Status
+ import os
+ from stat import *
+ info = os.stat('testdir/test.txt')
+ print info[ST_MODE]
+ print info[ST_NLINK]
+ print info[ST_GID]
+ print info[ST_UID]
+ print info[ST_SIZE]
+ print info[ST_MTIME]
+
+
+***List files & dir with wild card - glob
+ import glob
+ for name in glob.glob('testdir\\*.jpg'):
+ 	print name
+
+This will be same result
+ import os
+ for name in os.listdir('testdir'):
+  	if name.upper().endswith('.JPG'):
+  		print 'testdir\\' + name
+
+***List All Subdirectory - os.path.walk
+os.path.walk setup callback. In this example, list all sub dir in testdir/
+ import os.path
+ def onDir(arg, dirName, fileNames):
+ 	for fileName in fileNames:
+ 		print dirName + '\\' + fileName
+ 
+ os.path.walk("testdir", onDir, 0)
+
+You can use walk without your own function. This is useful function to get all list of directory
+ import os
+ def getDirList(dir):
+     fileList = []
+     for roots,directories,files in os.walk(dir):
+         for x in files:
+             fileList.append(roots + os.sep + x)
+     return fileList
+    
+ for path in getDirList('testdir'):
+ 	print path
+
+ 
+***Create directory & subdirectory
+ import os
+ #os.mkdir('test')
+ os.makedirs('test/a/b/c/')
+
+***Change dir
+ import os
+ os.chdir('test')
+ os.chdir('..')
+ print os.listdir('.')
+
+***Path
+Join
+ os.path.join('test','a')
+ os.path.join('test','a','tmp','cool.jpg')
+Absolute path
+ os.path.abspath('.')
+Find file/dir name
+ import os
+ path = 'testdir\\test.txt'
+ print os.path.dirname(path)
+ print os.path.basename(path)
+
+or
+
+ os.path.split(path)
+ os.path.split(path)[0] #dirname
+ os.path.split(path)[1] #filename
+
+Fix Path
+ import os
+ print os.path.normpath('test/b/c/d/e/test.txt')
+
+This will be test\b\c\d\e\test.txt in Windows
+
+Get separator
+ os.sep
+This return backslash (\) in windows and forward slash in unix (/)
+
+Change abs to rel path
+ # if it is abs, change to relative path
+ if (os.path.isabs(path)):
+ 	path = string.replace(path, (os.getcwd() + os.sep),"")
+
+***Check file / dir 
+Check path is dir or not
+ os.path.isdir(path)
+
+Check file exists or not
+ os.path.exists('test.txt')
+
+Time stamp
+ import os,stat
+ print os.stat('test.txt')[stat.ST_MTIME]
+
+***Exception
+ import os
+ try:
+ 	os.chdir('not_exist')
+ except(IOError, os.error), why:
+ 	print str(why)
+
+***Strip Extention
+ from os import path
+ tu = path.splitext('test.png')
+ print tu[1]
+
+***Join file path
+  path.join('test','abc','test.jpg')
+will be test/abc/test.jpg
+
+
+#navi(Python)
+

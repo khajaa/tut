@@ -1,0 +1,13 @@
+#navi(JavaScript)
+**Open link in a new window without navigation
+#contents
+***Example - Open Link
+ <a href="#" onClick="javascript: window.open('http://zerogc.shyper.com/photo/','',
+ 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width =780,height=550'); 
+ return false">Photo</a>
+***Example - Close this window button
+ <FORM>
+ <INPUT type="button" value="Close" onClick="window.close();" style="text-align:center">
+ </FORM>
+#navi(JavaScript)
+

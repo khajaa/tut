@@ -1,0 +1,52 @@
+#navi(MacOS)
+**iPhone - PDF
+#contents
+***Get PDF Pages
+ NSURL *pdfURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"test" ofType:@"pdf"]isDirectory:NO];
+ CGPDFDocumentRef pdfDocument = CGPDFDocumentCreateWithURL((CFURLRef)pdfURL);
+ NSLog(@"pages = %d", CGPDFDocumentGetNumberOfPages(pdfDocument));
+ CGPDFDocumentRelease(pdfDocument);
+
+***Jump page in UIWebView
+ float offsetY = (870 * (page-1));
+ [mWebView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"scrollTo(0, %f)", offsetY]];
+
+***PDF Generation from UIView
+ #import <QuartzCore/CALayer.h>
+ 
+ - (NSString *)pdfPath {
+   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+   NSString *documentsDirectory = [paths objectAtIndex:0];
+   NSString *writableDBPath = [documentsDirectory stringByAppendingPathComponent:@"tmp.pdf"];
+   return writableDBPath;
+ }
+ 
+ - (NSDictionary *)pdfContextDictionary {
+   NSDictionary *d = [NSDictionary dictionaryWithObjectsAndKeys:@"J. P. Author", kCGPDFContextAuthor,
+                      @"My Cool App", kCGPDFContextCreator,
+                      @"This is the Output", kCGPDFContextTitle,
+                      nil];
+   return d;
+ }
+ 
+ - (void)printToPDF {
+   NSString *path = [self pdfPath];
+   UIView *displayView = self.view;
+   CGRect pageRect = displayView.bounds;
+   if (UIGraphicsBeginPDFContextToFile(path, pageRect, [self pdfContextDictionary]) == NO) {
+     return; // error
+   }
+   UIGraphicsBeginPDFPage();
+   CGContextRef context = UIGraphicsGetCurrentContext();
+   CALayer *layer = displayView.layer;
+   [layer renderInContext:context];
+   UIGraphicsEndPDFContext();  
+   NSLog(@"[%@ %@] %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd), path);
+ }
+
+
+***Reference
+ http://stackoverflow.com/questions/1927841/is-there-a-way-to-programmatically-scroll-to-a-pdf-page-within-a-uiwebview
+ http://forums.pragprog.com/forums/83/topics/2573
+#navi(MacOS)
+

@@ -1,0 +1,14 @@
+#navi(Database)
+**Create and Modify Table
+#contents
+
+***Copy Table
+ select top 0 * into NewTable from OldTable;
+ insert into NewTable select * from OldTable;
+
+***Changing DataType
+ ALTER TABLE MyTable 
+     ALTER MyColumn (new data type)
+
+#navi(Database)
+

@@ -1,0 +1,9 @@
+#navi(SQL Server)
+**Permissions and Ownership
+#contents
+***Changing Ownership of a table
+ EXEC sp_changeobjectowner 'john.MyTable', 'dbo'
+
+this will change MyTable's ownership by john to dbo
+#navi(SQL Server)
+

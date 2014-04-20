@@ -1,0 +1,19 @@
+#navi(ASP.NET)
+**Date and Time
+#contents
+***System Date
+ DateTime.Now.ToString()
+or this is short format (no time included), useful to insert into database
+ DateTime.Now.ToShortDateString()
+
+***Adding
+ DateTime today = DateTime.Now;
+ string str = today.AddDays(35).ToShortDateString();
+
+***String Format
+ DateTime.Now.ToString("dd/MM");
+
+[[Reference:http://msdn2.microsoft.com/en-US/library/k494fzbf(VS.80).aspx]]
+
+#navi(ASP.NET)
+

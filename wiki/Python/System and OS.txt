@@ -1,0 +1,14 @@
+#navi(Python)
+**System and OS
+#contents
+***Running Command
+ import os
+ os.system('ls -la')
+
+***Redirect console output to file
+ import sys
+ sys.stderr=open('svn.txt','w')
+ print 'hello'
+
+#navi(Python)
+

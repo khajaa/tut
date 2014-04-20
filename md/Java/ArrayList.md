@@ -1,0 +1,7 @@
+
+##ArrayList to String array
+
+    String[] strArr = new String[list.size()];
+    strArr = stock_list.toArray(strArr);
+
+

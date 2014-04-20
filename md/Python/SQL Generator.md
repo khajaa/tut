@@ -1,0 +1,66 @@
+
+##SQL Generator
+
+###INSERT Statement Generator from CSV
+```python
+ insertgen.py
+ 
+ insert.csv file format
+ The first line should be column name. 
+ - If you add *, means that the column will be handled as multi bytes characters. 
+ - If you add #, means that the column will be handled as number.
+ 
+ Example:
+ Title*,ReleaseDate#,Director
+ Monty Python And The Holy Grail,1975,Terry Gilliam and Terry Jones
+ Monty Python's Life Of Brian,1979,Terry Jones
+ Monty Python Live At The Hollywood Bowl,1982,Terry Hughes
+ Monty Python's The Meaning Of Life,1983,Terry Jones
+ '''
+ import csv
+ 
+ reader = csv.reader(open("insert.csv"))
+ i=0
+ 
+ columns = ""
+ numList = []
+ mbList = []
+ for row in reader:
+ 	# capture column names in the first line
+ 	if i == 0:
+ 		j = 0
+ 		for col in row:
+ 			# flag for number column
+ 			pos = col.find("#")
+ 			if pos != -1:
+ 				col = col.replace("#","")	
+ 				numList.insert(0,j)
+ 			# flag for multi byte column
+ 			pos = col.find("*")
+ 			if pos != -1:
+ 				col = col.replace("*","")	
+ 				mbList.insert(0,j)
+ 			columns += col + ","
+ 			j = j + 1
+ 		columns = columns[0:-1]
+ 	# for rest of rows, place them in proper format
+ 	else :
+ 		query = "INSERT INTO (" + columns + ") VALUES ("
+ 		k = 0
+ 		for col in row:
+ 			col = col.replace("'","''") # sanitize
+ 			if k in numList:
+ 				query += col + "," # number, no quote
+ 			elif k in mbList:
+ 				query += "N'" + col + "'," # multi byte char, with N''
+ 			else:
+ 				query += "'" + col + "'," # regular string
+ 			k = k + 1
+ 		query = query[0:-1] + ");"
+ 		print query
+ 	i = i + 1
+ ```
+
+
+
+

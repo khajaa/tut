@@ -1,0 +1,64 @@
+#navi(Java)
+**JDBC and Oracle
+#contents
+***Introduction
+There are two major types of connection methods for oracle
++JDBC (Thin driver) - implemented in pure java, but slower than OCI
++OCI - implemented in dll, but platform dependent.
+
+***Environment
+-Database Server
+--Fedora Core 4
+--Oracle 10g release2
+--Turnoff Firewall and SE Linux
+--IP: 192.168.1.2
+--Port: 1521
+--DB Instance Name (SID): TSH1
+-Client Machine
+--Windows XP Home Edition
+--JDK 1.5.X
+--JDBC Driver (classes12.jar) was downloaded into
+ c:\classes
+Oracle Instant Client ( http://www.oracle.com/technology/tech/oci/instantclient/instantclient.html ) 
+--Environment Variable:
+ .;c:\classes\classes12.jar;
+
+***Setup a sample table
++Run sqlplus from
+ 
++Login as system
++Create a table
+ CREATE TABLE mytest (
+      myid number not null
+ );
+
+***Sample Program
+Let's insert a row from the windows machine.
+ import java.sql.*;
+ 
+ class OraTest {
+ 	public static void main(String args[]) {
+ 		try {
+ 			DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+ 			Connection conn = DriverManager.getConnection(
+ 			"jdbc:oracle:thin:@192.168.1.2:1521:TSH1", "system", "mypassword");
+ 			Statement stm = conn.createStatement();
+ 			stm.execute("INSERT INTO mytest VALUES(100)");
+ 			stm.close();
+ 			conn.close();
+ 			System.out.println("Connection is ok");
+ 		}
+ 		catch (Exception ex) {
+ 			ex.printStackTrace();
+ 		}
+ 	}
+ }
+
+***Check Result
++Go back sqlplus
++Run
+ SELECT * FROM mytest;
+
+
+#navi(Java)
+

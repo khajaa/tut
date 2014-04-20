@@ -1,0 +1,26 @@
+#navi(Python)
+**TurboGears - Install
+#contents
+***Steps (New)
++Install Python 2.4
++Download tg-setup.py
++Run  tg-setup.py
+ python tg-setup.py
++Check tg-admin
+ tg-admin
+
+***Steps (Alternative)
++Install Python 2.4
++Install Easy Install (See the [[Easy Install>Python/Easy Install]] section)
++Make sure you have database MySQL (Python for MySQL) or SQLite (pysqlite)
+ easy_install mysql-python
+ easy_install pysqlite
+or just download from website
++Install TurboGears
+ easy_install TurboGears
++Check tg-admin
+ tg-admin
+
+
+#navi(Python)
+

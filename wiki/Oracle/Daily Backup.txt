@@ -1,0 +1,36 @@
+#navi(Oracle)
+**Daily Backup
+#contents
+***Mounting Another Drive
+e.g.
+ su -
+ mkdir /backups
+ mount /dev/hdc1 /backups
+
+change
+ /etc/fstab
+
+***Backup Script
+backup.sh
+ !#/bin/bash
+ sqlplus < /scripts/shutdown.sql
+ cp -r /dbdata/* /backups/
+ sqlplus < /scripts/startup.sql
+
+shutdown.sql
+ connect / as sysdba
+ shutdown immediate
+ exit
+
+startup.sql
+ connect / as sysdba
+ startup
+ exit
+
+then add backup.sh in 
+ /etc/cron.daily
+
+Make sure you do
+ chmod +x backup.sh
+#navi(Oracle)
+

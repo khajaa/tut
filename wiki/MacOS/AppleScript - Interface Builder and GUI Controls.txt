@@ -1,0 +1,20 @@
+#navi(MacOS)
+**AppleScript - Interface Builder and GUI Controls
+#contents
+***IB Outlet
+ script presentiFireAppDelegate
+	property selectedPathLabel : missing value
+	property toggleButton : missing value
+
+Connect from delegate in IB, and then use them like
+ selectedPathLabel's setStringValue_(mSelectedDirectory)
+ toggleButton's setTitle_("Stop Sharing")
+
+***IB Action 
+
+don't forget the underscore!
+ on myButtonClick_(sender)
+	--
+ end myButtonClick_	
+#navi(MacOS)
+

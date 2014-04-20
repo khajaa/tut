@@ -1,0 +1,7 @@
+#navi(Java)
+**Android - Multiple Views
+#contents
+***Reference
+http://www.mkyong.com/android/android-activity-from-one-screen-to-another-screen/
+#navi(Java)
+

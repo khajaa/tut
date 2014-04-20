@@ -1,0 +1,35 @@
+
+##DotNetNuke
+
+###Recommended System
+-Windows 2003
+-IIS6
+-.NET 2.0
+
+###Installation
++Download from http://www.dotnetnuke.com/ (registration required)
++Upload Zip File
++Create a folder (default is c:\dotnetnuke) and deploy in it
++Change Web.Config and in connection string look for setting of SQL Server 2000 or 2005 (therefore, comment out SQL Server Express Edition)
++Create a new Database and a new user as the db_owner
++Go IIS Manager and Create a virtual directory. If it is already listed, RightClick->Property->Create Button. Set proper application pool for ASP.NET 2.0. In ASP.NET tab, you should also select 2.0.
++Right Click on the folder->Property->Security Tab->Add '''NETWORK SERVICE''' User. Add Modify, Write, and Read Permission. (This name is different in XP. Access the webpage then error message shows you what to do)
++Access Website and installation should start.
+
+
+Administrator Login: 
+Username: admin
+Password: dnnadmin
+:Note|Select the Admin tab to manage the portal settings as the Administrator. Make sure you change the default password and specify a valid Email address for this account.
+
+Host Login:
+Username: host
+Password: dnnhost
+:Note|Select the Host tab to manage multiple portals as the Host. Make sure you change the default password and specify a valid Email address for this account.
+
+
+
+
+
+
+

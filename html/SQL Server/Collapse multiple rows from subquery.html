@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<title>SQL Server/Collapse multiple rows from subquery</title>
+<xmp theme="united" style="display:none;">
+
+##Select - Collapse Multiple Rows from Subquery
+
+###Collapse multiple rows and join with comma
+```sql server
+ REPLACE(
+     (SELECT mem.Name  AS [data()]  FROM Members mem WHERE prj.ProjectID=mem.ProjectID FOR XML PATH ('') ), 
+     ' ', ', '
+ ) AS ProjectMembers 
+ FROM Projects prj
+ ```
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

@@ -1,0 +1,20 @@
+#navi(Linux)
+**curl
+#contents
+***POST
+ curl --header "Content-Type: text/xml" --data "<?xml version="1.0"?>...." http://www.test.com/
+
+***Head
+ curl -I http://www.test.com/
+
+ curl --header "Accept-Encoding: gzip" http://www.foo.com/ | gunzip
+
+***FTP
+This is not only downloading webpage (like curl xxki.com) but also it supports to upload ftp. This is very interesting tool too. You should check out man of curl. (e.g. curl xxki.com/file[001-099].jpg -O)
+
+In order to upload file (assume I wanna upload subfolder mydir/tmp/, 
+ curl -T target.txt ftp://username:passwd@xxki.com/mydir/tmp/ --ftp-pasv
+
+:Note|If your password contains special characters such as $ sign, use backslash (\) to escape it.
+#navi(Linux)
+

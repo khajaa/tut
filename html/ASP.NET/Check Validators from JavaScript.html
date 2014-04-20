@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<title>ASP.NET/Check Validators from JavaScript</title>
+<xmp theme="united" style="display:none;">
+
+##Check Validators from JavaScript
+
+###Counting how many validation error on the screen
+```asp.net
+ 	// count how many errors on asp.net validator controls
+ 	var i;
+ 	var cnt = 0;
+ 	for (i = 0; i < Page_Validators.length; i++) {
+ 		if (!Page_Validators[i].isvalid) {
+ 			cnt++;
+ 		}
+ 	}
+ 	//alert(cnt);
+ 	// if no validation error, you can submit
+ 	if (cnt == 0) {
+ 		// ...
+ 	}
+ 	else {
+ 		// ...
+ 	}   
+ </script
+ ```
+
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

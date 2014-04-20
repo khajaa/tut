@@ -1,0 +1,53 @@
+
+##Install
+
+###Install
+In windows, installation is very easy, just download from http://www.postgresql.org/ and double click.
+
+
+###Test
++Start pgAdmin III
++Add user in Login Role
++Add new database
++Add new table
++Add new sequence
+
+Let's assume your table has int (myid) and varchar (myval), and you created a sequence it's called kiichi_seq.
+
+```postgresql
+ ```
+''Testing from php''
+Comment out this line in php.ini and restart apache
+```postgresql
+ ```
+```postgresql
+ // Connecting, selecting database
+ $dbconn = pg_connect("host=localhost dbname=kiichi user=kiichi password=mypassword")
+    or die('Could not connect: ' . pg_last_error());
+ 
+ // Performing SQL query
+ $query = 'SELECT * FROM mytest';
+ $result = pg_query($query) or die('Query failed: ' . pg_last_error());
+ 
+ // Printing results in HTML
+ echo "<table>\n";
+ while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
+    echo "\t<tr>\n";
+    foreach ($line as $col_value) {
+        echo "\t\t<td>$col_value</td>\n";
+    }
+    echo "\t</tr>\n";
+ }
+ echo "</table>\n";
+ 
+ // Free resultset
+ pg_free_result($result);
+ 
+ // Closing connection
+ pg_close($dbconn);
+ ?> 
+ ```
+
+
+
+

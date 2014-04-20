@@ -1,0 +1,21 @@
+#navi(OpenGL)
+**Timer
+#contents
+***Example
+This callback must be recursive.
+Call a function and it sets another interval at the end of the function.
+This one refresh screen every 40 milliseconds which is corresponds to around 25 fps.
+Create a function
+ void Timer( int value ) {
+   glutPostRedisplay();
+   glutTimerFunc(40,Timer,0);
+ }
+In main
+ glutTimerFunc(40,Timer,0);
+You can pass a global variable as a counter, then increment in the function.
+
+In order to calculate fps, combine with idle function. glutPostRedisplay() 
+will be in the idling function.
+
+#navi(OpenGL)
+

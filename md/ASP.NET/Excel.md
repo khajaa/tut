@@ -1,0 +1,49 @@
+
+##Excel
+
+###Concept
+Use Build DataTable and set it into DataGrid. Use DataGrid to Generate Excel.
+
+###GridView
+You will get error when you apply the method below, because it validates html. so you have to kill it. 
+```asp.net
+ public override void VerifyRenderingInServerForm(Control control){ }
+ ```
+Put this one in Page directive if you get error like RegisterForEventValidation can only be called during Render();
+```asp.net
+ ```
+###Example for DataGrid
+```asp.net
+ 											
+ 	// Create a temp DataGrid and add to parent in order to clean up first
+ 	DataGrid dg = new DataGrid();
+ // Just redrive data from database. this is my own funciton example
+ 	dg.DataSource = busObj.GetCustomers();
+ 	dg.DataBind();
+ 
+ 	//export to excel
+ 	Response.Clear();
+ 	Response.Buffer= true;
+        Response.Charset = "utf-8";
+ 	Response.ContentType = "application/vnd.ms-excel";
+ // Open Excel in another window
+ 	Response.AddHeader("Content-Disposition", "attachment;filename=Customers.xls");
+ 	Response.Charset = "";
+ 	this.EnableViewState = false; //?
+ 
+ 	System.IO.StringWriter oStringWriter = new System.IO.StringWriter();
+ 	System.Web.UI.HtmlTextWriter oHtmlTextWriter = new System.Web.UI.HtmlTextWriter(oStringWriter);
+ 
+ 	//this.ClearControls(dg);
+ 	dg.RenderControl(oHtmlTextWriter);
+ 
+ 	Response.Write(oStringWriter.ToString());
+ 	Response.End();
+ }
+ ```
+
+```asp.net
+ ```
+
+
+

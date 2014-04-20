@@ -1,0 +1,39 @@
+#navi(CSharp)
+**CSV
+#contents
+***Parsing CSV in .NET 2.0
+ using System;
+ using System.Collections.Generic;
+ using System.Text;
+ using Microsoft.VisualBasic.FileIO;
+ using System.IO;
+ // Add Reference of Microsoft.VisualBasic.dll
+ namespace CSVParserTest {
+ 	class Program {
+ 		static void Main(string[] args) {
+ 			// Just show the original
+ 			string[] lines = File.ReadAllLines("test.csv");
+ 			foreach (string line in lines) {
+ 				Console.WriteLine(line);
+ 			}
+ 			Console.WriteLine("====================================");
+ 
+ 			// Parser as CSV
+ 			TextFieldParser parser = new TextFieldParser("test.csv");
+ 			parser.SetDelimiters(",");
+ 			while (!parser.EndOfData) {
+ 				string[] row = parser.ReadFields();
+ 				foreach (string field in row) {
+ 					Console.Write(field + "|");
+ 				}
+ 				Console.WriteLine();
+ 			}
+ 		}
+ 	}
+ }
+ 
+**RKLib.ExportData
+http://www.codeproject.com/aspnet/ExportClassLibrary.asp
+
+#navi(CSharp)
+

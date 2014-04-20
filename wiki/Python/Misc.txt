@@ -1,0 +1,8 @@
+#navi(Python)
+**Misc
+#contents
+***Remove all .pyc file from svn repo
+ find . -name '*.pyc' -print0|xargs -0 svn --force delete
+
+#navi(Python)
+

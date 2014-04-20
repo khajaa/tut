@@ -1,0 +1,146 @@
+#navi(ASP.NET)
+**GridView
+#contents
+
+***Conditional statement in template
+ <asp:templatefield>
+	<itemtemplate>
+		<asp:hyperlink id="HyperLink1" runat="server" navigateurl="65.pdf" text="Click Here"
+			visible='<%# Eval("Column4").ToString().Length > 0 %>' />
+		<asp:label id="Label1" runat="server" text="Click Here" visible='<%# !Eval("Column4").ToString().Equals("INV") %>' />
+	</itemtemplate>
+ </asp:templatefield>
+
+
+ <%# ((DateTime)((DataRowView)Container.DataItem)["dateandtime"])<DateTime.Now ? "olditem" : string.Empyty %>
+
+***Change color depend on the database value
+    protected void gvDifference_RowDataBound(object sender, GridViewRowEventArgs e) {
+ // ((DataRowView)e.Row.DataItem)["Item"]
+        if (e.Row.RowType == DataControlRowType.DataRow) {
+            if (DataBinder.Eval(e.Row.DataItem, "Difference").ToString() == "add") {
+                e.Row.Cells[1].ForeColor = System.Drawing.Color.Green;
+            }
+            else {
+                e.Row.Cells[1].ForeColor = System.Drawing.Color.Red;
+            }
+        }
+    }
+
+***Column Adjastment
+If you have 5 database field to update, but you have 2 read-only field:
++If it's bind field, set it as ReadOnly=true
++If it's template field, set Eval instead of Bind
+
+***Image Button for Edit/Update/Delete/Cancel
+You need to set Control style to avoid border and white background image.
+Example:
+            <asp:CommandField ShowDeleteButton="True" ButtonType="Image" DeleteImageUrl="~/img/del3.png" >
+                <ControlStyle BorderWidth="0px" BackColor="transparent" />
+            </asp:CommandField>
+***Delete Confirmation
+First, convert delete column to template,
+then bind this
+ protected void GridView1_RowDataBound(object sender, 
+                          GridViewRowEventArgs e)
+ {
+  if (e.Row.RowType == DataControlRowType.DataRow)
+  {
+    LinkButton l = (LinkButton)e.Row.FindControl("LinkButton1"); 
+    l.Attributes.Add("onclick", "javascript:return " +
+    "confirm('Are you sure you want to delete this record " +
+    DataBinder.Eval(e.Row.DataItem, "CategoryID") + "')"); 
+  }
+ }
+
+***Trouble Shooting
+If you see error when update/delete event fired, make sure you set DataNames as primary key field.
+
+***Footer - Show Total
+ public string GetTotal() {
+	//...
+	return "";
+ }
+
+ <FooterTemplate>
+   <%# GetTotal().ToString() %>
+ </FooterTemplate>
+
+***Using DataField in Template Column and HTML
+ <asp:templatefield headertext="Product">
+    <itemtemplate>
+      <b><%# Eval("productname")%></b> <br />
+      available in <%# Eval("quantityperunit")%>
+   </itemtemplate>
+ </asp:templatefield>
+
+***Bind Value in Custom TemplateField
+            <asp:TemplateField>
+                <EditItemTemplate>
+                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("aaa") %>'></asp:TextBox>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("aaa") %>'></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+
+
+***Send Custom Command - Using Image Button
+Note:You can bind GridView CommandArgument with any database field like:
+ CommandArgument='<%# Eval("MyID") %>'
+
+So that you can retrieve in the code behind like:
+ string myId = e.CommandArgument
+
+That's easiest.
+
+
+This example below, actually uses DataItemIndex to send via CommandArgument, but it actually become a potential bug when you mixed with paging. I really recommend to send the primary key itself (see above).
+
+
+Image binding example
+ <asp:GridView id="gvOfferPosition" runat="server" OnRowCommand="gvOfferPosition_RowCommand" DataKeyNames="OfferPositionID" ...
+
+and in a column, I placed toggle button Y/N tick image
+        <asp:ImageButton runat="server" ImageUrl='<%# Eval("Enabled", "~/images/{0}.png") %>' CommandName="SetEnabled" CommandArgument="<%# Container.DataItemIndex %>" CausesValidation="false" id="ibtnSetEnabled" ToolTip="Toggle Enabled/Disabled"></asp:ImageButton>
+
+Handling the event
+	protected void gvOfferPosition_RowCommand(object sender, GridViewCommandEventArgs e) {
+		if (e.CommandName == "SetEnabled") {
+			int index = Convert.ToInt32(e.CommandArgument);
+			int offerPositionId = Convert.ToInt32(gvOfferPosition.DataKeys[index].Value);
+			ble.ToggleEnabled(offerPositionId);
+			gvOfferPosition.DataBind();
+		}
+	}
+
+***Binding with custom method
+  
+ protected string GenerateFooString(object dataItem)
+ {
+   bool foo = (bool)DataBinder.Eval(dataItem, "foo");
+   bool quux = (bool)DataBinder.Eval(dataItem, "quux");
+   string ret = string.Empty;
+   if (foo)
+     ret = (string)DataBinder.Eval(dataItem, "bar");
+   else if (quux)
+     ret = (string)DataBinder.Eval(dataItem, "a");
+   else
+     ret = (string)DataBinder.Eval(dataItem, "b");
+  
+   return ret;
+ }
+  
+ <asp:TemplateField HeaderText="SomeColumn">
+   <ItemTemplate>
+     <%# GenerateFooString(Container.DataItem) %>
+   </ItemTemplate>
+ </asp:TemplateField>
+ 
+
+
+***Get DataTable from DataSource
+ DataTable dt = ((DataView)odsCourses.Select()).Table.Copy();
+
+#navi(ASP.NET)
+

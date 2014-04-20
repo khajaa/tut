@@ -1,0 +1,37 @@
+#navi(MySQL)
+**MySQL - Install and Configuration
+#contents
+***Install
+***Japanese Character Set Configuration in my.cnf
+ujis means EUC-JP
+For 4.1
+
+ # The MySQL client 
+ [client] 
+ # ... other setting
+ default-character-set=ujis
+
+ # The MySQL server 
+ [mysqld] 
+ # ... other setting
+ character-set-server=ujis
+ #not sure about this
+ collation-server = ujis_japanese_ci
+
+ [mysql]
+ default-character-set = ujis
+
+
+In client side, 
++Make sure php.ini's default charset setting
+ default_charset = "EUC-JP"
++Or just send another query which is
+ mysql_query("SET NAMES ujis");
+then do whatever you want. I think that this is the ''best way''. 
+
+:Reference|
+http://www.mysql.gr.jp/frame/modules/bwiki/index.php?FAQ#content_1_54
+
+
+#navi(MySQL)
+

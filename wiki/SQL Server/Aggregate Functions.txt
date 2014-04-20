@@ -1,0 +1,93 @@
+#navi(SQL Server)
+**Aggregate Function
+#contents
+
+***Identity (Last Inserted ID)
+ SELECT IDENT_CURRENT('MyTable')
+
+This is available in transaction. Useful when you do INSERT -> SELECT -> INSERT or UPDATE other table
+
+***Reset Identity (Autoincrement) Counter
+
+ DBCC CHECKIDENT (mytable, RESEED, 100)
+
+***ISNULL - Check if it is null then...
+ SELECT ISNULL(Qty,0) FROM Inventory;
+If Qty is null, return 0
+
+***CAST and convert
+ SELECT username+CONVERT(varchar, num, 10) FROM mytable;
+
+ SELECT username+CAST(num AS varchar(10)) FROM mytable;
+
+***Date Format
+System Date
+ GETDATE()
+
+Example1: 
+ CONVERT(char(10),DOB,101) AS DOBFormat
+
+Example:For MM/DD/YY
+ CONVERT(char(8),last_login,1) 
+|1|MM/DD/YY|
+|101|MM/DD/YYYY|
+|11|YY/MM/DD|
+|111|YYYY/MM/DD|
+|5|MM-DD-YY|
+|105|MM-DD-YYYY|
+http://msdn.microsoft.com/library/default.asp?url=/library/en-us/tsqlref/ts_ca-co_2f3o.asp
+
+Extract Only Date
+ CONVERT(char(10),FlightDateTime,101)
+Extract Only Time
+ SUBSTRING(CONVERT(char(8),EventDate,8),0,6)
+
+***Date Calculation
+ UPDATE UserStatus SET Locked = 'N' 
+ WHERE datepart(ss,getDate()- LockedTime)  > 300
+
+Use ''datepart'' or ''dateadd'' function. ss indicates seconds. So this sql means, set
+Locked flag to No if LockedTime is less than 300 sec.
+
+***String
+-The second argument is where to start, the third one is the length
+ SUBSTRING(UserSSN, 6,4)
+
+-To concat, use + Operator
+
+-TRIM - use RTRIM
+ RTRIM(FirstName) + ' ' + RTRIM(LastName)
+
+-Upper & Lower case
+ UPPER(varchar)
+ LOWER(varchar)
+-Length of string
+ LEN(varchar)
+-Length of Text field
+ DATALENGTH(mytext)
+-Replace
+ REPLACE(memo,'before','after')
+You can also use this for update statement
+ UPDATE mytable SET memo=REPLACE(memo,'before','after')
+
+***char
+New Line 
+ \r\n
+is
+ char(13)+char(10)
+You can put any ascii code here
+
+Double Quote
+ char(34)
+
+Single Quote
+ char(39)
+
+***Round Decimal
+ LTRIM(STR(AVG(AverageRating),10,1))
+
+This will do 2.3432223=>2.3
+
+
+#navi(SQL Server)
+

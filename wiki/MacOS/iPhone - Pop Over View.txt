@@ -1,0 +1,7 @@
+#navi(MacOS)
+**iPhone - Pop Over View
+#contents
+***Dismiss
+ http://stackoverflow.com/questions/3159061/avoid-video-compression-when-selecting-movie-with-uiimagepickercontroller
+#navi(MacOS)
+

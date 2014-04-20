@@ -1,0 +1,87 @@
+#navi(MacOS)
+**AppleScript - File IO, Folder, and Path
+#contents
+
+
+***Reading a file
+	-----------------------------------------------------------------------------------------------------------------------
+	on readFile(unixPath)
+		set tmpFile to open for access unixPath
+		set retStr to (read tmpFile for (get eof tmpFile))
+		close access tmpFile
+		return retStr
+	end readFile
+
+***Writing a file
+	-----------------------------------------------------------------------------------------------------------------------
+	on writeFile(unixPath, inStr)
+		set tmpFile to open for access unixPath with write permission
+		set eof of tmpFile to 0
+		write inStr to tmpFile starting at eof
+		close access tmpFile
+	end writeFile
+
+***String replace
+	-----------------------------------------------------------------------------------------------------------------------
+	on searchAndReplace(txt, srch, rpl)
+		set oldtid to AppleScript's text item delimiters
+		set AppleScript's text item delimiters to {srch}
+		set temp to every text item of txt
+		set AppleScript's text item delimiters to {rpl}
+		set temp to (temp as string)
+		set AppleScript's text item delimiters to oldtid
+		return temp
+	end searchAndReplace
+
+
+
+***Find a folder
+ set theOutputFolder to path to documents folder as string
+
+***posix path format
+ set mSettingsFile to POSIX path of theOutputFolder
+
+***List of pre-defined dir
+ applications folder
+ documents folder
+ favorites folder
+ home folder
+ library folder
+ movies folder
+ music folder
+ pictures folder
+ public folder
+ shared documents
+ shared documents folder
+ sites folder
+ utilities folder
+
+***Get current app path
+ set tmpCurrentPath to POSIX path of (path to application "presentiFire")
+
+***secondly way to use finder
+	tell application "Finder"
+		set the_folder to (folder of the front window) as text
+		display dialog the_folder
+	end tell
+
+
+
+
+Reference
+ http://www.mactech.com/articles/mactech/Vol.22/22.03/StoringandAccessingData/index.html
+
+***checking if the file exists or not
+	tell application "Finder"
+		if exists file tmpSettingsFilePath then
+			--
+		else
+			create_settings()
+		end if
+	end tell
+
+
+***Reference
+http://www.faqintosh.com/risorse/en/guides/as/guide/fileIO/
+#navi(MacOS)
+

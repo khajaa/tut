@@ -1,0 +1,35 @@
+**Mambo 4.5.1 Installation
+#hr
+Download file and unzip everything. Then upload them.
+//#ref(00.jpg)
+#hr
+#ref(01.jpg)
+#hr
+#ref(02.jpg)
+#hr
+#ref(03.jpg)
+#hr
+#ref(04.jpg)
+#hr
+#ref(05.jpg)
+#hr
+#ref(06.jpg)
+#hr
+#ref(07.jpg)
+#hr
+#ref(08.jpg)
+#hr
+#ref(09.jpg)
+#hr
+#ref(10.jpg)
+#hr
+#ref(11.jpg)
+#hr
+#ref(12.jpg)
+#hr
+#ref(13.jpg)
+#hr
+#ref(14.jpg)
+#hr
+Copy & paste to notepad to create configuration.php. upload this one also
+

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<title>Linux/.bash_profile</title>
+<xmp theme="united" style="display:none;">
+
+##.bash_profile
+
+###Example
+Add to PATH
+```linux
+ ```
+```linux
+ ```
+```linux
+ alias less='less -r'
+ alias rm='rm -i'
+ ```
+###Example2 - my mac
+
+```linux
+ export PATH=$PATH:/usr/local/mysql/bin
+ alias less='less -r'
+ alias rm='rm -i'
+ alias ls='ls -laG'
+ export PS1="[\u@\h:\w] "
+ export PS1="\[\e[30;44m\]\u\[\e[30;44m\]@\[\e[30;44m\]\h\[\e[37;44m\]:\w\[\e[0m\]>"
+ #http://www.ibm.com/developerworks/linux/library/l-tip-prompt/
+ export LSCOLORS=xefxcxdxbxegedabagacad
+ #export LSCOLORS=exfxcxdxbxegedabagacad
+ #                           1.   directory
+ #                           2.   symbolic link
+ #                           3.   socket
+ #                           4.   pipe
+ #                           5.   executable
+ #                           6.   block special
+ #                           7.   character special
+ #                           8.   executable with setuid bit set
+ #                           9.   executable with setgid bit set
+ #                           10.  directory writable to others, with sticky bit
+ #                           11.  directory writable to others, without sticky bit
+ #
+ ```
+
+
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

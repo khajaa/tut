@@ -1,0 +1,75 @@
+#navi(Oracle)
+**sqlplus
+#contents
+
+***Make sure to commit
+Whenever you do change, do
+ commit;
+
+***Example1 - Oracle 10g Express Edition
+If you installed Oracle 10g Express Edition, just run
+ sqlplus sysdba/pass
+or
+ sqlplus / as sysdba
+from local machine.
+
+***sqlplus setup 
+First, Download Oracle Instant client
+
+'''Method A:'''
+ sqlplus user/pass@//192.168.1.100:1521/MYDB
+
+'''Method B:'''
++set tnsnames.ora
+ $ORACLE_HOME/network/admin/tnsnames.ora or ORACLE_HOME%\network\admin\tnsnames.ora
++If you use your own tnsnames.ora, set TNS_ADMIN variable to directory where tnsnames.ora is located. e.g.
+ TNS_ADMIN = /home/kiichi
+ export TNS_ADMIN
+or
+ set TNS_ADMIN = "c:\bin\sqlplus"
++make sure to set PATH to bin directory of oracle
++then
+ sqlplus user/password@TNSNAME
+
+Sample Configuration
+ TNSNAME =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.1.100)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVICE_NAME = service1)
+    )
+ )
+
+:Note|If you place tnsnames.ora in same directory of sqlplus, it will read that first.
+
+***Setting Environment Variable
+ SET ORACLE_SID=TESTDB
+Then you can connect like
+ sqlplus username/password
+
+***Change editor
+ define _EDITOR=vi
+
+***Edit last sql command
+ edit
+
+***Load script
+ @/home/kiichi/batch.sql
+
+***Save Result
+record all activity
+ spool /home/kiichi/result.txt
+stop recording
+ spool off;
+
+***Checking Database is up or not
+ tnsping (TNSNAME)
+
+***Links
+[[Tutorial:http://www.oracle.com/technology/docs/tech/sql_plus/10102/readme_ic.htm]]
+[[Download:http://www.oracle.com/technology/software/tech/oci/instantclient/htdocs/winsoft.html]]
+[[orafaq:http://www.orafaq.com/faqplus.htm]]
+#navi(Oracle)
+

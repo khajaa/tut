@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<title>MySQL/my.cnf</title>
+<xmp theme="united" style="display:none;">
+
+##my.cnf
+
+###Sample for UTF8 fix
+```mysql
+ default-character-set = utf8
+ skip-character-set-client-handshake
+ character-set-server = utf8
+ collation-server = utf8_general_ci
+ init-connect = SET NAMES utf8
+ 
+ 
+ [client]
+ default-character-set=utf8
+ ```
+###With some tune up
+```mysql
+ datadir=/var/lib/mysql
+ socket=/var/lib/mysql/mysql.sock
+ default-character-set=utf8
+ old_passwords=1
+ bind-address=127.0.0.1      
+ 
+ ############ [Added Parameters for Tune up] ######################
+ skip-locking
+ skip-innodb
+ query_cache_type=1
+ query_cache_limit=1M
+ query_cache_size=32M
+ table_cache=512
+ thread_cache=32
+ key_buffer=128M
+ thread_concurrency=2
+  
+ [mysql.server]
+ user=mysql
+ basedir=/var/lib 
+ 
+ [mysqld_safe]
+ log-error=/var/log/mysqld.log
+ pid-file=/var/run/mysqld/mysqld.pid
+ 
+ [client]
+ default-character-set=utf8
+ ```
+
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

@@ -1,0 +1,68 @@
+#navi(Network)
+**POP3,SMPT,GET,POST
+#contents
+***POP3
+ telnet www.url.com 110
+ USER myusername
+ PASS mypassword
+ LIST
+Then you will see all list of email.
+To read email #100, just type
+ RETR 100
+
+Other commands
+ DELE
+ TOP 10
+ QUIT
+
+
+***SMTP
+ telnet www.url.com 25
+ HELO local.domain.name
+for local domain name, type same domain above, don't worry
+ MAIL FROM: mail@sender.com
+ RCPT TO: mail@destination.com
+ DATA
+ Subject:-type subject here-
+ my message body here
+ .
+Then type
+ QUIT
+
+
+***GET
+Run
+ telnet www.xxki.com
+
+ GET /portal/index.php HTTP/1.0
+ From: someuser@somwhere.com
+ User-Agent: MyAgent
+
+and hit enter 2 times. Only the first line is required.
+
+Then you suppose to have
+ HTTP/1.0 200 OK
+ Date: Fri, 31 Dec 1999 23:59:59 GMT
+ Content-Type: text/html
+ Content-Length: 1354 
+ 
+ <html>
+ <body>
+ ....
+
+***HEAD
+HEAD is same as GET. But it does not return the body, such as HTML file.
+
+***POST
+
+ POST /form/submit.php HTTP/1.0
+ From: somebody@somewhere.com
+ User-Agent: MyAgent
+ Content-Type: application/x-www-form-urlencoded
+ Content-Length: 25
+ 
+ fjalfja=bbbbbbbbbbccccc
+ &eee=dddd
+ &falfaaa=fjjajjjjj
+#navi(Network)
+

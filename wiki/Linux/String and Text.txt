@@ -1,0 +1,35 @@
+#navi(Linux)
+**String and Text
+#contents
+***Remove Duplicated Lines
+input.txt
+ abc
+ abc
+ aaa
+ bbb
+ bbb
+ bbb
+ ccc
+
+
+Unique Lines only
+ sort input.txt | uniq -u
+
+ aaa
+ ccc
+
+Duplicated Lines only
+ sort input.txt | uniq -d
+
+ abc
+ bbb
+
+Eliminate Duplicated Line and count them
+ sort input.txt | uniq -c
+
+     1  aaa
+     2  abc
+     3  bbb
+     1  ccc
+#navi(Linux)
+

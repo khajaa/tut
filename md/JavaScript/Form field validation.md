@@ -1,0 +1,60 @@
+
+##Form field validation
+
+###Introduction
+First, you need to bind your function as onSubmit event handler.
+```javascript
+ ```
+```javascript
+ ...
+ ```
+If the validation fail, you should return false, so that the form will not be submitted.
+###Example - inventory.html
+```javascript
+ 	<head>
+ 		<title>Inventory</title>
+ 		<script type="text/javascript">
+ 			<!--
+ 
+ 			function checkInput(){
+ 				if( document.input_form.item_bar1.value == ""){
+ 					alert("Enter item barcode 1");
+ 					return false;
+ 				}
+ 				if( document.input_form.item_bar2.value == ""){
+ 					alert("Enter item barcode 2");
+ 					return false;
+ 				}
+ 				if( document.input_form.qty.value == ""){
+ 					alert("Enter quantity");
+ 					return false;
+ 				}
+ 				return true;
+ 			}
+ 
+ 
+ 			//-->
+ 		</script>
+ 	</head>
+ 	<body>
+ 		<form name="input_form" action="inventory.php" method="post" onSubmit="return checkInput();">
+ 			<input type="text" name="item_bar1" value=""/><br>
+ 			<input type="text" name="item_bar2" value=""/><br>
+ 			<input type="text" name="qty" value=""/><br>
+ 			<input type="submit" name="submit" value="ADD"/>
+ 		</form>
+ 	</body>
+ </html>
+ ```
+###Email
+```javascript
+ //Validating the email field
+ var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+ if (! val.match(re)) {
+ 	return false;
+ }
+ return true;
+ }
+ ```
+
+

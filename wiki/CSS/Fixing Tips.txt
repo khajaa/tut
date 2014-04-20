@@ -1,0 +1,60 @@
+#navi(CSS)
+**Fixing Tips
+#contents
+***1. Vertical centering with line-height
+
+line-height:24px;
+
+When you have a container with fixed height you can use line-height property to vertically center the content.
+***2. Prevent oversized content to break fixed width floated layouts
+
+	#main{
+		overflow:hidden;
+	}
+
+When oversized content (i.e. wide image) is placed in fixed width floated container, it may break the layout. To prevent that use this trick. It will hide a part of the content but at least your layout structure will remain intact.
+I wrote an article about it a while back.
+***3. Prevent line breaks in links
+
+	a{
+		white-space:nowrap;
+	}
+
+This little trick will prevent line breaks on your links. I recommend using this with long text to avoid having links break into 2 lines.
+***4. Always show Firefox scrollbar
+
+	html{
+		overflow:-moz-scrollbars-vertical;
+	}
+
+Firefox hides vertical scrollbar by default. So, when you browse a site that have different page heights you notice a horizontal shift. This code will always display a scrollbar and prevent shifting.
+***5. Centering block elements horizontally
+
+	margin:0 auto;
+
+For all modern browser this line of css is enough to horizontally center a block level element.
+***6. Remove vertical textarea scrollbar in IE
+
+	textarea{
+		overflow:auto;
+	}
+
+Textareas in IE have vertical scrollbar visible by default. If you want those removed (I know I do) use this line.
+***7. Force page breaks when printing your document
+
+	h2{
+		page-break-before:always;
+	}
+
+With this line of code you can control places where you want your pages to break when printing a document.
+***8. Remove active link borders
+
+	a:active, a:focus{
+		outline:none;
+	}
+
+
+***Reference
+http://cssglobe.com/post/1392/8-premium-one-line-css-tips
+#navi(CSS)
+

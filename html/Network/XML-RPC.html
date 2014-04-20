@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<title>Network/XML-RPC</title>
+<xmp theme="united" style="display:none;">
+
+##XML-RPC
+
+###XML-RPC Request and Response Example
+Request
+```network
+ User-Agent: Frontier/5.1.2 (WinNT)
+ Host: betty.userland.com
+ Content-Type: text/xml
+ Content-length: 181 
+ 
+ <?xml version="1.0"?>
+ <methodCall>
+   <methodName>examples.getStateName</methodName>
+   <params>
+      <param>
+         <value><i4>41</i4></value>
+      </param>
+   </params>
+ </methodCall>
+ ```
+
+
+Response
+```network
+ Connection: close
+ Content-Length: 158
+ Content-Type: text/xml
+ Date: Fri, 17 Jul 1998 19:55:08 GMT
+ Server: UserLand Frontier/5.1.2-WinNT
+ 
+ <?xml version="1.0"?>
+ <methodResponse>
+   <params>
+      <param>
+         <value><string>South Dakota</string></value>
+      </param>
+   </params>
+ </methodResponse>
+ ```
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

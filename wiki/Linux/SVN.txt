@@ -1,0 +1,70 @@
+#navi(Linux)
+**SVN
+#contents
+***Starting SVN Server
+Starting svn server with /repo local directory and listen port 10100.
+-d indicates run as a deamon.
+ svnserve -r /repo -d --listen-port 10100
+:Note|Create directory /repo for svn server.
+
+Create repository
+ svnadmin create /repo
+or
+ svnadmin create --fs-type fsfs /repo
+Just make sure create data file as file system (not berfly db)
+
+***Stop Server
+Just Kill the process like
+ kill 25990
+or
+ kill -9 25990
+
+***Set Authentication
+Edit
+ /repo/conf/svnserve.conf
+e.g. Access permission for unauthenticated users
+ [general]
+ anon-access = read
+ anon-access = write 
+Password file location
+ password-db = passwd
+
+Edit
+ /repo/conf/passwd
+and add a line
+ kiichi=test123
+
+***Create a directory
+ svn mkdir svn://localhost:10100/kiichi -m "test comment" --username kiichi --password test123
+
+***Import (Create project for the first time)
+Let's assume you have a sub directory called testprj
+ svn import testprj svn://localhost:10100/kiichi/testprj -m "initial importing" --username kiichi --password test123
+
+You should see all inside testprj folder were uploaded.
+
+***Commit (Save your files)
+Let's assume you made changes on your program and you want to save them.
+Just go to testprj directory and
+ svn commit file_name.py
+
+***Checkout (Download the latest project)
+Let's assume your co-worker need to download and work on the same project.
+In his directory,
+ svn checkout svn://localhost:10100/kiichi/testprj --username kiichi --password test123
+
+You need to create another account for him.
+
+
+
+
+
+
+
+
+
+
+
+
+#navi(Linux)
+

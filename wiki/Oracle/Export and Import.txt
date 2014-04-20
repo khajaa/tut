@@ -1,0 +1,30 @@
+#navi(Oracle)
+**Export and Import
+#contents
+***Export - exp command
+ exp backupuser/test123 file=test.dmp full=y log=log.txt compress=Y
+
+You can specify the instance
+ exp backupuser/test123@DB1 ....
+
+use 
+ exp help=Y
+
+
+
+:Note|If you doing full backup, you have to run it as dba.
+ grand dba to username;
+
+
+***Import - imp command
+
+ imp backupuser/test123 file=test.dmp full=Y
+
+
+***Export by table
+ exp userid=sysadm/test123@myora file=mytable.dmp tables=mytable 
+
+
+
+#navi(Oracle)
+

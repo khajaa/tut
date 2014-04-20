@@ -1,0 +1,24 @@
+#navi(MacOS)
+**iPhone - Modal Dialog or Window
+#contents
+
+***Navigation and Modal View
+
+	UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:[[DatabaseViewController alloc] initWithNibName:@"DatabaseView" bundle:nil]];
+	[appDelegate.navigationController presentModalViewController:controller animated:YES];
+	[controller release];
+
+***Popup
+	ModalPlayerViewController *controller = [[ModalPlayerViewController alloc] initWithNibName:@"ModalPlayerView" bundle:nil];
+	//controller.delegate = self;
+	//controller.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+	[self presentModalViewController:controller animated:YES];
+	[controller release];
+
+In the popup view controller
+ -(IBAction)done:(id)sender{
+	//[mWebView stopLoading]; // if you are loading or processing something, remove all
+	[self dismissModalViewControllerAnimated:YES];
+ } 
+#navi(MacOS)
+

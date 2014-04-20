@@ -1,0 +1,10 @@
+#navi(SQL Server)
+**Security
+#contents
+***Auto Fix
+
+Do this after moving database
+
+ EXEC sp_change_users_login 'Auto_Fix', 'user'
+#navi(SQL Server)
+

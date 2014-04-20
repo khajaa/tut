@@ -1,0 +1,101 @@
+#navi(MacOS)
+**iPhone - Geometory Collision Detection etc
+#contents
+***Point vs Rect
+ bool CGRectContainsPoint (CGRect rect, CGPoint point);
+
+***Rect vs Rect - contains or not
+ bool CGRectContainsRect (CGRect rect1, CGRect rect2);
+
+***Rect vs Rect - intersect or not
+ bool CGRectIntersectsRect (CGRect rect1, CGRect rect2);
+
+***Get Intersection of Rects
+ CGRect CGRectIntersection (CGRect r1,CGRect r2);
+
+You can also check collision like this
+ CGRect r = CGRectIntersection(rect1, rect2);
+ if (CGRectIsNull(r)){ ...
+
+***Rect - Offset
+ CGRect CGRectOffset (CGRect rect, CGFloat dx,CGFloat dy);
+
+***Rect - expand
+ CGRect CGRectInset (CGRect rect,CGFloat dx,CGFloat dy);
+
+***NSMutableArray and CGRect
+	CGRect firstRect = CGRectMake(0, 80, 320, 320);	
+	rectArray = [[NSMutableArray alloc] init];
+	[rectArray addObject:[NSValue valueWithCGRect:firstRect]];
+
+ CGRect myRect = [[rectArray objectAtIndex:0] CGRectValue];
+
+
+
+
+***Reference
+http://developer.apple.com/documentation/graphicsimaging/reference/CGGeometry/Reference/reference.html
+
+ Functions by Task
+ Creating a Dictionary Representation From a Geometric Primitive
+ 
+     * CGPointCreateDictionaryRepresentation
+     * CGSizeCreateDictionaryRepresentation
+     * CGRectCreateDictionaryRepresentation
+ 
+ Creating a Geometric Primitive From a Dictionary Representation
+ 
+     * CGPointMakeWithDictionaryRepresentation
+     * CGSizeMakeWithDictionaryRepresentation
+     * CGRectMakeWithDictionaryRepresentation
+ 
+ Creating a Geometric Primitive From Values
+ 
+     * CGPointMake
+     * CGRectMake
+     * CGSizeMake
+ 
+ Modifying Rectangles
+ 
+     * CGRectDivide
+     * CGRectInset
+     * CGRectIntegral
+     * CGRectIntersection
+     * CGRectOffset
+     * CGRectStandardize
+     * CGRectUnion
+ 
+ Comparing Values
+ 
+     * CGPointEqualToPoint
+     * CGSizeEqualToSize
+     * CGRectEqualToRect
+     * CGRectIntersectsRect
+ 
+ Checking for Membership
+ 
+     * CGRectContainsPoint
+     * CGRectContainsRect
+ 
+ Getting Min, Mid, and Max Values
+ 
+     * CGRectGetMinX
+     * CGRectGetMinY
+     * CGRectGetMidX
+     * CGRectGetMidY
+     * CGRectGetMaxX
+     * CGRectGetMaxY
+ 
+ Getting Height and Width
+ 
+     * CGRectGetHeight
+     * CGRectGetWidth
+ 
+ Checking Rectangle Characteristics
+ 
+     * CGRectIsEmpty
+     * CGRectIsNull
+     * CGRectIsInfinite
+
+#navi(MacOS)
+

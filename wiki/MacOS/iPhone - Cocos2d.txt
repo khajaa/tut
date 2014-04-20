@@ -1,0 +1,35 @@
+#navi(MacOS)
+**iPhone - Cocos2d
+#contents
+***Installation
+
+1. Download source
+http://code.google.com/p/cocos2d-iphone/
+
+2. Run install script
+ install_template.sh
+3. start xcode and select cocos project type
+
+:Note|for Box2D, one of the file name is corrupted. Fix 
+ CocosBox2DAppDelegate.mm
+
+***Accelerormeter
+		self.isAccelerometerEnabled = YES;
+		[[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0 / 30)];
+
+ - (void)accelerometer:(UIAccelerometer*)accelerometer didAccelerate:(UIAcceleration*)acceleration{
+	static float prevX=0;//, prevY=0;
+ 	
+	float accelX = acceleration.x * kFilterFactor + (1- kFilterFactor)*prevX;
+	//float accelY = acceleration.y * kFilterFactor + (1- kFilterFactor)*prevY;
+ 	
+	prevX = accelX;
+	//prevY = accelY;
+	NSLog(@"accX = %f",accelX);	
+ }
+
+
+
+
+#navi(MacOS)
+

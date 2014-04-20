@@ -1,0 +1,44 @@
+#navi(PostgreSQL/)
+**PostGIS - Install
+#contents
+***Install
+
++Install PostgreSQL
++Add add-on (after installation) expand spatial database
++Also add pgAdmin and so on
+
+***Test
+
++Go to postgis
++Open Schema -> Public
++Create a new table
+-Columns
+--id - sequence or int
+--house - point
+--name - varchar or something
+
+Insert statment
+
+ insert into hello (id,houses) values (1, '(2,2)');
+
+add a couple of points
+
+
+Query - select all points in the area
+
+ select id,houses from hello where houses @ ST_GeomFromText('LINESTRING(2 2,5 2,5 5,2 5)', 1000);
+
+
+***References
+Cheat Sheet
+http://www.bostongis.com/postgis_quickguide.bqg
+
+
+
+
+
+
+
+
+#navi(PostgreSQL/)
+

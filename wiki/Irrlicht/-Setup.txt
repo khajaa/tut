@@ -1,0 +1,61 @@
+#navi(Irrlicht)
+**Setup
+#contents
+***Download
+Download SDK from here
+http://irrlicht.sourceforge.net/downloads.html
+
+***Path
+Let's put unzipped folder under c:
+e.g.
+ C:\irrlicht-0.7
++Then start up Visual Studio 6.0
++Create Win32 Project
++Go Tool->Options->Directories
++Click New Button and add 
+ C:\irrlicht-0.7
+
+
+***Irrlicht.lib
+Copy ''Irrlicht.lib'' to
+ C:\Program Files\Microsoft Visual Studio\VC98\Lib
+
+***Irrlicht.dll
+After you compile a program below, copy ''Irrlicht.dll''
+into ''debug'' folder. or 
+ c:\windows\system32
+when you give your program, you have to give this dll too.
+
+***Hello World Program
+
+ #ifdef WIN32
+ #include <windows.h>
+ #endif
+ #include <irrlicht.h>
+ using namespace irr;
+ 
+ using namespace core;
+ using namespace video;
+ 
+ #pragma comment(lib, "Irrlicht.lib")
+ 
+ #ifdef WIN32
+ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR strCmdLine, INT )
+ #else
+ int main()
+ #endif
+ {
+     IrrlichtDevice *Device 
+      = createDevice(EDT_OPENGL, dimension2d<s32>(512, 384), 16, false, false, 0);
+     IVideoDriver *Driver = Device->getVideoDriver();
+     while(Device->run())
+     {
+         Driver->beginScene(true, true, SColor(0,100,100,160));
+         Driver->endScene();
+     }
+     Device->drop();
+ 	return 0;
+ }
+
+#navi(Irrlicht)
+

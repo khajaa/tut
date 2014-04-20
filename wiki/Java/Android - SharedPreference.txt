@@ -1,0 +1,15 @@
+#navi(Java)
+**&page
+#contents
+***Example
+Read
+ SharedPreferences settings = getSharedPreferences("UserDefault", 0);
+ boolean silent = settings.getBoolean("MY_SETTING", false);
+
+Write
+ SharedPreferences settings = getSharedPreferences("UserDefault", 0);
+ SharedPreferences.Editor editor = settings.edit();
+ editor.putBoolean("MY_SETTING", false);
+ editor.commit();
+#navi(Java)
+

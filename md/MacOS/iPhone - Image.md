@@ -1,0 +1,179 @@
+
+##iPhone - Image
+
+
+###Save GIF into photo album
+    NSData *gifData = [[NSData alloc]initWithContentsOfFile:mFileName];	
+    ALAssetsLibrary *al = [[ALAssetsLibrary alloc] init];
+    NSDate *date = [[NSDate date] retain];	
+    [al writeImageDataToSavedPhotosAlbum:gifData metadata:nil completionBlock:^(NSURL *assetURL, NSError *error) {
+        NSLog(@"Saving Time: %g", [[NSDate date] timeIntervalSinceDate:date]);
+        [date release];
+    }];	
+    [al release];
+
+
+### Image from URL
+```macos
+ ```
+###Save UIImage as JPEG or PNG 
+```macos
+ [data writeToFile:pathToImageFile atomically:YES];
+ ```
+```macos
+ [data writeToFile:pathToImageFile atomically:YES];
+ ```
+###Adding an image into another one
+```macos
+ UIGraphicsBeginImageContext(baseImage.size);
+ [baseImage drawInRect:CGRectMake(0,0,baseImage.size.width,baseImage.size.height)];
+ [targetImage drawInRect:targetRect];
+ UIImage *img = UIGraphicsGetImageFromCurrentImageContext();	
+ UIGraphicsEndImageContext();
+ return img;
+ }
+ ```
+###Resize Image - smaller one
+```macos
+ // Creates a bitmap-based graphics context and makes it the current context.
+ UIGraphicsBeginImageContext(thumbRect.size);
+ [inImage drawInRect:thumbRect];	
+ UIImage *img = UIGraphicsGetImageFromCurrentImageContext();	
+ UIGraphicsEndImageContext();
+ return img;
+ }
+ ```
+
+###Resize - bigger one
+```macos
+ UIImage* resizedImage(UIImage *inImage, CGRect thumbRect){
+ 	CGImageRef                        imageRef = [inImage CGImage];
+ 	CGImageAlphaInfo        alphaInfo = CGImageGetAlphaInfo(imageRef);
+ 	
+ 	// There's a wierdness with kCGImageAlphaNone and CGBitmapContextCreate
+ 	// see Supported Pixel Formats in the Quartz 2D Programming Guide
+ 	// Creating a Bitmap Graphics Context section
+ 	// only RGB 8 bit images with alpha of kCGImageAlphaNoneSkipFirst, kCGImageAlphaNoneSkipLast, kCGImageAlphaPremultipliedFirst,
+ 	// and kCGImageAlphaPremultipliedLast, with a few other oddball image kinds are supported
+ 	// The images on input here are likely to be png or jpeg files
+ 	if (alphaInfo == kCGImageAlphaNone)
+ 		alphaInfo = kCGImageAlphaNoneSkipLast;
+ 	
+ 	// Build a bitmap context that's the size of the thumbRect
+ 	CGContextRef bitmap = CGBitmapContextCreate(
+ 												NULL,
+ 												thumbRect.size.width,                // width
+ 												thumbRect.size.height,                // height
+ 												CGImageGetBitsPerComponent(imageRef),        // really needs to always be 8
+ 												4 * thumbRect.size.width,        // rowbytes
+ 												CGImageGetColorSpace(imageRef),
+ 												alphaInfo
+ 												);
+ 	
+ 	// Draw into the context, this scales the image
+ 	CGContextDrawImage(bitmap, thumbRect, imageRef);
+ 	
+ 	// Get an image from the context and a UIImage
+ 	CGImageRef        ref = CGBitmapContextCreateImage(bitmap);
+ 	UIImage *result = [UIImage imageWithCGImage:ref];
+ 	
+ 	CGContextRelease(bitmap);        // ok if NULL
+ 	CGImageRelease(ref);
+ 	
+ 	return result;
+ }
+ ```
+###Gray Scale
+```macos
+ CGSize size = image.size; 
+ //CGRect rect = CGRectMake(0.0f, 0.0f, image.size.width, image.size.height);
+ CGRect rect = CGRectMake(0.0f, 0.0f, size.width, size.height); 
+ NSLog([NSString stringWithFormat:@"width: %g",image.size.width]);
+ NSLog([NSString stringWithFormat:@"height: %g",image.size.height]);
+ // Create a mono/gray color space 
+ CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray(); 
+ CGContextRef context = CGBitmapContextCreate(nil, size.width, 
+ 											 size.height, 8, 0, colorSpace, kCGImageAlphaNone); 
+ 	
+ //CGContextTranslateCTM(context, image.size.width, 0);
+ CGColorSpaceRelease(colorSpace); 
+ // Draw the image into the grayscale context 
+ CGContextDrawImage(context, rect, [image CGImage]); 
+ CGImageRef grayscale = CGBitmapContextCreateImage(context); 
+ CGContextRelease(context); 
+ // Recover the image 
+ UIImage *img = [UIImage imageWithCGImage:grayscale]; 
+ CFRelease(grayscale); 
+ return img; 
+ }
+ ```
+
+###Rounded Corner Image
+```macos
+ mImageView.layer.masksToBounds = YES;
+ mImageView.layer.cornerRadius = 10.0;
+ mImageView.layer.borderWidth = 1.0;
+ mImageView.layer.borderColor = [[UIColor grayColor] CGColor];
+ ```
+###Cropping Image
+```macos
+ CGImageRef imageRef = CGImageCreateWithImageInRect([largeImage CGImage], cropRect);
+ // for example
+ imageView.image = [UIImage imageWithCGImage:imageRef]; 
+ CGImageRelease(imageRef);
+ ```
+###Saving Image
+```macos
+ [UIImage imageWithContentsOfFile:DOC_TMP_PATH];
+ ```
+###Loading Image
+```macos
+ [UIImage imageNambed:@""];
+ // this is ok, and return frame too but some leak to load over and over again
+ ```
+
+###Introduction
++Right click on Resources folder->Add->Existing file->test.png
++Add UIImage object
++Load Image
++Override drawRect
+
+###Sample Code - HelloImage
+
+MyView.h
+```macos
+ 
+ @interface MyView : UIView {
+ 	UIImage *testImage;
+ }
+ 
+ @property (nonatomic, retain) UIImage *testImage;
+ @end
+ ```
+MyView.m
+```macos
+ 
+ @implementation MyView
+ @synthesize testImage;
+ 
+ - initWithFrame:(CGRect)frame {
+ 	
+ 	if (self = [super initWithFrame:frame]) {		
+ 		self.testImage = [UIImage imageNamed:@"test.png"];
+ 	}
+ 	return self;
+ }
+ 
+ - (void)drawRect:(CGRect)rect {
+ 	[testImage drawAtPoint:(CGPointMake(100.0, 100.0))];
+ }
+ @end
+ ```
+###ImageView
+
+
+
+
+
+
+

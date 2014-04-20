@@ -1,0 +1,21 @@
+#navi(Python)
+**Django - Template
+#contents
+***Trim string by character and append ... 
+(useful for front page summary and read more ... )
+
+This is the example to trim 50 chars. and if it's morethan 50 chars, append ...
+ {{item.description|slice:":50"}} {% if item.description|slice:":50"|length_is:"50" %}&hellip;{% endif %}
+
+***Formatting Date and Time
+ {{item.created_date|date:"m/d/Y H:i:s A"}}
+
+***Copyright with year
+ Copyright &copy; {% now "Y" %} <a href="http://www.objectgraph.com">ObjectGraph LLC.</a> All Rights Reserved.
+
+***Format String
+Padding Zero:
+ {{item.count|stringformat:"02d"}}
+
+#navi(Python)
+

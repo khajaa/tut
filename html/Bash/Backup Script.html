@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<title>Bash/Backup Script</title>
+<xmp theme="united" style="display:none;">
+
+##Backup Script
+
+
+
+###Bacup Script (to FTP)
+```bash
+ 
+ ###################################################################
+ # Backup Script by Kiichi Takeuchi (c) 2005 xxki.com
+ ###################################################################
+ 
+ 
+ ###################################################################
+ # Change User Setting here
+ TargetDir="/cygdrive/c/tmp"
+ FtpServer="xxki.com"
+ FtpUser="kiichi"
+ FtpPass="mypass"
+ FtpDestDir="backup/zip/"
+ UploadUrl="http://www.xxki.com/backup/zip/"
+ ###################################################################
+ 
+ #Check the first argument
+ if [ -z $1 ]; then
+ 	echo "Usage: ./bu.sh [dir name] [version number|-r]"
+ 	exit 1
+ fi
+ SrcDir=$1
+ 
+ 
+ #Check the second argument
+ if [ -z $2 ]; then
+ 	echo "Please enter the version number"
+ 	echo ""
+ 	echo "========== [List of saved backup in local] ============"
+ 	ls $TargetDir"/"$SrcDir*".zip" -la 
+ 	echo "======================================================="
+ 	exit 1
+ fi
+ 
+ if [ $2 == '-r' ]; then
+ 	echo "========== [List of saved backup in server] ============"
+ 	curl  "ftp://"$FtpUser":"$FtpPass"@"$FtpServer"/"$FtpDestDir --ftp-pasv --list-only | grep $SrcDir
+ 	echo "======================================================="
+ 	exit 1
+ fi
+ 
+ VerNum=$2				
+ 
+ 
+ ZipFileName=$TargetDir"/"$SrcDir"_"$VerNum"__"`date "+%Y_%m_%d"`.zip
+ zip -r $ZipFileName $SrcDir > $TargetDir"/backuplog.txt"
+ 
+ 
+ curl --upload-file $ZipFileName "ftp://"$FtpUser":"$FtpPass"@"$FtpServer"/"$FtpDestDir --ftp-pasv --progress-bar
+ 
+ 
+ echo "================ [Process Completed] =================="
+ echo $UploadUrl$SrcDir"_"$VerNum"__"`date "+%Y_%m_%d"`.zip
+ echo "-------------------------------------------------------"
+ ls $TargetDir"/"$SrcDir*".zip" -la 
+ echo "======================================================="
+ ```
+
+###Backup Script (Local)
+```bash
+ 
+ #Target
+ fileName=/cygdrive/d/backup_`date "+%m_%d_%y"`.tar.gz
+ 
+ #Set Directories Array
+ directories=( 
+ '"/cygdrive/c/Documents and Settings/kiichi/Desktop/"'
+ /cygdrive/c/Inetpub/wwwroot/
+ /cygdrive/c/bin/
+ /cygdrive/c/mydoc/
+ /cygdrive/c/xampp/
+ /cygdrive/c/xampp1_5_3/
+ /cygdrive/c/PortableThunderbird/
+ /cygdrive/c/tmp/
+ /cygdrive/c/Vim/
+ /cygdrive/c/work/
+ )
+ 
+ #Set counter
+ num=${#directories[@]}
+ num=$((num-1))
+ dirStr=""
+ 
+ # Concat all directories into one string
+ while [ $num -ge 0 ];
+ do
+ 	dirStr=$dirStr' '${directories[$num]}
+ 	num=$(($num-1))
+ done
+ 
+ #This should be looks like:
+ #tar -czpf $fileName tmp/test/ tmp/test2/
+ date
+ echo 'tar -czpf '$fileName' '$dirStr
+ tar -czpf $fileName $dirStr
+ ```
+
+
+
+
+</xmp>
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>

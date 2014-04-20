@@ -1,0 +1,14 @@
+#navi(JavaScript)
+**-Basics
+#contents
+***Write inside same html file
+ <script  language="JavaScript" type="text/javascript">
+ <!--
+ -->
+ </script>
+
+***Link external file
+ <script type="text/javascript" src="script.js"></script>
+
+#navi(JavaScript)
+

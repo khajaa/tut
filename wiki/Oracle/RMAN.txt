@@ -1,0 +1,113 @@
+#navi(Oracle)
+**RMAN
+#contents
+
+***Introduction
+rman is another dump program to keep track all archive chronologicaly
++set database as archive log mode
++set flash recovery area
++access rman
+
+***Setup
+from sqlplus,
+ startup mount;
+
+Set system as archivelog mode so that you can take backup without shutting down the database
+first 
+ shutdown immediate;
+ startup mount;
+then
+ ALTER DATABASE ARCHIVELOG;
+
+And check the parameter
+ select log_mode from v$database;
+
+Then, set each recovery parameters
+ show parameter db_
+ alter system set db_recovery_file_dest='/dbdata/flash_recovery_area' scope=spfile; 
+ alter system set db_recovery_file_size=20G scope=spfile;
+
+:note|/* scope=spfile or scope=both or scope=memory */
+
+You can also change parameter for how many keeps backup, check them
+ show parameter control
+
+***Using rman
+rman is client program to connect the backup repository 
+
+ $ORACLE_HOME/bin/rman target /
+or
+ rman target /
+''/'' to connect all instances
+
+Show all rman parameters
+ show all;
+
+Set autobackup:If any changes in control file (e.g. new table spaces), automaticaly create backup of control file in autobackup folder
+ configure controlfile autobackup on;
+
+
+Checking backup history, date & scn (backup index number)
+ rman>list backup;
+ rman>list backup summary;
+To check restore log
+ rman>list incarnation;
+
+Backup command manually
+ rman>backup database;
+ rman>backup database plus archivelog;
+
+Backup Script Example(backup.rman)
+ RUN 
+ {
+	ALLOCATE CHANNEL d1 DEVICE TYPE disk;
+	ALLOCATE CHANNEL d2 DEVICE TYPE disk;
+	ALLOCATE CHANNEL d3 DEVICE TYPE disk;
+	BACKUP DATABASE PLUS ARCHIVELOG;
+ }
+
+Restore Script Example(restore.rman)
+ RUN 
+ {
+	ALLOCATE CHANNEL d1 DEVICE TYPE disk;
+	ALLOCATE CHANNEL d2 DEVICE TYPE disk;
+	ALLOCATE CHANNEL d3 DEVICE TYPE disk;
+	SET UNTIL TIME "to_date('2006-07-07:12:56:00','YYYY-MM-DD:hh24:mi:SS')";
+	RESTORE DATABASE;
+	RECOVER DATABASE;
+	SQL 'alter database open resetlogs';
+ }
+
+Save those scripts and you can call just like sqlplus:
+ rman>@backup.rman
+or 
+ rman>@restore.rman
+
+
+
+***create recoverty catalog (store recovery metadata in another database)
+
+let's assume you have another machine to make backup
+
++create rman account
++setup tns to make backup to remote machine
+
+ create user rman identified by rman default tablespace users 
+ temporary tablespace temp quota 20G on users;
+ GRANT connect, resource, recovery_catalog_owner TO rman;
+
+set up tns to make backup on the remote computer
+Edit $ORACLE_HOME/network/admin/tnsnames.ora
+or
+start netca command
+
+ rman catalog rman/rman@mybk
+Then create all database table to make backups
+ create catalog;
+ register catalog;
+
+reference:
+http://www.oracle.com/technology/deploy/availability/htdocs/rman_overview.htm
+
+#navi(Oracle)
+

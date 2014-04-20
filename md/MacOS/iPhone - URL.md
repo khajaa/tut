@@ -1,0 +1,14 @@
+
+##iPhone - URL
+
+###URL components
+     NSLog(@"%@",[url host]);
+    NSLog(@"%@",[url pathComponents]);
+
+###URL Parameters
+```macos
+ ```
+
+
+
+
