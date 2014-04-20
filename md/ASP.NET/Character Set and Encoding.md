@@ -3,7 +3,7 @@
 
 ###Encoding to Shift_JIS
 Add this configuration in web.config
-```asp.net
+```aspx-cs
   <system.web>
     <globalization
         requestEncoding="Shift_JIS"
@@ -13,16 +13,16 @@ Add this configuration in web.config
  ```
 Default Encoding is UTF-8. This is useful when you pass value
 from Non-UTF-8 HTML file or other server side program, such as PHP.
-```asp.net
+```aspx-cs
  ```
 ###Base64
 
-```asp.net
+```aspx-cs
  	ASCIIEncoding enc = new ASCIIEncoding();
  	return Convert.ToBase64String(enc.GetBytes(val));
  }
  ```
-```asp.net
+```aspx-cs
  	ASCIIEncoding enc = new ASCIIEncoding();
  	return enc.GetString(Convert.FromBase64String(val));
  }

@@ -2,7 +2,7 @@
 ##Response - Send Pdf, Image, etc...
 
 ###PDF Sending Over HTTP
-```asp.net
+```aspx-cs
  	Response.ClearContent();
  	Response.ClearHeaders();
  	Response.ContentType = "application/pdf";
@@ -12,19 +12,19 @@
  }
  ```
 Sanitize output attachment file name
-```asp.net
+```aspx-cs
  ```
 You can have byte array like this:
-```asp.net
+```aspx-cs
  ```
 ###Download Text File
-```asp.net
+```aspx-cs
  	string test = "test1\ntest2\n\ntest hello\n world";
  	SendFile(StrToByteArray(test), "test.txt");
  }
  ```
 
-```asp.net
+```aspx-cs
  	Response.ClearContent();
  	Response.ClearHeaders();
  	Response.ContentType = "application/octet-stream";
@@ -35,14 +35,14 @@ You can have byte array like this:
  	Response.End();
  }
  ```
-```asp.net
+```aspx-cs
  	System.Text.ASCIIEncoding encoding = new System.Text.ASCIIEncoding();
  	return encoding.GetBytes(str);
  }
  ```
 ###Note
 Try this if you have file
-```asp.net
+```aspx-cs
  ```
 
 

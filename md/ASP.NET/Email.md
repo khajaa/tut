@@ -3,7 +3,7 @@
 
 ###Email Sending in .NET 2.0
 Now the email component is under ''System.Net.Mail'', System.Web.Mail is obsolete.
-```asp.net
+```aspx-cs
  	SmtpClient smtpClient = new SmtpClient();
  	MailMessage message = new MailMessage();
  	MailAddress fromAddress = new MailAddress(from);
@@ -19,7 +19,7 @@ Now the email component is under ''System.Net.Mail'', System.Web.Mail is obsolet
  ```
 
 ###Email Testing
-```asp.net
+```aspx-cs
  <%@ Import namespace="System.Web.Mail" %>
  <%
  MailMessage message = new MailMessage();
@@ -34,7 +34,7 @@ Now the email component is under ''System.Net.Mail'', System.Web.Mail is obsolet
  %>
  ```
 ###Email Test Tool 2
-```asp.net
+```aspx-cs
  
  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
  <%@ Import Namespace="System.Net.Mail" %>

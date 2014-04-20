@@ -2,7 +2,7 @@
 ##JavaScript
 
 ###Hit Enter Submit
-```asp.net
+```aspx-cs
     <asp:textbox id="textbox1" runat="server"/>
     <asp:textbox id="textbox2" runat="server"/>
     <asp:button id="button1" text="Button1" runat="server"/>
@@ -16,21 +16,21 @@ Use defaultbutton
 
 
 ###Focus Control
-```asp.net
+```aspx-cs
  ```
 
 ###Confirmation
-```asp.net
+```aspx-cs
  "javascript:if(confirm('Are you sure everything is correct?')== false) return false;");
  ```
-```asp.net
+```aspx-cs
  ```
 
 ###Confirmation with DataGrid
 You have to set attribute when you bind data
-```asp.net
+```aspx-cs
  ```
-```asp.net
+```aspx-cs
  if (e.Item.ItemType == ListItemType.AlternatingItem 
  	|| e.Item.ItemType == ListItemType.Item 
  	|| e.Item.ItemType == ListItemType.SelectedItem ) {
@@ -41,12 +41,12 @@ You have to set attribute when you bind data
  ```
 ###Confirmation with DataGrid - Easy Way
 Convert to Template Column from DeleteCommandColumn
-```asp.net
+```aspx-cs
  <asp:LinkButton runat="server" Text="Delete" CommandName="Delete" CausesValidation="false"></asp:LinkButton>
  </span>
  ```
 ###Keep Alive Script
-```asp.net
+```aspx-cs
  	string str_Script = @"
  	<script type='text/javascript'>
  	//Number of Reconnects
@@ -68,7 +68,7 @@ Convert to Template Column from DeleteCommandColumn
  	</script>
  	";
  ```
-```asp.net
+```aspx-cs
  	Type cstype = this.GetType();
  	string csname1 = "MyReconnect";
  	if (!cs.IsStartupScriptRegistered(cstype, csname1)) {			

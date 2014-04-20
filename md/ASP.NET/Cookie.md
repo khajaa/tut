@@ -3,7 +3,7 @@
 
 ###Example
 Using Single "Value"
-```asp.net
+```aspx-cs
  HttpCookie cookie = new HttpCookie("Username", "Kiichi");
  cookie.Expires = DateTime.Now.AddDays(30);
  Response.Cookies.Add(cookie);
@@ -13,14 +13,14 @@ Using Single "Value"
  Response.Cookies.Add(cookie2);
  }
  ```
-```asp.net
+```aspx-cs
  for (int i = 0; i < Request.Cookies.Count; i++) {
  	Response.Write("Name=" + Request.Cookies[i].Name + "/Value=" + Request.Cookies[i].Value +"<br/>");
  }
  }
  ```
 Using Multiple Key/Value Set
-```asp.net
+```aspx-cs
  Request.Cookies.Remove("UserSettings");
  HttpCookie cookie = new HttpCookie("UserSettings");
  cookie["Username"] = "ktakeuch";
@@ -30,7 +30,7 @@ Using Multiple Key/Value Set
  Response.Cookies.Add(cookie);
  }
  ```
-```asp.net
+```aspx-cs
  if (Request.Cookies["UserSettings"] != null) {
  	for (int i = 0; i < Request.Cookies["UserSettings"].Values.Count; i++) {
  		Response.Write(Request.Cookies["UserSettings"].Values.Keys[i] + " = " + Request.Cookies["UserSettings"].Values[i] + "<BR/>");

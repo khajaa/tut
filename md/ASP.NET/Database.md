@@ -15,7 +15,7 @@ http://downloads-zdnet.com.com/ODBCView/3000-10255_2-10142653.html
 :Warning|If you are accessing from ASP.NET, do not put this mdb file in the public space!
 
 These are sample APS.NET codes
-```asp.net
+```aspx-cs
  OdbcConnection conn = new OdbcConnection("DSN=mydb;UID=admin;PWD=test;");
  OdbcCommand command = new OdbcCommand(sql, conn);
  OdbcDataAdapter adapter = new OdbcDataAdapter(command);
@@ -23,7 +23,7 @@ These are sample APS.NET codes
  adapter.Fill(dt);
  conn.Close();
  ```
-```asp.net
+```aspx-cs
  OdbcConnection conn = new OdbcConnection("DSN=cueticketb2b;UID=admin;PWD=jikumaster;");
  OdbcCommand command = new OdbcCommand(sql, conn);
  conn.Open();
@@ -35,14 +35,14 @@ These are sample APS.NET codes
 
 ###OleDb (MS Access)
 You need
-```asp.net
+```aspx-cs
  System.Data.OleDb;
  ```
 Sample connection string
-```asp.net
+```aspx-cs
  ```
 Select Example
-```asp.net
+```aspx-cs
  con.ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0; Data Source=c:\\db1.mdb";
  con.Open();
  OleDbCommand com=new OleDbCommand("SELECT * from book;",con);
@@ -69,32 +69,32 @@ Insertion Example
 or
 
 -From command prompt
-```asp.net
+```aspx-cs
  ```
 or
 
 -From cygwin (This is easiest way, but not good for security)
 Go to the drive
-```asp.net
+```aspx-cs
  ```
-```asp.net
+```aspx-cs
  ```
 ###SQL Client (SQL Server, ODBC, etc...)
 Sample Connection String
-```asp.net
+```aspx-cs
  User ID=test;Password=test;" 
  ```
 DBMSSOCN is TCP/IP
 
 :Note|Server might require you to use Secure Connection 
 
-```asp.net
+```aspx-cs
  User ID=test;Password=test;" 
  ```
 
 
 Sample
-```asp.net
+```aspx-cs
  using System.Data;
  using System.Data.SqlClient;
  namespace MSSQLServerTest {
@@ -125,7 +125,7 @@ Sample
  }
  ```
 This is a sample wrapper class
-```asp.net
+```aspx-cs
  	string connStr;
  	SqlConnection conn;
  	public DBConn(string connStr){
