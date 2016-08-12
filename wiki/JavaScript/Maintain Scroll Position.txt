@@ -31,7 +31,7 @@ This will set same scroll position before/after you submit form data.
     
     function MaintainPositionScroll() {
        var x = document.forms[formID].xCoordHolder.value;
-       var y = document.formsformID].yCoordHolder.value;
+       var y = document.forms[formID].yCoordHolder.value;
        window.scrollTo(x, y);
     }
     
